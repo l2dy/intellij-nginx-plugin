@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx.http
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 
 // https://nginx.org/en/docs/http/ngx_http_flv_module.html
 

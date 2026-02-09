@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx.http
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 
 // https://nginx.org/en/docs/http/ngx_http_stub_status_module.html
 
@@ -31,6 +30,14 @@ val stubStatus = Directive(
         
         Note: Prior to 1.7.5, required an argument (e.g., "stub_status on")
     """.trimIndent(),
+    parameters = listOf(
+        DirectiveParameter(
+            name = "on",
+            description = "Enable basic status information page in the surrounding location.",
+            valueType = ValueType.BOOLEAN,
+            required = false
+        )
+    ),
     context = listOf(server, location),
     module = ngx_http_stub_status_module
 )

@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx.stream
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 
 // https://nginx.org/en/docs/stream/ngx_stream_geoip_module.html
 
@@ -14,6 +13,14 @@ val streamGeoipCountry = Directive(
     name = "geoip_country",
     description = "Specifies the path to the GeoIP country database",
     module = ngx_stream_geoip_module,
+    parameters = listOf(
+        DirectiveParameter(
+            name = "database_file",
+            description = "Path to the MaxMind GeoIP database file",
+            valueType = ValueType.PATH,
+            required = true
+        )
+    ),
     context = listOf(stream)
 )
 
@@ -21,6 +28,14 @@ val streamGeoipCity = Directive(
     name = "geoip_city",
     description = "Specifies the path to the GeoIP city database",
     module = ngx_stream_geoip_module,
+    parameters = listOf(
+        DirectiveParameter(
+            name = "database_file",
+            description = "Path to the MaxMind GeoIP database file",
+            valueType = ValueType.PATH,
+            required = true
+        )
+    ),
     context = listOf(stream)
 )
 
@@ -28,5 +43,13 @@ val streamGeoipOrg = Directive(
     name = "geoip_org",
     description = "Specifies the path to the GeoIP organization database",
     module = ngx_stream_geoip_module,
+    parameters = listOf(
+        DirectiveParameter(
+            name = "database_file",
+            description = "Path to the MaxMind GeoIP database file",
+            valueType = ValueType.PATH,
+            required = true
+        )
+    ),
     context = listOf(stream)
 )

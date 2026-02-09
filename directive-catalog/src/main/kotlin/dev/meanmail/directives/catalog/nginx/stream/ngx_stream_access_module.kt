@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx.stream
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 
 // https://nginx.org/en/docs/stream/ngx_stream_access_module.html
 
@@ -14,6 +13,19 @@ val streamAllow = Directive(
     name = "allow",
     description = "Allows access for specific IP addresses, networks, or UNIX-domain sockets",
     module = ngx_stream_access_module,
+    parameters = listOf(
+        DirectiveParameter(
+            name = "address",
+            description = "IP address, network range, or UNIX-domain socket",
+            valueType = ValueType.STRING
+        ),
+        DirectiveParameter(
+            name = "type",
+            description = "Optional type of address (CIDR notation, IPv4/IPv6)",
+            valueType = ValueType.STRING,
+            required = false
+        )
+    ),
     context = listOf(stream, streamServer)
 )
 
@@ -21,5 +33,18 @@ val streamDeny = Directive(
     name = "deny",
     description = "Denies access for specific IP addresses, networks, or UNIX-domain sockets",
     module = ngx_stream_access_module,
+    parameters = listOf(
+        DirectiveParameter(
+            name = "address",
+            description = "IP address, network range, or UNIX-domain socket",
+            valueType = ValueType.STRING
+        ),
+        DirectiveParameter(
+            name = "type",
+            description = "Optional type of address (CIDR notation, IPv4/IPv6)",
+            valueType = ValueType.STRING,
+            required = false
+        )
+    ),
     context = listOf(stream, streamServer)
 )

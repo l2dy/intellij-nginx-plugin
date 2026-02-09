@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx.stream
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 
 // https://nginx.org/en/docs/stream/ngx_stream_return_module.html
 
@@ -13,6 +12,13 @@ val ngx_stream_return_module = NginxModule(
 val streamReturn = Directive(
     name = "return",
     description = "Sends a specified value to the client and closes the connection",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "value",
+            valueType = ValueType.STRING,
+            description = "Value to send to the client. Can contain text, variables, or their combination",
+        )
+    ),
     context = listOf(streamServer),
     module = ngx_stream_return_module
 )

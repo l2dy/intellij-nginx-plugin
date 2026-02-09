@@ -9,9 +9,10 @@ val ngx_http_gunzip_module = NginxModule(
     description = "Provides support for decompressing gzipped responses for clients that do not support gzip encoding"
 )
 
-val gunzip = Directive(
-    name = "gunzip",
-    description = "Enables or disables decompression of gzipped responses for clients that do not support gzip encoding. When enabled, NGINX will decompress gzip-encoded responses before sending them to clients that do not support gzip compression.",
+val gunzip = ToggleDirective(
+    "gunzip",
+    "Enables or disables decompression of gzipped responses for clients that do not support gzip encoding. When enabled, NGINX will decompress gzip-encoded responses before sending them to clients that do not support gzip compression.",
+    enabled = false,
     context = listOf(location),
     module = ngx_http_gunzip_module
 )
@@ -19,6 +20,20 @@ val gunzip = Directive(
 val gunzipBuffers = Directive(
     name = "gunzip_buffers",
     description = "Configures the number and size of buffers used for decompressing gzipped responses. This directive allows fine-tuning memory allocation for gunzip operations.",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "number",
+            description = "Number of buffers allocated for gunzip operations. Determines how many buffers will be used during decompression.",
+            valueType = ValueType.INTEGER,
+            required = true
+        ),
+        DirectiveParameter(
+            name = "size",
+            description = "Size of each buffer used for decompression. Defines the memory allocation for each buffer during gunzip operations.",
+            valueType = ValueType.SIZE,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_gunzip_module
 )

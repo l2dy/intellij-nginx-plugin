@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx.http.auth
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 import dev.meanmail.directives.catalog.nginx.http.http
 import dev.meanmail.directives.catalog.nginx.http.location
 import dev.meanmail.directives.catalog.nginx.http.server
@@ -16,6 +15,14 @@ val ngx_http_auth_request_module = NginxModule(
 val authRequest = Directive(
     name = "auth_request",
     description = "Enables external authorization request for client access",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "uri",
+            description = "URI of the authorization server or location",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_auth_request_module
 )
@@ -23,6 +30,20 @@ val authRequest = Directive(
 val authRequestSet = Directive(
     name = "auth_request_set",
     description = "Sets a variable based on the authorization request response",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "variable",
+            description = "Name of the variable to set",
+            valueType = ValueType.STRING,
+            required = true
+        ),
+        DirectiveParameter(
+            name = "value",
+            description = "Value to assign to the variable based on the authorization response",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_auth_request_module
 )

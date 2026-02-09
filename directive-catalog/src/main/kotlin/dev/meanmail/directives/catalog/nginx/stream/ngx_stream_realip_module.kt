@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx.stream
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 
 // https://nginx.org/en/docs/stream/ngx_stream_realip_module.html
 
@@ -13,6 +12,13 @@ val ngx_stream_realip_module = NginxModule(
 val streamSetRealIpFrom = Directive(
     name = "set_real_ip_from",
     description = "Defines trusted IP addresses or networks for determining the real client IP address in stream context",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "address",
+            valueType = ValueType.STRING,
+            description = "IP address, network range (CIDR), or 'unix:' to trust all UNIX-domain sockets",
+        )
+    ),
     context = listOf(stream, streamServer),
     module = ngx_stream_realip_module
 )

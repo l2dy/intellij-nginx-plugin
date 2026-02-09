@@ -29,30 +29,46 @@ val subFilter = Directive(
         - Multiple directives can be specified on same level (since 1.9.4)
         - Inherited from previous level if no directives on current level
     """.trimIndent(),
+    parameters = listOf(
+        DirectiveParameter(
+            name = "string",
+            description = "String to search for (case-insensitive)",
+            valueType = ValueType.STRING,
+            required = true
+        ),
+        DirectiveParameter(
+            name = "replacement",
+            description = "String to replace with (can contain variables)",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_sub_module
 )
 
-val subFilterLastModified = Directive(
-    name = "sub_filter_last_modified",
-    description = """
+val subFilterLastModified = ToggleDirective(
+    "sub_filter_last_modified",
+    """
         Allows preserving the "Last-Modified" header field from the original response during replacement.
         
         Note: 
         - By default, the header is removed as response content is modified
         - Available since version 1.5.1
     """.trimIndent(),
-        context = listOf(http, server, location),
+    enabled = false,
+    context = listOf(http, server, location),
     module = ngx_http_sub_module
 )
 
-val subFilterOnce = Directive(
-    name = "sub_filter_once",
-    description = """
+val subFilterOnce = ToggleDirective(
+    "sub_filter_once",
+    """
         Indicates whether to look for each string to replace once or repeatedly.
         When 'off', replacement continues throughout the whole response.
     """.trimIndent(),
-        context = listOf(http, server, location),
+    enabled = true,
+    context = listOf(http, server, location),
     module = ngx_http_sub_module
 )
 
@@ -66,6 +82,15 @@ val subFilterTypes = Directive(
         - Special value "*" matches any MIME type (since 0.8.29)
         - Multiple types can be specified
     """.trimIndent(),
+    parameters = listOf(
+        DirectiveParameter(
+            name = "mime-type",
+            description = "MIME types for which to perform substitution",
+            valueType = ValueType.STRING_LIST,
+            required = false,
+            defaultValue = "text/html"
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_sub_module
 )

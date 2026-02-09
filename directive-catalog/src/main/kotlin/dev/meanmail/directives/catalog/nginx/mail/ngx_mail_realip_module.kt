@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx.mail
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 
 // https://nginx.org/en/docs/mail/ngx_mail_realip_module.html
 
@@ -14,5 +13,12 @@ val mailSetRealIpFrom = Directive(
     name = "set_real_ip_from",
     description = "Defines trusted addresses that are known to send correct replacement addresses",
     module = ngx_mail_realip_module,
+    parameters = listOf(
+        DirectiveParameter(
+            name = "address",
+            valueType = ValueType.STRING,
+            description = "IP address, network range (CIDR), or 'unix:' to trust all UNIX-domain sockets",
+        )
+    ),
     context = listOf(mail, mailServer)
 )

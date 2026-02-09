@@ -17,9 +17,39 @@ import dev.meanmail.directives.catalog.nginx.stream.ssl.ngx_stream_ssl_module
 import dev.meanmail.directives.catalog.nginx.stream.ssl.ngx_stream_ssl_preread_module
 import dev.meanmail.directives.catalog.nginx.stream.upstream.ngx_stream_upstream_module
 
+enum class ValueType {
+    TIME,           // Time values (e.g., 10s, 1m, 500ms)
+    NUMBER,         // Numeric values
+    INTEGER,        // Integer values
+    BOOLEAN,        // on/off, true/false
+    STRING,         // String values
+    PATH,           // File or directory path values
+    LIST,           // List of values
+    ENUM,           // Enumerated values
+    SIZE,           // Size values (e.g., 10k, 1m, 500g)
+    OFFSET,         // Offset values for ranges or positioning
+    RATE,           // Rate limiting values (e.g., requests per second)
+    STRING_LIST,    // List of string values
+}
+
+data class DirectiveParameter(
+    val name: String? = null,
+    val description: String? = null,
+    val valueType: ValueType = ValueType.STRING,
+    val allowedValues: List<String>? = null,
+    val validator: ((String) -> Boolean)? = null,
+    val regex: Regex? = null,
+    val required: Boolean = true,
+    val defaultValue: String? = null,
+    val multiple: Boolean = false,
+    val minValue: Int? = null,
+    val maxValue: Int? = null
+)
+
 open class Directive(
     val name: String,
     val description: String,
+    val parameters: List<DirectiveParameter> = emptyList(),
     val context: List<Directive>,
     val module: NginxModule
 ) {
@@ -168,6 +198,28 @@ open class Directive(
     }
 }
 
+class ToggleDirective(
+    name: String,
+    description: String,
+    enabled: Boolean,
+    context: List<Directive>,
+    module: NginxModule
+) : Directive(
+    name,
+    description,
+    listOf(
+        DirectiveParameter(
+            name = "state",
+            description = "Enables or disables the directive",
+            valueType = ValueType.BOOLEAN,
+            allowedValues = listOf("on", "off"),
+            defaultValue = if (enabled) "on" else "off"
+        )
+    ),
+    context,
+    module
+)
+
 open class NginxModule(
     val name: String,
     val description: String
@@ -183,22 +235,22 @@ val main_module = NginxModule(
 val any = Directive(
     "any",
     "Directive for dynamic context determination",
-    emptyList(),
-    main_module
+    context = emptyList(),
+    module = main_module
 )
 
 val self = Directive(
     "self",
     "Directive for self-referencing contexts",
-    emptyList(),
-    main_module
+    context = emptyList(),
+    module = main_module
 )
 
 val main = Directive(
     "main",
     "Top-level directives that cannot be nested",
-    emptyList(),
-    main_module
+    context = emptyList(),
+    module = main_module
 )
 
 fun findDirectives(name: String, path: List<String>? = null): List<Directive> {

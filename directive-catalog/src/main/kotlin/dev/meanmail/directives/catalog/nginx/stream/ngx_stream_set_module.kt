@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx.stream
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 
 // https://nginx.org/en/docs/stream/ngx_stream_set_module.html
 
@@ -13,6 +12,18 @@ val ngx_stream_set_module = NginxModule(
 val streamSet = Directive(
     name = "set",
     description = "Sets a value of a variable in stream context",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "variable",
+            valueType = ValueType.STRING,
+            description = "Name of the variable to set",
+        ),
+        DirectiveParameter(
+            name = "value",
+            valueType = ValueType.STRING,
+            description = "Value to assign to the variable",
+        )
+    ),
     context = listOf(streamServer),
     module = ngx_stream_set_module
 )

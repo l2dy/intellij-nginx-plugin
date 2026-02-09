@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx.http.auth
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 import dev.meanmail.directives.catalog.nginx.http.http
 import dev.meanmail.directives.catalog.nginx.http.limitExcept
 import dev.meanmail.directives.catalog.nginx.http.location
@@ -17,6 +16,15 @@ val ngx_http_auth_basic_module = NginxModule(
 val authBasic = Directive(
     name = "auth_basic",
     description = "Enables HTTP basic authentication and specifies the authentication realm",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "realm",
+            description = "Authentication realm displayed in the browser's login prompt",
+            valueType = ValueType.STRING,
+            required = false,
+            defaultValue = "Restricted"
+        )
+    ),
     context = listOf(http, server, location, limitExcept),
     module = ngx_http_auth_basic_module
 )
@@ -24,6 +32,14 @@ val authBasic = Directive(
 val authBasicUserFile = Directive(
     name = "auth_basic_user_file",
     description = "Specifies the path to the file containing user credentials for basic authentication",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "file_path",
+            description = "Path to the htpasswd file containing username and encrypted password",
+            valueType = ValueType.PATH,
+            required = true
+        )
+    ),
     context = listOf(http, server, location, limitExcept),
     module = ngx_http_auth_basic_module
 )

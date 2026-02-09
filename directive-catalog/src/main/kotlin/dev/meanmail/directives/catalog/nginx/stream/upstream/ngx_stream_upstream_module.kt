@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx.stream.upstream
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 import dev.meanmail.directives.catalog.nginx.stream.stream
 
 // https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html
@@ -21,6 +20,43 @@ val streamUpstream = Directive(
 val streamUpstreamServer = Directive(
     name = "server",
     description = "Defines a server in an upstream group for load balancing in stream context",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "address",
+            valueType = ValueType.STRING,
+            description = "IP address or domain name of the server",
+        ),
+        DirectiveParameter(
+            name = "port",
+            valueType = ValueType.NUMBER,
+            description = "Port of the server",
+            required = false,
+        ),
+        DirectiveParameter(
+            name = "weight",
+            valueType = ValueType.NUMBER,
+            description = "Weight for server in load balancing",
+            required = false,
+        ),
+        DirectiveParameter(
+            name = "max_conns",
+            valueType = ValueType.NUMBER,
+            description = "Maximum number of concurrent connections",
+            required = false,
+        ),
+        DirectiveParameter(
+            name = "max_fails",
+            valueType = ValueType.NUMBER,
+            description = "Number of failed attempts before marking server unavailable",
+            required = false,
+        ),
+        DirectiveParameter(
+            name = "fail_timeout",
+            valueType = ValueType.TIME,
+            description = "Duration to consider server unavailable after max_fails",
+            required = false,
+        )
+    ),
     context = listOf(streamUpstream),
     module = ngx_stream_upstream_module
 )
@@ -28,6 +64,18 @@ val streamUpstreamServer = Directive(
 val streamUpstreamZone = Directive(
     name = "zone",
     description = "Defines a shared memory zone for upstream servers in stream context",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "name",
+            valueType = ValueType.STRING,
+            description = "Name of the shared memory zone",
+        ),
+        DirectiveParameter(
+            name = "size",
+            valueType = ValueType.SIZE,
+            description = "Size of the shared memory zone",
+        )
+    ),
     context = listOf(streamUpstream),
     module = ngx_stream_upstream_module
 )
@@ -35,6 +83,19 @@ val streamUpstreamZone = Directive(
 val streamUpstreamHash = Directive(
     name = "hash",
     description = "Configures hash-based load balancing method in stream context",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "key",
+            valueType = ValueType.STRING,
+            description = "Variable used for hash-based distribution",
+        ),
+        DirectiveParameter(
+            name = "consistent",
+            valueType = ValueType.BOOLEAN,
+            description = "Enables consistent hash distribution",
+            required = false,
+        )
+    ),
     context = listOf(streamUpstream),
     module = ngx_stream_upstream_module
 )
@@ -49,6 +110,21 @@ val streamUpstreamLeastConn = Directive(
 val streamUpstreamRandom = Directive(
     name = "random",
     description = "Configures random load balancing method in stream context",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "two",
+            valueType = ValueType.BOOLEAN,
+            description = "Selects two servers for random choice",
+            required = false,
+        ),
+        DirectiveParameter(
+            name = "method",
+            valueType = ValueType.STRING,
+            description = "Method for selecting between two servers",
+            allowedValues = listOf("least_conn", "least_time"),
+            required = false,
+        )
+    ),
     context = listOf(streamUpstream),
     module = ngx_stream_upstream_module
 )
@@ -56,6 +132,25 @@ val streamUpstreamRandom = Directive(
 val streamUpstreamResolver = Directive(
     name = "resolver",
     description = "Configures DNS servers for upstream server resolution in stream context",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "address",
+            valueType = ValueType.STRING,
+            description = "IP address of DNS server",
+        ),
+        DirectiveParameter(
+            name = "valid",
+            valueType = ValueType.TIME,
+            description = "Caching time for DNS records",
+            required = false,
+        ),
+        DirectiveParameter(
+            name = "ipv6",
+            valueType = ValueType.BOOLEAN,
+            description = "Enable IPv6 resolution",
+            required = false,
+        )
+    ),
     context = listOf(streamUpstream),
     module = ngx_stream_upstream_module
 )
@@ -63,6 +158,13 @@ val streamUpstreamResolver = Directive(
 val streamUpstreamResolverTimeout = Directive(
     name = "resolver_timeout",
     description = "Sets the timeout for DNS server resolution in stream context",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "time",
+            valueType = ValueType.TIME,
+            description = "Timeout duration for DNS resolution",
+        )
+    ),
     context = listOf(streamUpstream),
     module = ngx_stream_upstream_module
 )

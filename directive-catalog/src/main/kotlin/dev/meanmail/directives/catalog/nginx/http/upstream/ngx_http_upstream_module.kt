@@ -62,6 +62,43 @@ val upstreamServer = Directive(
         - slow_start: gradually recovers server weight
         - drain: puts server in "draining" mode
     """.trimIndent(),
+    parameters = listOf(
+        DirectiveParameter(
+            name = "address",
+            valueType = ValueType.STRING,
+            description = "IP address or domain name of the server",
+        ),
+        DirectiveParameter(
+            name = "port",
+            valueType = ValueType.NUMBER,
+            description = "Port of the server",
+            required = false,
+        ),
+        DirectiveParameter(
+            name = "weight",
+            valueType = ValueType.NUMBER,
+            description = "Weight for server in load balancing",
+            required = false,
+        ),
+        DirectiveParameter(
+            name = "max_conns",
+            valueType = ValueType.NUMBER,
+            description = "Maximum number of concurrent connections",
+            required = false,
+        ),
+        DirectiveParameter(
+            name = "max_fails",
+            valueType = ValueType.NUMBER,
+            description = "Number of failed attempts before marking server unavailable",
+            required = false,
+        ),
+        DirectiveParameter(
+            name = "fail_timeout",
+            valueType = ValueType.TIME,
+            description = "Duration to consider server unavailable after max_fails",
+            required = false,
+        )
+    ),
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )
@@ -79,6 +116,18 @@ val zone = Directive(
         
         Commercial subscription feature.
     """.trimIndent(),
+    parameters = listOf(
+        DirectiveParameter(
+            name = "name",
+            valueType = ValueType.STRING,
+            description = "Name of the shared memory zone",
+        ),
+        DirectiveParameter(
+            name = "size",
+            valueType = ValueType.SIZE,
+            description = "Size of the shared memory zone",
+        )
+    ),
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )
@@ -92,13 +141,26 @@ val hash = Directive(
         With 'consistent' parameter uses ketama consistent hashing method, 
         which ensures only few keys are remapped when servers are added or removed.
     """.trimIndent(),
+    parameters = listOf(
+        DirectiveParameter(
+            name = "key",
+            valueType = ValueType.STRING,
+            description = "Variable used for hash-based distribution",
+        ),
+        DirectiveParameter(
+            name = "consistent",
+            valueType = ValueType.BOOLEAN,
+            description = "Enables consistent hash distribution",
+            required = false,
+        )
+    ),
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )
 
-val ip_hash = Directive(
-    name = "ip_hash",
-    description = """
+val ip_hash = ToggleDirective(
+    "ip_hash",
+    """
         Specifies that a group should use IP-based load balancing.
         The first three octets of the client IPv4 address, or the entire IPv6 address,
         are used as a hashing key.
@@ -109,6 +171,7 @@ val ip_hash = Directive(
         To temporarily remove a server while preserving the client IP mapping,
         mark it with the 'down' parameter.
     """.trimIndent(),
+    enabled = true,
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )
@@ -123,6 +186,14 @@ val keepalive = Directive(
         Note: This does not limit the total number of connections to upstream servers.
         The number should be small enough to let upstream servers process new incoming connections.
     """.trimIndent(),
+    parameters = listOf(
+        DirectiveParameter(
+            name = "connections",
+            description = "Maximum number of idle keepalive connections per worker",
+            valueType = ValueType.INTEGER,
+            required = true
+        )
+    ),
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )
@@ -141,6 +212,21 @@ val least_conn = Directive(
 val random = Directive(
     name = "random",
     description = "Enables random load balancing",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "two",
+            valueType = ValueType.BOOLEAN,
+            description = "Selects two servers for random choice",
+            required = false,
+        ),
+        DirectiveParameter(
+            name = "method",
+            valueType = ValueType.STRING,
+            description = "Method for selecting between two servers",
+            allowedValues = listOf("least_conn", "least_time"),
+            required = false,
+        )
+    ),
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )
@@ -148,6 +234,14 @@ val random = Directive(
 val stickyCookieInsert = Directive(
     name = "sticky_cookie_insert",
     description = "Inserts a sticky cookie for upstream servers",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "cookie",
+            description = "Name of the sticky cookie",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )
@@ -155,6 +249,14 @@ val stickyCookieInsert = Directive(
 val upstreamKeepaliveRequests = Directive(
     name = "keepalive_requests",
     description = "Sets the number of requests to send over a keepalive connection",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "number",
+            description = "Number of requests",
+            valueType = ValueType.NUMBER,
+            required = true
+        )
+    ),
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )
@@ -162,6 +264,14 @@ val upstreamKeepaliveRequests = Directive(
 val upstreamKeepaliveTime = Directive(
     name = "keepalive_time",
     description = "Sets the keepalive timeout",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "time",
+            description = "Timeout value",
+            valueType = ValueType.TIME,
+            required = true
+        )
+    ),
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )
@@ -169,6 +279,14 @@ val upstreamKeepaliveTime = Directive(
 val upstreamKeepaliveTimeout = Directive(
     name = "keepalive_timeout",
     description = "Sets the keepalive timeout",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "time",
+            description = "Timeout value",
+            valueType = ValueType.TIME,
+            required = true
+        )
+    ),
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )
@@ -176,6 +294,25 @@ val upstreamKeepaliveTimeout = Directive(
 val upstreamResolver = Directive(
     name = "resolver",
     description = "Defines a resolver for upstream servers",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "address",
+            valueType = ValueType.STRING,
+            description = "IP address of DNS server",
+        ),
+        DirectiveParameter(
+            name = "valid",
+            valueType = ValueType.TIME,
+            description = "Caching time for DNS records",
+            required = false,
+        ),
+        DirectiveParameter(
+            name = "ipv6",
+            valueType = ValueType.BOOLEAN,
+            description = "Enable IPv6 resolution",
+            required = false,
+        )
+    ),
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )
@@ -183,6 +320,13 @@ val upstreamResolver = Directive(
 val upstreamResolverTimeout = Directive(
     name = "resolver_timeout",
     description = "Sets the timeout for the resolver",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "time",
+            valueType = ValueType.TIME,
+            description = "Timeout duration for DNS resolution",
+        )
+    ),
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )
@@ -202,6 +346,25 @@ val upstreamServerResolve = Directive(
         - ipv4: use IPv4 addresses if available (on by default)
         - status_zone: enables collection of DNS server statistics
     """.trimIndent(),
+    parameters = listOf(
+        DirectiveParameter(
+            name = "address",
+            valueType = ValueType.STRING,
+            description = "IP address of DNS server",
+        ),
+        DirectiveParameter(
+            name = "valid",
+            valueType = ValueType.TIME,
+            description = "Caching time for DNS records",
+            required = false,
+        ),
+        DirectiveParameter(
+            name = "ipv6",
+            valueType = ValueType.BOOLEAN,
+            description = "Enable IPv6 resolution",
+            required = false,
+        )
+    ),
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )
@@ -214,6 +377,13 @@ val upstreamServerResolverTimeout = Directive(
         Example:
         resolver_timeout 5s;
     """.trimIndent(),
+    parameters = listOf(
+        DirectiveParameter(
+            name = "time",
+            valueType = ValueType.TIME,
+            description = "Timeout duration for DNS resolution",
+        )
+    ),
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )

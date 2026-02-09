@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx.http
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 
 // https://nginx.org/en/docs/http/ngx_http_perl_module.html
 
@@ -13,6 +12,14 @@ val ngx_http_perl_module = NginxModule(
 val perl = Directive(
     name = "perl",
     description = "Sets a Perl handler for the given location",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "handler",
+            description = "Perl module::function or anonymous subroutine",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(location, limitExcept),
     module = ngx_http_perl_module
 )
@@ -20,6 +27,14 @@ val perl = Directive(
 val perlModules = Directive(
     name = "perl_modules",
     description = "Sets an additional path for Perl modules",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "path",
+            description = "Directory path for additional Perl modules",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http),
     module = ngx_http_perl_module
 )
@@ -27,6 +42,14 @@ val perlModules = Directive(
 val perlRequire = Directive(
     name = "perl_require",
     description = "Defines a module to be loaded during each reconfiguration",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "module",
+            description = "Name of the Perl module to require",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http),
     module = ngx_http_perl_module
 )
@@ -34,6 +57,20 @@ val perlRequire = Directive(
 val perlSet = Directive(
     name = "perl_set",
     description = "Installs a Perl handler for the specified variable",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "variable",
+            description = "NGINX variable to set using Perl",
+            valueType = ValueType.STRING,
+            required = true
+        ),
+        DirectiveParameter(
+            name = "handler",
+            description = "Perl module::function or anonymous subroutine",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http),
     module = ngx_http_perl_module
 )

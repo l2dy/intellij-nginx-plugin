@@ -12,6 +12,13 @@ val ngx_http_realip_module = NginxModule(
 val setRealIpFrom = Directive(
     name = "set_real_ip_from",
     description = "Defines a network or IP address from which the real client IP should be obtained",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "address",
+            valueType = ValueType.STRING,
+            description = "IP address, network range (CIDR), or 'unix:' to trust all UNIX-domain sockets",
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_realip_module
 )
@@ -19,13 +26,22 @@ val setRealIpFrom = Directive(
 val realIpHeader = Directive(
     name = "real_ip_header",
     description = "Specifies the header field used to obtain the real client IP address",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "header",
+            description = "Name of the header containing the real client IP (e.g., X-Forwarded-For, X-Real-IP)",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_realip_module
 )
 
-val realIpRecursive = Directive(
-    name = "real_ip_recursive",
-    description = "Enables recursive search for the real client IP when multiple proxy servers are involved",
+val realIpRecursive = ToggleDirective(
+    "real_ip_recursive",
+    "Enables recursive search for the real client IP when multiple proxy servers are involved",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_realip_module
 )

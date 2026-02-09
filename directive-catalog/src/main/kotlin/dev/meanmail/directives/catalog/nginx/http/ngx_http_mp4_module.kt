@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx.http
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 
 // https://nginx.org/en/docs/http/ngx_http_mp4_module.html
 
@@ -21,6 +20,15 @@ val mp4 = Directive(
 val mp4BufferSize = Directive(
     name = "mp4_buffer_size",
     description = "Sets the initial buffer size for processing MP4 files",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "size",
+            description = "Initial buffer size for MP4 file processing",
+            valueType = ValueType.SIZE,
+            required = false,
+            defaultValue = "512K"
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_mp4_module
 )
@@ -28,6 +36,15 @@ val mp4BufferSize = Directive(
 val mp4MaxBufferSize = Directive(
     name = "mp4_max_buffer_size",
     description = "Sets the maximum buffer size for processing MP4 file metadata",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "size",
+            description = "Maximum buffer size for MP4 metadata processing",
+            valueType = ValueType.SIZE,
+            required = false,
+            defaultValue = "10M"
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_mp4_module
 )
@@ -35,6 +52,15 @@ val mp4MaxBufferSize = Directive(
 val mp4StartKeyFrame = Directive(
     name = "mp4_start_key_frame",
     description = "Enables prepending the video with a key frame before the start point",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "state",
+            description = "Enable or disable prepending key frame",
+            valueType = ValueType.BOOLEAN,
+            required = false,
+            defaultValue = "off"
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_mp4_module
 )

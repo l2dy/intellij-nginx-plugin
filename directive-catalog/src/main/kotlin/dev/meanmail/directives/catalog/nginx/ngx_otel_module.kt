@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 import dev.meanmail.directives.catalog.nginx.http.http
 import dev.meanmail.directives.catalog.nginx.http.location
 import dev.meanmail.directives.catalog.nginx.http.server

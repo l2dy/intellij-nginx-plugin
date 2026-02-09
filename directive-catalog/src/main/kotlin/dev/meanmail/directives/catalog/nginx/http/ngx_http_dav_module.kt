@@ -9,9 +9,10 @@ val ngx_http_dav_module = NginxModule(
     description = "The Nginx HTTP DAV module"
 )
 
-val createFullPutPath = Directive(
+val createFullPutPath = ToggleDirective(
     "create_full_put_path",
     "Enables creation of intermediate directories during PUT requests",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_dav_module
 )
@@ -19,6 +20,15 @@ val createFullPutPath = Directive(
 val davAccess = Directive(
     name = "dav_access",
     description = "Sets the access permissions for created files and directories",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "permissions",
+            description = "Access permissions in user:mode format",
+            valueType = ValueType.STRING,
+            required = false,
+            defaultValue = "user:rw group:r all:r"
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_dav_module
 )
@@ -26,6 +36,15 @@ val davAccess = Directive(
 val davMethods = Directive(
     name = "dav_methods",
     description = "Enables WebDAV HTTP methods for the location",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "methods",
+            description = "List of WebDAV methods to enable",
+            valueType = ValueType.STRING,
+            required = false,
+            defaultValue = "PUT DELETE MKCOL COPY MOVE"
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_dav_module
 )
@@ -33,6 +52,15 @@ val davMethods = Directive(
 val minDeleteDepth = Directive(
     name = "min_delete_depth",
     description = "Sets the minimum directory depth allowed for DELETE requests",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "depth",
+            description = "Minimum directory depth for DELETE operations",
+            valueType = ValueType.NUMBER,
+            required = false,
+            defaultValue = "0"
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_dav_module
 )

@@ -20,6 +20,14 @@ val ngx_http_scgi_module = NginxModule(
 val scgiBind = Directive(
     name = "scgi_bind",
     description = "Specifies the local IP address and optional port for outgoing connections to the SCGI server",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "address",
+            description = "Local IP address to bind SCGI connections, can include variables",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -27,13 +35,22 @@ val scgiBind = Directive(
 val scgiBufferSize = Directive(
     name = "scgi_buffer_size",
     description = "Sets the buffer size for reading the first part of the response from the SCGI server",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "size",
+            description = "Size of the buffer for the initial server response (default: 4k or 8k)",
+            valueType = ValueType.SIZE,
+            required = true,
+            defaultValue = "4k"
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
 
-val scgiBuffering = Directive(
-    name = "scgi_buffering",
-    description = """
+val scgiBuffering = ToggleDirective(
+    "scgi_buffering",
+    """
         Enables or disables buffering of responses from the SCGI server.
         
         When buffering is enabled, nginx receives response as soon as possible, saving it 
@@ -41,6 +58,7 @@ val scgiBuffering = Directive(
         
         When disabled, response is passed to client synchronously, as it is received.
     """.trimIndent(),
+    enabled = true,
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -48,6 +66,22 @@ val scgiBuffering = Directive(
 val scgiBuffers = Directive(
     name = "scgi_buffers",
     description = "Configures the number and size of buffers for reading SCGI server responses",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "number",
+            description = "Number of buffers for response",
+            valueType = ValueType.NUMBER,
+            required = true,
+            defaultValue = "8"
+        ),
+        DirectiveParameter(
+            name = "size",
+            description = "Size of each buffer (default: 4k or 8k)",
+            valueType = ValueType.SIZE,
+            required = true,
+            defaultValue = "4k"
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -55,6 +89,15 @@ val scgiBuffers = Directive(
 val scgiBusyBuffersSize = Directive(
     name = "scgi_busy_buffers_size",
     description = "Limits the total size of buffers that can be busy sending a response while the full response is not yet read",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "size",
+            description = "Maximum size of busy buffers",
+            valueType = ValueType.SIZE,
+            required = true,
+            defaultValue = "8k"
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -66,19 +109,28 @@ val scgiCache = Directive(
         Same zone can be used in several places.
         The 'off' parameter disables caching inherited from previous level.
     """.trimIndent(),
+    parameters = listOf(
+        DirectiveParameter(
+            name = "zone",
+            description = "Name of shared memory zone for caching, or 'off' to disable caching",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
 
-val scgiCacheBackgroundUpdate = Directive(
-    name = "scgi_cache_background_update",
-    description = """
+val scgiCacheBackgroundUpdate = ToggleDirective(
+    "scgi_cache_background_update",
+    """
         Allows starting a background subrequest to update an expired cache item,
         while a stale cached response is returned to the client.
         
         Note that it is necessary to allow usage of a stale cached response
         when it is being updated.
     """.trimIndent(),
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -86,6 +138,14 @@ val scgiCacheBackgroundUpdate = Directive(
 val scgiCacheBypass = Directive(
     name = "scgi_cache_bypass",
     description = "Defines conditions for bypassing the cache and directly requesting from the SCGI server",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "condition",
+            description = "Condition for skipping cache, can use variables",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -93,13 +153,21 @@ val scgiCacheBypass = Directive(
 val scgiCacheKey = Directive(
     name = "scgi_cache_key",
     description = "Defines the key for caching SCGI server responses",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "key",
+            description = "Cache key, can include variables",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
 
-val scgiCacheLock = Directive(
-    name = "scgi_cache_lock",
-    description = """
+val scgiCacheLock = ToggleDirective(
+    "scgi_cache_lock",
+    """
         When enabled, only one request at a time will be allowed to populate
         a new cache element identified according to the scgi_cache_key directive.
         
@@ -107,6 +175,7 @@ val scgiCacheLock = Directive(
         - Response to appear in the cache
         - Cache lock to be released (up to the scgi_cache_lock_timeout)
     """.trimIndent(),
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -114,6 +183,14 @@ val scgiCacheLock = Directive(
 val scgiCacheLockAge = Directive(
     name = "scgi_cache_lock_age",
     description = "Sets the maximum age of a cache item to be considered for locking",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "age",
+            description = "Maximum age of cache item",
+            valueType = ValueType.TIME,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -121,6 +198,14 @@ val scgiCacheLockAge = Directive(
 val scgiCacheLockTimeout = Directive(
     name = "scgi_cache_lock_timeout",
     description = "Sets the timeout for locking cache items",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "timeout",
+            description = "Lock timeout",
+            valueType = ValueType.TIME,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -128,6 +213,14 @@ val scgiCacheLockTimeout = Directive(
 val scgiCacheMaxRangeOffset = Directive(
     name = "scgi_cache_max_range_offset",
     description = "Sets the maximum range offset for caching SCGI server responses",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "offset",
+            description = "Maximum range offset",
+            valueType = ValueType.OFFSET,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -135,6 +228,14 @@ val scgiCacheMaxRangeOffset = Directive(
 val scgiCacheMethods = Directive(
     name = "scgi_cache_methods",
     description = "Defines the HTTP methods for which caching is enabled",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "methods",
+            description = "HTTP methods for caching",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -142,6 +243,14 @@ val scgiCacheMethods = Directive(
 val scgiCacheMinUses = Directive(
     name = "scgi_cache_min_uses",
     description = "Sets the minimum number of uses for caching SCGI server responses",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "uses",
+            description = "Minimum number of uses",
+            valueType = ValueType.NUMBER,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -149,6 +258,14 @@ val scgiCacheMinUses = Directive(
 val scgiCachePath = Directive(
     name = "scgi_cache_path",
     description = "Defines the path for caching SCGI server responses",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "path",
+            description = "Cache path, can include variables",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http),
     module = ngx_http_scgi_module
 )
@@ -156,16 +273,25 @@ val scgiCachePath = Directive(
 val scgiCachePurge = Directive(
     name = "scgi_cache_purge",
     description = "Defines the conditions under which cached responses are purged",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "condition",
+            description = "Condition for purging cache, can use variables",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
 
-val scgiCacheRevalidate = Directive(
-    name = "scgi_cache_revalidate",
-    description = """
+val scgiCacheRevalidate = ToggleDirective(
+    "scgi_cache_revalidate",
+    """
         Enables revalidation of expired cache items using conditional requests with 
         the "If-Modified-Since" and "If-None-Match" header fields.
     """.trimIndent(),
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -173,6 +299,14 @@ val scgiCacheRevalidate = Directive(
 val scgiCacheUseStale = Directive(
     name = "scgi_cache_use_stale",
     description = "Defines the conditions under which stale cached responses are used",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "condition",
+            description = "Condition for using stale cache, can use variables",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -180,6 +314,14 @@ val scgiCacheUseStale = Directive(
 val scgiCacheValid = Directive(
     name = "scgi_cache_valid",
     description = "Defines the validity period for cached SCGI server responses",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "validity",
+            description = "Validity period",
+            valueType = ValueType.TIME,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -187,16 +329,25 @@ val scgiCacheValid = Directive(
 val scgiConnectTimeout = Directive(
     name = "scgi_connect_timeout",
     description = "Sets the timeout for connecting to the SCGI server",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "timeout",
+            description = "Connect timeout",
+            valueType = ValueType.TIME,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
 
-val scgiForceRanges = Directive(
-    name = "scgi_force_ranges",
-    description = """
+val scgiForceRanges = ToggleDirective(
+    "scgi_force_ranges",
+    """
         Enables byte-range support for both cached and uncached responses from the 
         SCGI server regardless of the "Accept-Ranges" field in these responses.
     """.trimIndent(),
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -204,16 +355,25 @@ val scgiForceRanges = Directive(
 val scgiHideHeader = Directive(
     name = "scgi_hide_header",
     description = "Hides the specified header from the SCGI server response",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "header",
+            description = "Header to hide",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
 
-val scgiIgnoreClientAbort = Directive(
-    name = "scgi_ignore_client_abort",
-    description = """
+val scgiIgnoreClientAbort = ToggleDirective(
+    "scgi_ignore_client_abort",
+    """
         Determines whether the connection with an SCGI server should be closed 
         when a client closes the connection without waiting for a response.
     """.trimIndent(),
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -221,17 +381,26 @@ val scgiIgnoreClientAbort = Directive(
 val scgiIgnoreHeaders = Directive(
     name = "scgi_ignore_headers",
     description = "Ignores the specified headers from the SCGI server response",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "headers",
+            description = "Headers to ignore",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
 
-val scgiInterceptErrors = Directive(
-    name = "scgi_intercept_errors",
-    description = """
+val scgiInterceptErrors = ToggleDirective(
+    "scgi_intercept_errors",
+    """
         Determines whether SCGI server responses with codes greater than or equal 
         to 300 should be passed to a client or be intercepted and redirected to 
         nginx for processing with the error_page directive.
     """.trimIndent(),
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -239,6 +408,14 @@ val scgiInterceptErrors = Directive(
 val scgiLimitRate = Directive(
     name = "scgi_limit_rate",
     description = "Sets the rate limit for the SCGI server response",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "rate",
+            description = "Rate limit",
+            valueType = ValueType.RATE,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -246,6 +423,14 @@ val scgiLimitRate = Directive(
 val scgiMaxTempFileSize = Directive(
     name = "scgi_max_temp_file_size",
     description = "Sets the maximum size of temporary files for the SCGI server response",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "size",
+            description = "Maximum size of temporary files",
+            valueType = ValueType.SIZE,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -253,6 +438,14 @@ val scgiMaxTempFileSize = Directive(
 val scgiNextUpstream = Directive(
     name = "scgi_next_upstream",
     description = "Defines the conditions under which the request is passed to the next upstream server",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "condition",
+            description = "Condition for passing to next upstream server, can use variables",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -260,6 +453,14 @@ val scgiNextUpstream = Directive(
 val scgiNextUpstreamTimeout = Directive(
     name = "scgi_next_upstream_timeout",
     description = "Sets the timeout for passing the request to the next upstream server",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "timeout",
+            description = "Timeout for passing to next upstream server",
+            valueType = ValueType.TIME,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -267,6 +468,14 @@ val scgiNextUpstreamTimeout = Directive(
 val scgiNextUpstreamTries = Directive(
     name = "scgi_next_upstream_tries",
     description = "Sets the number of tries for passing the request to the next upstream server",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "tries",
+            description = "Number of tries",
+            valueType = ValueType.NUMBER,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -274,6 +483,14 @@ val scgiNextUpstreamTries = Directive(
 val scgiNoCache = Directive(
     name = "scgi_no_cache",
     description = "Disables caching of SCGI server responses",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "condition",
+            description = "Condition for disabling cache, can use variables",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -286,6 +503,26 @@ val scgiParam = Directive(
         
         These parameters are passed as SCGI protocol headers.
     """.trimIndent(),
+    parameters = listOf(
+        DirectiveParameter(
+            name = "parameter",
+            description = "Parameter name to pass to SCGI server",
+            valueType = ValueType.STRING,
+            required = true
+        ),
+        DirectiveParameter(
+            name = "value",
+            description = "Parameter value, can contain text and variables",
+            valueType = ValueType.STRING,
+            required = true
+        ),
+        DirectiveParameter(
+            name = "if_not_empty",
+            description = "If specified, parameter will be passed only if its value is not empty",
+            valueType = ValueType.BOOLEAN,
+            required = false
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -301,6 +538,14 @@ val scgiPass = Directive(
         
         Can also specify a server group defined in the upstream block.
     """.trimIndent(),
+    parameters = listOf(
+        DirectiveParameter(
+            name = "address",
+            description = "Address of SCGI server (domain:port, IP:port, unix:path, or upstream name)",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(location, locationIf),
     module = ngx_http_scgi_module
 )
@@ -308,20 +553,30 @@ val scgiPass = Directive(
 val scgiPassHeader = Directive(
     name = "scgi_pass_header",
     description = "Passes the specified header from the SCGI server response",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "header",
+            description = "Header to pass",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
 
-val scgiPassRequestBody = Directive(
-    name = "scgi_pass_request_body",
-    description = "Enables passing of the request body to the SCGI server",
+val scgiPassRequestBody = ToggleDirective(
+    "scgi_pass_request_body",
+    "Enables passing of the request body to the SCGI server",
+    enabled = true,
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
 
-val scgiPassRequestHeaders = Directive(
-    name = "scgi_pass_request_headers",
-    description = "Enables passing of request headers to the SCGI server",
+val scgiPassRequestHeaders = ToggleDirective(
+    "scgi_pass_request_headers",
+    "Enables passing of request headers to the SCGI server",
+    enabled = true,
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -329,13 +584,21 @@ val scgiPassRequestHeaders = Directive(
 val scgiReadTimeout = Directive(
     name = "scgi_read_timeout",
     description = "Sets the timeout for reading the SCGI server response",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "timeout",
+            description = "Read timeout",
+            valueType = ValueType.TIME,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
 
-val scgiRequestBuffering = Directive(
-    name = "scgi_request_buffering",
-    description = """
+val scgiRequestBuffering = ToggleDirective(
+    "scgi_request_buffering",
+    """
         Enables or disables buffering of a client request body.
         
         When enabled, the entire request body is read from the client before sending 
@@ -344,6 +607,7 @@ val scgiRequestBuffering = Directive(
         When disabled, the request body is sent to the SCGI server immediately as 
         it is received.
     """.trimIndent(),
+    enabled = true,
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -351,17 +615,26 @@ val scgiRequestBuffering = Directive(
 val scgiSendTimeout = Directive(
     name = "scgi_send_timeout",
     description = "Sets the timeout for sending the request to the SCGI server",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "timeout",
+            description = "Send timeout",
+            valueType = ValueType.TIME,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
 
-val scgiSocketKeepalive = Directive(
-    name = "scgi_socket_keepalive",
-    description = """
+val scgiSocketKeepalive = ToggleDirective(
+    "scgi_socket_keepalive",
+    """
         Configures the "TCP keepalive" behavior for outgoing connections to an 
         SCGI server. When enabled, the SO_KEEPALIVE socket option is turned on 
         for the socket.
     """.trimIndent(),
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -369,6 +642,14 @@ val scgiSocketKeepalive = Directive(
 val scgiStore = Directive(
     name = "scgi_store",
     description = "Enables saving of the SCGI server response to a file",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "path",
+            description = "File path where the response will be stored, can include variables",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -376,6 +657,14 @@ val scgiStore = Directive(
 val scgiStoreAccess = Directive(
     name = "scgi_store_access",
     description = "Sets the access permissions for files created when saving SCGI server responses",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "permissions",
+            description = "Access permissions in the format user:group, e.g., 'user=rw group=r'",
+            valueType = ValueType.STRING,
+            required = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -383,6 +672,15 @@ val scgiStoreAccess = Directive(
 val scgiTempFileWriteSize = Directive(
     name = "scgi_temp_file_write_size",
     description = "Sets the size of temporary files when buffering responses from the SCGI server",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "size",
+            description = "Maximum size of temporary files used for buffering",
+            valueType = ValueType.SIZE,
+            required = true,
+            defaultValue = "8k"
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )
@@ -390,6 +688,32 @@ val scgiTempFileWriteSize = Directive(
 val scgiTempPath = Directive(
     name = "scgi_temp_path",
     description = "Defines a directory for storing temporary files when buffering SCGI server responses",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "path",
+            description = "Path to the directory for temporary files, can include variables",
+            valueType = ValueType.STRING,
+            required = true
+        ),
+        DirectiveParameter(
+            name = "level1",
+            description = "First level of directory hierarchy (optional)",
+            valueType = ValueType.NUMBER,
+            required = false
+        ),
+        DirectiveParameter(
+            name = "level2",
+            description = "Second level of directory hierarchy (optional)",
+            valueType = ValueType.NUMBER,
+            required = false
+        ),
+        DirectiveParameter(
+            name = "level3",
+            description = "Third level of directory hierarchy (optional)",
+            valueType = ValueType.NUMBER,
+            required = false
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_scgi_module
 )

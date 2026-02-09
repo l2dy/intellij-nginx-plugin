@@ -1,7 +1,6 @@
 package dev.meanmail.directives.catalog.nginx.http
 
-import dev.meanmail.directives.catalog.Directive
-import dev.meanmail.directives.catalog.NginxModule
+import dev.meanmail.directives.catalog.*
 
 // https://nginx.org/en/docs/http/ngx_http_acme_module.html
 
@@ -62,6 +61,13 @@ val acmeSharedZone = Directive(
 val acmeSslTrustedCertificate = Directive(
     name = "ssl_trusted_certificate",
     description = "Specifies a file with trusted CA certificates for ACME server verification",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "path",
+            valueType = ValueType.PATH,
+            description = "Path to the trusted CA certificate file",
+        )
+    ),
     context = listOf(acmeIssuer),
     module = ngx_http_acme_module
 )
