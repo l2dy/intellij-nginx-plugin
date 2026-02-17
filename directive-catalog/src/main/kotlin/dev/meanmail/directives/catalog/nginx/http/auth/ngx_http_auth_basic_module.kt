@@ -22,7 +22,7 @@ val authBasic = Directive(
             description = "Authentication realm displayed in the browser's login prompt",
             valueType = ValueType.STRING,
             required = false,
-            defaultValue = "Restricted"
+            defaultValue = "off"
         )
     ),
     context = listOf(http, server, location, limitExcept),

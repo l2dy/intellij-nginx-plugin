@@ -432,7 +432,7 @@ val streamSslStaplingResponder = Directive(
 val streamSslStaplingVerify = ToggleDirective(
     "ssl_stapling_verify",
     "Enables or disables verification of OCSP responses by the server",
-    enabled = true,
+    enabled = false,
     context = listOf(stream, streamServer),
     module = ngx_stream_ssl_module
 )

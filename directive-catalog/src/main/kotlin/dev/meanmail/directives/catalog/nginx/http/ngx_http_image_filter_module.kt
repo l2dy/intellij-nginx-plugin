@@ -121,7 +121,7 @@ val imageFilterWebpQuality = Directive(
             description = "WebP quality level (1-100)",
             valueType = ValueType.NUMBER,
             required = true,
-            defaultValue = "75"
+            defaultValue = "80"
         )
     ),
     context = listOf(http, server, location),

@@ -18,7 +18,7 @@ val charset = Directive(
             description = "Character set to be used for responses",
             valueType = ValueType.STRING,
             required = false,
-            defaultValue = "utf-8"
+            defaultValue = "off"
         )
     ),
     context = listOf(http, server, location, locationIf),
@@ -56,7 +56,7 @@ val charsetTypes = Directive(
             valueType = ValueType.LIST,
             allowedValues = listOf("application/javascript", "application/rss+xml"),
             required = false,
-            defaultValue = "text/html text/css text/xml text/plain"
+            defaultValue = "text/html text/xml text/plain text/vnd.wap.wml application/javascript application/rss+xml"
         )
     ),
     context = listOf(http, server, location),

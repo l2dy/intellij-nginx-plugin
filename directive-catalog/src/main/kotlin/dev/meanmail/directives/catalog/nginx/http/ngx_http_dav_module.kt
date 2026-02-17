@@ -26,7 +26,7 @@ val davAccess = Directive(
             description = "Access permissions in user:mode format",
             valueType = ValueType.STRING,
             required = false,
-            defaultValue = "user:rw group:r all:r"
+            defaultValue = "user:rw"
         )
     ),
     context = listOf(http, server, location),
@@ -42,7 +42,7 @@ val davMethods = Directive(
             description = "List of WebDAV methods to enable",
             valueType = ValueType.STRING,
             required = false,
-            defaultValue = "PUT DELETE MKCOL COPY MOVE"
+            defaultValue = "off"
         )
     ),
     context = listOf(http, server, location),

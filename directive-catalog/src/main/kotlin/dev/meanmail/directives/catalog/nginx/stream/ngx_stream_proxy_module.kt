@@ -137,8 +137,8 @@ val streamProxyNextUpstreamTries = Directive(
             valueType = ValueType.NUMBER,
             description = "Maximum number of attempts to connect to alternative upstream servers",
             required = true,
-            defaultValue = "1",
-            minValue = 1,
+            defaultValue = "0",
+            minValue = 0,
             maxValue = 255
         )
     ),

@@ -34,7 +34,7 @@ val refererHashMaxSize = Directive(
             description = "Maximum size of the hash table in bytes",
             valueType = ValueType.SIZE,
             required = false,
-            defaultValue = "1024"
+            defaultValue = "2048"
         )
     ),
     context = listOf(server, location),

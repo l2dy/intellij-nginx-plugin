@@ -63,7 +63,7 @@ val streamMapHashMaxSize = Directive(
             valueType = ValueType.NUMBER,
             description = "Maximum size of the hash table. Determines the number of elements that can be efficiently processed",
             required = false,
-            defaultValue = "1024",
+            defaultValue = "2048",
             minValue = 128,
             maxValue = 65536
         )

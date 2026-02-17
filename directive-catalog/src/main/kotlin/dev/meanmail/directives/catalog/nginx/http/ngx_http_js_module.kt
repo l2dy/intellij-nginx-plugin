@@ -276,7 +276,7 @@ val jsFetchVerifyDepth = Directive(
             name = "depth",
             description = "Maximum depth of certificate chain verification",
             valueType = ValueType.NUMBER,
-            defaultValue = "1",
+            defaultValue = "100",
             required = false
         )
     ),
