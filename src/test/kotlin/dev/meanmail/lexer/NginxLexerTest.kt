@@ -123,6 +123,42 @@ class NginxLexerTest {
     }
 
     @Test
+    fun testLuaDirectives() {
+        val tokens = tokenize(
+            """
+            http {
+                lua_shared_dict caches 10m;
+                lua_code_cache off;
+                access_by_lua_block {
+                    ngx.say("hi")
+                }
+            }
+        """.trimIndent()
+        )
+        val expectedTokens = listOf(
+            "IDENTIFIER" to "http",
+            "LBRACE" to "{",
+            "IDENTIFIER" to "lua_shared_dict",
+            "IDENTIFIER" to "caches",
+            "VALUE" to "10m",
+            "SEMICOLON" to ";",
+            "IDENTIFIER" to "lua_code_cache",
+            "IDENTIFIER" to "off",
+            "SEMICOLON" to ";",
+            "LUA_BLOCK_DIRECTIVE" to "access_by_lua_block",
+            "LBRACE" to "{",
+            "LUA" to "\n        ngx.say(\"hi\")\n    ",
+            "RBRACE" to "}",
+            "RBRACE" to "}"
+        )
+        assertEquals("Token count does not match", expectedTokens.size, tokens.size)
+        expectedTokens.forEachIndexed { index, (expectedType, expectedValue) ->
+            assertEquals("Token type does not match at index $index", expectedType, tokens[index].first)
+            assertEquals("Token value does not match at index $index", expectedValue, tokens[index].second)
+        }
+    }
+
+    @Test
     fun testMapDirective() {
         val tokens = tokenize(
             """

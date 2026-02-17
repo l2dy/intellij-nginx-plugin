@@ -59,6 +59,8 @@ class NginxCompletionContributorTest : BasePlatformTestCase() {
             "server_tokens",
             "ssl_prefer_server_ciphers",
             "uwsgi_ssl_server_name",
+            "server_rewrite_by_lua_block",
+            "server_rewrite_by_lua_file",
             strict = true
         )
     }
@@ -111,7 +113,19 @@ class NginxCompletionContributorTest : BasePlatformTestCase() {
                 }
             }
         """.trimIndent(),
-            "return", "rewrite", "rewrite_log", "break", "expires",
+            "return",
+            "rewrite",
+            "rewrite_by_lua",
+            "rewrite_by_lua_block",
+            "rewrite_by_lua_file",
+            "rewrite_log",
+            "precontent_by_lua_block",
+            "precontent_by_lua_file",
+            "lua_need_request_body",
+            "lua_upstream_skip_openssl_default_verify",
+            "lua_transform_underscores_in_response_headers",
+            "break",
+            "expires",
             strict = true
         )
     }
@@ -141,6 +155,36 @@ class NginxCompletionContributorTest : BasePlatformTestCase() {
         """.trimIndent(),
             "server", "sticky_cookie_insert",
             strict = true
+        )
+    }
+
+    fun testLuaHttpContextCompletions() {
+        doTest(
+            """
+            http {
+                lua_<caret>
+            }
+        """.trimIndent(),
+            "lua_shared_dict",
+            "lua_code_cache",
+            "lua_need_request_body"
+        )
+    }
+
+    fun testLuaServerContextCompletions() {
+        doTest(
+            """
+            http {
+                server {
+                    location / {
+                        con<caret>
+                    }
+                }
+            }
+        """.trimIndent(),
+            "content_by_lua",
+            "content_by_lua_block",
+            "content_by_lua_file",
         )
     }
 }

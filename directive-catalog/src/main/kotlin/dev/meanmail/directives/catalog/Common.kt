@@ -16,6 +16,7 @@ import dev.meanmail.directives.catalog.nginx.stream.*
 import dev.meanmail.directives.catalog.nginx.stream.ssl.ngx_stream_ssl_module
 import dev.meanmail.directives.catalog.nginx.stream.ssl.ngx_stream_ssl_preread_module
 import dev.meanmail.directives.catalog.nginx.stream.upstream.ngx_stream_upstream_module
+import dev.meanmail.directives.catalog.openresty.http.lua.lua_nginx_module
 
 enum class ValueType {
     TIME,           // Time values (e.g., 10s, 1m, 500ms)
@@ -160,6 +161,8 @@ open class Directive(
             *ngx_http_v3_module.directives.toTypedArray(),
             *ngx_http_xslt_module.directives.toTypedArray(),
             *ngx_http_acme_module.directives.toTypedArray(),
+            // Lua
+            *lua_nginx_module.directives.toTypedArray(),
             // OpenTelemetry
             *ngx_otel_module.directives.toTypedArray(),
 

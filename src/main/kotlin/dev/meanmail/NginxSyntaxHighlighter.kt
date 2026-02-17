@@ -29,6 +29,7 @@ class NginxSyntaxHighlighter : SyntaxHighlighterBase() {
             Types.QUOTE, Types.DQUOTE -> QUOTE_KEYS
             Types.SEMICOLON -> SEMICOLON_KEYS
             Types.LUA_BLOCK_DIRECTIVE -> LUA_BLOCK_DIRECTIVE_KEYS
+            Types.LUA -> LUA_CONTENT_KEYS
             Types.MAP -> MAP_KEYS
             Types.MAP_DEFAULT -> MAP_DEFAULT_KEYS
             Types.MAP_VOLATILE -> MAP_VOLATILE_KEYS
@@ -66,6 +67,7 @@ class NginxSyntaxHighlighter : SyntaxHighlighterBase() {
         private val SEMICOLON = createTextAttributesKey("NGINX_SEMICOLON", DefaultLanguageHighlighterColors.SEMICOLON)
         private val LUA_BLOCK_DIRECTIVE =
             createTextAttributesKey("NGINX_LUA_BLOCK_DIRECTIVE", DefaultLanguageHighlighterColors.KEYWORD)
+        private val LUA_CONTENT = createTextAttributesKey("NGINX_LUA_CONTENT", DefaultLanguageHighlighterColors.STRING)
         private val MAP = createTextAttributesKey("NGINX_MAP", DefaultLanguageHighlighterColors.KEYWORD)
         private val MAP_DEFAULT = createTextAttributesKey("NGINX_MAP_DEFAULT", DefaultLanguageHighlighterColors.KEYWORD)
         private val MAP_VOLATILE =
@@ -98,6 +100,7 @@ class NginxSyntaxHighlighter : SyntaxHighlighterBase() {
         private val QUOTE_KEYS = arrayOf(QUOTE)
         private val SEMICOLON_KEYS = arrayOf(SEMICOLON)
         private val LUA_BLOCK_DIRECTIVE_KEYS = arrayOf(LUA_BLOCK_DIRECTIVE)
+        private val LUA_CONTENT_KEYS = arrayOf(LUA_CONTENT)
         private val MAP_KEYS = arrayOf(MAP)
         private val MAP_DEFAULT_KEYS = arrayOf(MAP_DEFAULT)
         private val MAP_VOLATILE_KEYS = arrayOf(MAP_VOLATILE)

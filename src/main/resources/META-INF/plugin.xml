@@ -367,6 +367,7 @@ Your ratings and feedback are very important. The feature will appear the faster
                 enabledByDefault="true"
                 level="ERROR"
                 shortName="NginxGeoInspection"/>
+        <multiHostInjector implementation="dev.meanmail.lang.injection.NginxLuaInjector"/>
         <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
     </extensions>
 

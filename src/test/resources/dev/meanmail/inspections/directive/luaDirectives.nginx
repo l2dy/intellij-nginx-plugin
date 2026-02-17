@@ -1,0 +1,29 @@
+http {
+    lua_shared_dict cache_store 10m;
+    lua_code_cache off;
+    lua_ssl_key_log logs/ssl.keys;
+
+    server {
+        listen 80;
+
+        set_by_lua $sum 'return tonumber(ngx.arg[1]) + tonumber(ngx.arg[2])' 5 7;
+        set_by_lua_block $status ready {
+            ngx.var.status = ngx.arg[1]
+        }
+
+        access_by_lua_block {
+            ngx.var.ready = ngx.var.status
+        }
+
+        location /invoke {
+            lua_upstream_skip_openssl_default_verify on;
+            content_by_lua_block {
+                ngx.say(ngx.var.sum)
+            }
+            proxy_ssl_verify_by_lua_block {
+                ngx.log(ngx.NOTICE, "verifying upstream certificate")
+            }
+            proxy_ssl_verify_by_lua_file conf/verify.lua;
+        }
+    }
+}
