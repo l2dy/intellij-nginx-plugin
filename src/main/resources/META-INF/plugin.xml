@@ -381,6 +381,9 @@ Your ratings and feedback are very important. The feature will appear the faster
                    implementationClass="dev.meanmail.NginxCommenter"/>
         <foldingBuilder language="Nginx Configuration"
                         implementationClass="dev.meanmail.folding.NginxFoldingBuilder"/>
+        <documentationProvider
+                language="Nginx Configuration"
+                implementationClass="dev.meanmail.codeInsight.documentation.NginxDocumentationProvider"/>
 
     </extensions>
 

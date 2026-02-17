@@ -1,0 +1,219 @@
+package dev.meanmail.codeInsight.documentation
+
+import com.intellij.codeInsight.documentation.DocumentationManager
+import com.intellij.lang.documentation.DocumentationMarkup
+import com.intellij.testFramework.fixtures.BasePlatformTestCase
+
+class NginxDocumentationProviderTest : BasePlatformTestCase() {
+
+    private val provider = NginxDocumentationProvider()
+
+    private fun configureAndGetDoc(config: String): String {
+        myFixture.configureByText("nginx.conf", config)
+        val originalElement = myFixture.file.findElementAt(myFixture.caretOffset)!!
+        @Suppress("DEPRECATION")
+        val targetElement = DocumentationManager.getInstance(project)
+            .findTargetElement(myFixture.editor, myFixture.file, originalElement)
+        assertNotNull("Failed to resolve target element", targetElement)
+        val doc = provider.generateDoc(targetElement!!, originalElement)
+        assertNotNull("Expected non-null documentation", doc)
+        return doc!!
+    }
+
+    private fun configureAndGetQuickNav(config: String): String {
+        myFixture.configureByText("nginx.conf", config)
+        val originalElement = myFixture.file.findElementAt(myFixture.caretOffset)!!
+        @Suppress("DEPRECATION")
+        val targetElement = DocumentationManager.getInstance(project)
+            .findTargetElement(myFixture.editor, myFixture.file, originalElement)
+        assertNotNull("Failed to resolve target element", targetElement)
+        val info = provider.getQuickNavigateInfo(targetElement!!, originalElement)
+        assertNotNull("Expected non-null quick navigate info", info)
+        return info!!
+    }
+
+    private fun assertContains(haystack: String, needle: String) {
+        if (needle !in haystack) {
+            fail("Expected to find \"$needle\" in:\n$haystack")
+        }
+    }
+
+    private fun assertNotContains(haystack: String, needle: String) {
+        if (needle in haystack) {
+            fail("Expected NOT to find \"$needle\" in:\n$haystack")
+        }
+    }
+
+    // ---- generateDoc tests ----
+
+    fun testGenerateDocForListenDirective() {
+        val doc = configureAndGetDoc(
+            """
+            server {
+                listen<caret> 80;
+            }
+            """.trimIndent()
+        )
+
+        assertContains(doc, DocumentationMarkup.DEFINITION_START + "listen")
+        assertContains(doc, DocumentationMarkup.DEFINITION_END)
+        assertContains(doc, "ngx_http_core_module")
+        assertContains(doc, DocumentationMarkup.CONTENT_START)
+        assertContains(doc, "Configures the IP address and port for server block")
+        assertContains(doc, DocumentationMarkup.CONTENT_END)
+        assertContains(doc, "Context:" + DocumentationMarkup.SECTION_SEPARATOR + "server")
+        assertContains(doc, "Parameters:")
+        assertContains(doc, "<b>address</b>")
+        assertContains(doc, "(required)")
+        assertContains(doc, "<b>port</b>")
+        assertContains(doc, "<b>options</b>")
+        assertContains(doc, "(optional)")
+    }
+
+    fun testGenerateDocForDirectiveWithMultipleContexts() {
+        val doc = configureAndGetDoc(
+            """
+            error_log<caret> /var/log/nginx/error.log;
+            """.trimIndent()
+        )
+
+        assertContains(doc, DocumentationMarkup.DEFINITION_START + "error_log")
+        assertContains(doc, "Configures error logging")
+        assertContains(doc, "Context:" + DocumentationMarkup.SECTION_SEPARATOR + "main, http, mail, stream, server, location")
+    }
+
+    fun testGenerateDocForDirectiveWithAllowedValues() {
+        val doc = configureAndGetDoc(
+            """
+            error_log<caret> /var/log/nginx/error.log warn;
+            """.trimIndent()
+        )
+
+        assertContains(doc, "<b>level</b>")
+        assertContains(doc, "Allowed values: debug, info, notice, warn, error, crit, alert, emerg")
+    }
+
+    fun testGenerateDocForToggleDirective() {
+        val doc = configureAndGetDoc(
+            """
+            http {
+                server_tokens<caret> on;
+            }
+            """.trimIndent()
+        )
+
+        assertContains(doc, DocumentationMarkup.DEFINITION_START + "server_tokens")
+        assertContains(doc, "Enables or disables displaying NGINX version")
+        assertContains(doc, "<b>state</b>")
+        assertContains(doc, "Allowed values: on, off")
+        assertContains(doc, "default: on")
+    }
+
+    fun testGenerateDocForParameterWithoutName() {
+        val doc = configureAndGetDoc(
+            """
+            events {
+                worker_connections<caret> 1024;
+            }
+            """.trimIndent()
+        )
+
+        assertContains(doc, "worker_connections")
+        assertContains(doc, "Sets the maximum number of connections per worker process")
+        assertContains(doc, "<b>value</b>")
+    }
+
+    fun testGenerateDocForParameterWithRange() {
+        val doc = configureAndGetDoc(
+            """
+            http {
+                map_hash_bucket_size<caret> 64;
+            }
+            """.trimIndent()
+        )
+
+        assertContains(doc, DocumentationMarkup.DEFINITION_START + "map_hash_bucket_size")
+        assertContains(doc, "<b>size</b>")
+        assertContains(doc, "default: 64")
+        assertContains(doc, "Range: 32 .. 128")
+    }
+
+    fun testGenerateDocForDirectiveWithNoParameters() {
+        val doc = configureAndGetDoc(
+            """
+            http {
+                otel_exporter<caret> {
+                }
+            }
+            """.trimIndent()
+        )
+
+        assertContains(doc, "otel_exporter")
+        assertNotContains(doc, "Parameters:")
+    }
+
+    // ---- no doc on directive parameters ----
+
+    fun testNoDocOnDirectiveParameter() {
+        myFixture.configureByText("nginx.conf", """
+            server {
+                listen <caret>80;
+            }
+        """.trimIndent())
+        val originalElement = myFixture.file.findElementAt(myFixture.caretOffset)!!
+        @Suppress("DEPRECATION")
+        val targetElement = DocumentationManager.getInstance(project)
+            .findTargetElement(myFixture.editor, myFixture.file, originalElement)
+        val doc = provider.generateDoc(targetElement ?: originalElement, originalElement)
+        assertNull("Expected no documentation on directive parameter", doc)
+    }
+
+    fun testNoDocOnSemicolon() {
+        myFixture.configureByText("nginx.conf", """
+            events {
+                worker_connections 1024<caret>;
+            }
+        """.trimIndent())
+        val originalElement = myFixture.file.findElementAt(myFixture.caretOffset)!!
+        @Suppress("DEPRECATION")
+        val targetElement = DocumentationManager.getInstance(project)
+            .findTargetElement(myFixture.editor, myFixture.file, originalElement)
+        val doc = provider.generateDoc(targetElement ?: originalElement, originalElement)
+        assertNull("Expected no documentation on semicolon", doc)
+    }
+
+    // ---- getQuickNavigateInfo tests ----
+
+    fun testQuickNavForListenDirective() {
+        val info = configureAndGetQuickNav(
+            """
+            server {
+                listen<caret> 80;
+            }
+            """.trimIndent()
+        )
+
+        assertTrue("Expected quick nav to start with '<b>listen</b>', got: $info",
+            info.startsWith("<b>listen</b>"))
+        assertContains(info, "ngx_http_core_module")
+        assertContains(info, "Configures the IP address and port for server block")
+        assertNotContains(info, "Parameters")
+        assertNotContains(info, "Context:")
+    }
+
+    fun testQuickNavForToggleDirective() {
+        val info = configureAndGetQuickNav(
+            """
+            http {
+                server_tokens<caret> on;
+            }
+            """.trimIndent()
+        )
+
+        assertTrue("Expected quick nav to start with '<b>server_tokens</b>', got: $info",
+            info.startsWith("<b>server_tokens</b>"))
+        assertContains(info, "ngx_http_core_module")
+        assertContains(info, "Enables or disables displaying NGINX version")
+    }
+
+}
