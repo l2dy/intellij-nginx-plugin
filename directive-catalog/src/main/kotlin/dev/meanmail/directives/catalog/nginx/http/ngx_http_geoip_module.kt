@@ -62,8 +62,7 @@ val geoipProxy = Directive(
             name = "network",
             description = "IP address or network range of trusted proxy servers",
             valueType = ValueType.STRING,
-            required = true,
-            multiple = true
+            required = true
         )
     ),
     context = listOf(http),
