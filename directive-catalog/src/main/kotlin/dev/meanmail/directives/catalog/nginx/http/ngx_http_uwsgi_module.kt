@@ -904,7 +904,8 @@ val uwsgiTempFileWriteSize = Directive(
             name = "size",
             description = "Size of temporary files",
             valueType = ValueType.SIZE,
-            required = true
+            required = true,
+            defaultValue = "8k|16k"
         )
     ),
     context = listOf(http, server, location),

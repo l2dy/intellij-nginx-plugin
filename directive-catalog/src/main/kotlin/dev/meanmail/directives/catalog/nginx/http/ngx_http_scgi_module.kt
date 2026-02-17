@@ -41,7 +41,7 @@ val scgiBufferSize = Directive(
             description = "Size of the buffer for the initial server response (default: 4k or 8k)",
             valueType = ValueType.SIZE,
             required = true,
-            defaultValue = "4k"
+            defaultValue = "4k|8k"
         )
     ),
     context = listOf(http, server, location),
@@ -79,7 +79,7 @@ val scgiBuffers = Directive(
             description = "Size of each buffer (default: 4k or 8k)",
             valueType = ValueType.SIZE,
             required = true,
-            defaultValue = "4k"
+            defaultValue = "4k|8k"
         )
     ),
     context = listOf(http, server, location),
@@ -95,7 +95,7 @@ val scgiBusyBuffersSize = Directive(
             description = "Maximum size of busy buffers",
             valueType = ValueType.SIZE,
             required = true,
-            defaultValue = "8k"
+            defaultValue = "8k|16k"
         )
     ),
     context = listOf(http, server, location),
@@ -678,7 +678,7 @@ val scgiTempFileWriteSize = Directive(
             description = "Maximum size of temporary files used for buffering",
             valueType = ValueType.SIZE,
             required = true,
-            defaultValue = "8k"
+            defaultValue = "8k|16k"
         )
     ),
     context = listOf(http, server, location),

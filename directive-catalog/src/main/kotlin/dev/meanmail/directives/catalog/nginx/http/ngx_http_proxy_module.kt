@@ -41,7 +41,7 @@ val proxyBufferSize = Directive(
             valueType = ValueType.SIZE,
             description = "Buffer size in bytes. Determines memory allocation for proxied server communication",
             required = true,
-            defaultValue = "16k"
+            defaultValue = "4k|8k"
         )
     ),
     context = listOf(http, server, location),
@@ -80,7 +80,7 @@ val proxyBuffers = Directive(
             description = "Size of each buffer for reading the response",
             valueType = ValueType.SIZE,
             required = false,
-            defaultValue = "4k"
+            defaultValue = "4k|8k"
         )
     ),
     context = listOf(http, server, location),
@@ -96,7 +96,7 @@ val proxyBusyBuffersSize = Directive(
             description = "Maximum total size of busy buffers",
             valueType = ValueType.SIZE,
             required = false,
-            defaultValue = "8k"
+            defaultValue = "8k|16k"
         )
     ),
     context = listOf(http, server, location),
@@ -1245,7 +1245,7 @@ val proxyTempFileWriteSize = Directive(
             description = "Size of data written to temporary file in a single write operation",
             valueType = ValueType.SIZE,
             required = false,
-            defaultValue = "8k"
+            defaultValue = "8k|16k"
         )
     ),
     context = listOf(http, server, location),

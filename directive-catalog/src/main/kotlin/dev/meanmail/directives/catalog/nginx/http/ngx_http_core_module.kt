@@ -139,7 +139,7 @@ val clientBodyBufferSize = Directive(
             description = "Buffer size for client request body",
             valueType = ValueType.SIZE,
             required = false,
-            defaultValue = "8k | 16k"
+            defaultValue = "8k|16k"
         )
     ),
     context = listOf(http, server, location),
@@ -992,7 +992,8 @@ val subrequestOutputBufferSize = Directive(
             name = "size",
             description = "Buffer size for subrequest output",
             valueType = ValueType.SIZE,
-            required = false
+            required = false,
+            defaultValue = "4k|8k"
         )
     ),
     context = listOf(http, server, location),

@@ -59,7 +59,7 @@ val grpcBufferSize = Directive(
             name = "size",
             description = "Size of the buffer used for gRPC response processing",
             valueType = ValueType.SIZE,
-            defaultValue = "8k",
+            defaultValue = "4k|8k",
             required = true
         )
     ),

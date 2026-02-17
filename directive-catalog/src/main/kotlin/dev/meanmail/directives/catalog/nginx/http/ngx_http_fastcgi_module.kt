@@ -33,7 +33,7 @@ val fastcgiBufferSize = Directive(
             description = "Size of the buffer for the first part of the FastCGI response",
             valueType = ValueType.SIZE,
             required = true,
-            defaultValue = "4k"
+            defaultValue = "4k|8k"
         )
     ),
     context = listOf(http, server, location),
@@ -56,7 +56,7 @@ val fastcgiBuffers = Directive(
             description = "Size of each buffer for reading FastCGI server responses",
             valueType = ValueType.SIZE,
             required = true,
-            defaultValue = "4k"
+            defaultValue = "4k|8k"
         )
     ),
     context = listOf(http, server, location),
@@ -72,7 +72,7 @@ val fastcgiBusyBuffersSize = Directive(
             description = "Maximum size of busy buffers during FastCGI response processing",
             valueType = ValueType.SIZE,
             required = true,
-            defaultValue = "8k"
+            defaultValue = "8k|16k"
         )
     ),
     context = listOf(http, server, location),
@@ -776,7 +776,7 @@ val fastcgiTempFileWriteSize = Directive(
             description = "Maximum size of temporary files during FastCGI response buffering",
             valueType = ValueType.SIZE,
             required = true,
-            defaultValue = "8k"
+            defaultValue = "8k|16k"
         )
     ),
     context = listOf(http, server, location),
