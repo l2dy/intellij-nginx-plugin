@@ -13,6 +13,10 @@ class NginxDirectiveInspectionTest : BasePlatformTestCase() {
         myFixture.checkHighlighting(true, false, true)
     }
 
+    fun testLuaDirectives() {
+        doTest("luaDirectives.nginx")
+    }
+
     fun testSelfContextLocation() {
         doTest("selfContextLocation.nginx")
     }
