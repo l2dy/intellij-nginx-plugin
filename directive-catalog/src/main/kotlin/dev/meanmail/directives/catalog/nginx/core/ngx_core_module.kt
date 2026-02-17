@@ -399,7 +399,7 @@ val workerProcesses = Directive(
             valueType = ValueType.STRING,
             required = false,
             defaultValue = "1",
-            allowedValues = listOf("auto") + (1..32).map { it.toString() }
+            allowedValues = listOf("auto", "1", "2", "...")
         )
     ),
     context = listOf(main),
