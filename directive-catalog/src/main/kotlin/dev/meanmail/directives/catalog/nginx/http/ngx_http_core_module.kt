@@ -468,14 +468,15 @@ val largeClientHeaderBuffers = Directive(
             name = "number",
             description = "Maximum number of buffers",
             valueType = ValueType.NUMBER,
-            required = true
+            required = true,
+            defaultValue = "4"
         ),
         DirectiveParameter(
             name = "size",
             description = "Size of each buffer",
             valueType = ValueType.SIZE,
             required = true,
-            defaultValue = "32k"
+            defaultValue = "8k"
         )
     ),
     context = listOf(http, server, location),
@@ -713,7 +714,8 @@ val outputBuffers = Directive(
             name = "number",
             description = "Number of buffers",
             valueType = ValueType.NUMBER,
-            required = true
+            required = true,
+            defaultValue = "2"
         ),
         DirectiveParameter(
             name = "size",

@@ -397,7 +397,7 @@ val sslStaplingResponder = Directive(
 val sslStaplingVerify = ToggleDirective(
     "ssl_stapling_verify",
     "Enables verification of the OCSP response during SSL stapling",
-    enabled = true,
+    enabled = false,
     context = listOf(http, server),
     module = ngx_http_ssl_module
 )

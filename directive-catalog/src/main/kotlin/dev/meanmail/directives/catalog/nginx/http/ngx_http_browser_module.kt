@@ -64,7 +64,7 @@ val modernBrowserValue = Directive(
             description = "Value returned when a modern browser is detected",
             valueType = ValueType.STRING,
             required = false,
-            defaultValue = "0"
+            defaultValue = "1"
         )
     ),
     context = listOf(http, server, location),

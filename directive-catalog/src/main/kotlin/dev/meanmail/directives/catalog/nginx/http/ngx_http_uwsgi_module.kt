@@ -56,7 +56,8 @@ val uwsgiBuffers = Directive(
             name = "number",
             description = "Number of buffers",
             valueType = ValueType.INTEGER,
-            required = true
+            required = true,
+            defaultValue = "8"
         ),
         DirectiveParameter(
             name = "size",
@@ -769,7 +770,7 @@ val uwsgiSslProtocols = Directive(
 val uwsgiSslServerName = ToggleDirective(
     "uwsgi_ssl_server_name",
     "Enables or disables passing of the server name through SNI",
-    enabled = true,
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_uwsgi_module
 )

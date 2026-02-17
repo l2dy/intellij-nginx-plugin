@@ -287,7 +287,7 @@ val fastcgiCacheUseStale = Directive(
             description = "Conditions for serving stale content (error, timeout, invalid_header, updating, etc.)",
             valueType = ValueType.STRING,
             required = false,
-            defaultValue = "error timeout"
+            defaultValue = "off"
         )
     ),
     context = listOf(http, server, location),
@@ -726,7 +726,7 @@ val fastcgiStoreAccess = Directive(
             description = "Access permissions for stored files (e.g., user:rw, group:r, all:r)",
             valueType = ValueType.STRING,
             required = true,
-            defaultValue = "user:rw group:r all:r"
+            defaultValue = "user:rw"
         )
     ),
     context = listOf(http, server, location),
@@ -741,14 +741,14 @@ val fastcgiTempPath = Directive(
             name = "path",
             description = "Path to the directory for temporary files",
             valueType = ValueType.STRING,
-            required = true
+            required = true,
+            defaultValue = "fastcgi_temp"
         ),
         DirectiveParameter(
             name = "levels",
             description = "Number of directory levels for temporary file storage",
             valueType = ValueType.INTEGER,
-            required = false,
-            defaultValue = "2"
+            required = false
         ),
         DirectiveParameter(
             name = "size1",

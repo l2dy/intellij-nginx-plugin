@@ -259,7 +259,8 @@ val threadPool = Directive(
             name = "name",
             description = "Thread pool name",
             valueType = ValueType.STRING,
-            required = true
+            required = true,
+            defaultValue = "default"
         ),
         DirectiveParameter(
             name = "threads",
@@ -397,7 +398,7 @@ val workerProcesses = Directive(
             description = "Number of worker processes (auto or positive integer)",
             valueType = ValueType.STRING,
             required = false,
-            defaultValue = "auto",
+            defaultValue = "1",
             allowedValues = listOf("auto") + (1..32).map { it.toString() }
         )
     ),

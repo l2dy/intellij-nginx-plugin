@@ -190,7 +190,7 @@ val proxyCacheLock = Directive(
             description = "Whether to enable cache lock",
             valueType = ValueType.BOOLEAN,
             required = false,
-            defaultValue = "false"
+            defaultValue = "off"
         )
     ),
     context = listOf(http, server, location),
@@ -408,7 +408,7 @@ val proxyCacheRevalidate = Directive(
             description = "Whether to enable revalidation",
             valueType = ValueType.BOOLEAN,
             required = false,
-            defaultValue = "false"
+            defaultValue = "off"
         )
     ),
     context = listOf(http, server, location),
@@ -524,7 +524,7 @@ val proxyForceRanges = Directive(
             description = "Whether to enable byte-range support",
             valueType = ValueType.BOOLEAN,
             required = false,
-            defaultValue = "false"
+            defaultValue = "off"
         )
     ),
     context = listOf(http, server, location),
@@ -635,7 +635,7 @@ val proxyInterceptErrors = Directive(
             description = "When enabled, NGINX will process error responses (status codes 4xx, 5xx) from the proxied server using error_page directive",
             valueType = ValueType.BOOLEAN,
             required = false,
-            defaultValue = "false"
+            defaultValue = "off"
         )
     ),
     context = listOf(http, server, location),
@@ -693,11 +693,11 @@ val proxyNextUpstream = Directive(
     description = "Specifies in which cases a request should be passed to the next server in the upstream group",
     parameters = listOf(
         DirectiveParameter(
-            name = "enable",
-            valueType = ValueType.BOOLEAN,
-            description = "Enable the passing connection to proxied server",
+            name = "conditions",
+            valueType = ValueType.STRING,
+            description = "Conditions for passing a request to the next server (error, timeout, invalid_header, http_500, etc.)",
             required = true,
-            defaultValue = "on"
+            defaultValue = "error timeout"
         )
     ),
     context = listOf(http, server, location),
@@ -729,8 +729,8 @@ val proxyNextUpstreamTries = Directive(
             valueType = ValueType.NUMBER,
             description = "Maximum number of attempts to connect to alternative upstream servers",
             required = true,
-            defaultValue = "1",
-            minValue = 1,
+            defaultValue = "0",
+            minValue = 0,
             maxValue = 255
         )
     ),
@@ -832,7 +832,7 @@ val proxyPassTrailers = Directive(
             description = "Whether to pass trailers",
             valueType = ValueType.BOOLEAN,
             required = false,
-            defaultValue = "false"
+            defaultValue = "off"
         )
     ),
     context = listOf(http, server, location),
@@ -880,7 +880,7 @@ val proxyRequestBuffering = Directive(
             description = "Whether to enable request buffering",
             valueType = ValueType.BOOLEAN,
             required = false,
-            defaultValue = "true"
+            defaultValue = "on"
         )
     ),
     context = listOf(http, server, location),
@@ -1229,7 +1229,7 @@ val proxyStoreAccess = Directive(
             description = "Access permissions for stored files",
             valueType = ValueType.STRING,
             required = false,
-            defaultValue = "user:rw group:r all:r"
+            defaultValue = "user:rw"
         )
     ),
     context = listOf(http, server, location),

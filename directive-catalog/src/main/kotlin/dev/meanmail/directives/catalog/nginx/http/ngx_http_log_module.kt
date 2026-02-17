@@ -18,6 +18,7 @@ val accessLog = Directive(
             "Path to the log file, or 'off' to disable logging. Can be an absolute or relative path",
             valueType = ValueType.STRING,
             required = false,
+            defaultValue = "logs/access.log",
             allowedValues = listOf("off")
         ),
         DirectiveParameter(
@@ -77,15 +78,14 @@ val openLogFileCache = Directive(
             "max",
             "Maximum number of cached log files. Controls memory usage for log file caching",
             valueType = ValueType.NUMBER,
-            required = false,
-            defaultValue = "10"
+            required = false
         ),
         DirectiveParameter(
             "inactive",
             "Time after which an unused file descriptor is closed. Helps manage resource allocation",
             valueType = ValueType.TIME,
             required = false,
-            defaultValue = "10m"
+            defaultValue = "10s"
         ),
         DirectiveParameter(
             "min_uses",
@@ -99,7 +99,7 @@ val openLogFileCache = Directive(
             "Time interval to check file existence and metadata. Helps detect file changes",
             valueType = ValueType.TIME,
             required = false,
-            defaultValue = "1m"
+            defaultValue = "60s"
         ),
         DirectiveParameter(
             "state",
