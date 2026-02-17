@@ -353,10 +353,9 @@ val grpcSslCiphers = Directive(
     parameters = listOf(
         DirectiveParameter(
             name = "ciphers",
-            description = "List of SSL/TLS ciphers to support",
+            description = "OpenSSL cipher list string",
             valueType = ValueType.STRING,
             required = false,
-            multiple = true,
             defaultValue = "DEFAULT"
         )
     ),

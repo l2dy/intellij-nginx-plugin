@@ -15,17 +15,15 @@ val addHeader = Directive(
     parameters = listOf(
         DirectiveParameter(
             name = "header_name",
-            description = "Name of the HTTP header to add. Can include variables. Supports multiple headers with different conditions.",
+            description = "Name of the HTTP header to add. Can include variables.",
             valueType = ValueType.STRING,
-            required = true,
-            multiple = true
+            required = true
         ),
         DirectiveParameter(
             name = "header_value",
-            description = "Value of the HTTP header. Can include variables. Supports conditional header insertion based on response codes.",
+            description = "Value of the HTTP header. Can include variables.",
             valueType = ValueType.STRING,
-            required = true,
-            multiple = true
+            required = true
         ),
         DirectiveParameter(
             name = "always",
@@ -44,17 +42,15 @@ val addTrailer = Directive(
     parameters = listOf(
         DirectiveParameter(
             name = "trailer_name",
-            description = "Name of the HTTP trailer to add. Can include variables. Supports multiple trailers with different conditions.",
+            description = "Name of the HTTP trailer to add. Can include variables.",
             valueType = ValueType.STRING,
-            required = true,
-            multiple = true
+            required = true
         ),
         DirectiveParameter(
             name = "trailer_value",
-            description = "Value of the HTTP trailer. Can include variables. Supports conditional trailer insertion.",
+            description = "Value of the HTTP trailer. Can include variables.",
             valueType = ValueType.STRING,
-            required = true,
-            multiple = true
+            required = true
         ),
         DirectiveParameter(
             name = "always",
