@@ -13,6 +13,7 @@ val ngx_stream_js_module = NginxModule(
 val streamJsAccess = Directive(
     name = "js_access",
     description = "Defines a JavaScript function to perform access control for stream connections, called once during the access phase",
+    syntax = listOf("<b>js_access</b> <i>module.function</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "function",
@@ -28,6 +29,7 @@ val streamJsAccess = Directive(
 val streamJsContextReuse = Directive(
     name = "js_context_reuse",
     description = "Sets maximum number of JavaScript contexts to be reused for QuickJS engine. Each context is used for a single stream session",
+    syntax = listOf("<b>js_context_reuse</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "max_contexts",
@@ -44,6 +46,7 @@ val streamJsContextReuse = Directive(
 val streamJsEngine = Directive(
     name = "js_engine",
     description = "Specifies the JavaScript engine to be used for njs scripts",
+    syntax = listOf("<b>js_engine</b> njs | qjs;"),
     parameters = listOf(
         DirectiveParameter(
             name = "engine",
@@ -61,6 +64,7 @@ val streamJsEngine = Directive(
 val streamJsFetchBufferSize = Directive(
     name = "js_fetch_buffer_size",
     description = "Sets the size of the buffer used for reading and writing with Fetch API",
+    syntax = listOf("<b>js_fetch_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -77,6 +81,7 @@ val streamJsFetchBufferSize = Directive(
 val streamJsFetchCiphers = Directive(
     name = "js_fetch_ciphers",
     description = "Specifies the enabled ciphers for HTTPS connections with Fetch API",
+    syntax = listOf("<b>js_fetch_ciphers</b> <i>ciphers</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "ciphers",
@@ -93,6 +98,7 @@ val streamJsFetchCiphers = Directive(
 val streamJsFetchProtocols = Directive(
     name = "js_fetch_protocols",
     description = "Specifies the SSL/TLS protocols to be used in Fetch API connections",
+    syntax = listOf("<b>js_fetch_protocols</b> [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];"),
     parameters = listOf(
         DirectiveParameter(
             name = "protocols",
@@ -108,6 +114,7 @@ val streamJsFetchProtocols = Directive(
 val streamJsFetchTimeout = Directive(
     name = "js_fetch_timeout",
     description = "Sets the timeout for Fetch API connections",
+    syntax = listOf("<b>js_fetch_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -123,6 +130,7 @@ val streamJsFetchTimeout = Directive(
 val streamJsFetchTrustedCertificate = Directive(
     name = "js_fetch_trusted_certificate",
     description = "Specifies the path to a file with trusted CA certificates for Fetch API",
+    syntax = listOf("<b>js_fetch_trusted_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "certificate_file",
@@ -146,6 +154,7 @@ val streamJsFetchVerify = ToggleDirective(
 val streamJsFetchVerifyDepth = Directive(
     name = "js_fetch_verify_depth",
     description = "Sets the maximum depth of CA certificate chain verification",
+    syntax = listOf("<b>js_fetch_verify_depth</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "depth",
@@ -162,6 +171,7 @@ val streamJsFetchVerifyDepth = Directive(
 val streamJsFilter = Directive(
     name = "js_filter",
     description = "Defines a JavaScript function to filter and modify stream data in real-time",
+    syntax = listOf("<b>js_filter</b> <i>module.function</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "function",
@@ -177,6 +187,7 @@ val streamJsFilter = Directive(
 val streamJsImport = Directive(
     name = "js_import",
     description = "Imports a JavaScript module for use in stream processing",
+    syntax = listOf("<b>js_import</b> <i>module.js</i> | <i>export_name from module.js</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "module",
@@ -192,6 +203,7 @@ val streamJsImport = Directive(
 val streamJsSet = Directive(
     name = "js_set",
     description = "Sets a variable using a JavaScript function, allowing dynamic variable generation",
+    syntax = listOf("<b>js_set</b> <i>\$variable</i> <i>module.function</i> [nocache];"),
     parameters = listOf(
         DirectiveParameter(
             name = "variable",
@@ -213,6 +225,7 @@ val streamJsSet = Directive(
 val streamJsVar = Directive(
     name = "js_var",
     description = "Declares a JavaScript variable in the stream or server context",
+    syntax = listOf("<b>js_var</b> <i>\$variable</i> [<i>value</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "variable",
@@ -234,6 +247,7 @@ val streamJsVar = Directive(
 val streamJsFetchMaxResponseBufferSize = Directive(
     name = "js_fetch_max_response_buffer_size",
     description = "Sets the maximum size of the response buffer for Fetch API operations",
+    syntax = listOf("<b>js_fetch_max_response_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -250,6 +264,7 @@ val streamJsFetchMaxResponseBufferSize = Directive(
 val streamJsInclude = Directive(
     name = "js_include",
     description = "Includes a JavaScript file for use in stream processing",
+    syntax = listOf("<b>js_include</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "file",
@@ -265,6 +280,7 @@ val streamJsInclude = Directive(
 val streamJsPath = Directive(
     name = "js_path",
     description = "Sets the directory path for searching JavaScript modules",
+    syntax = listOf("<b>js_path</b> <i>path</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "directory",
@@ -280,6 +296,7 @@ val streamJsPath = Directive(
 val streamJsPeriodic = Directive(
     name = "js_periodic",
     description = "Configures periodic JavaScript tasks in stream context",
+    syntax = listOf("<b>js_periodic</b> <i>module.function</i> [interval=<i>time</i>] [jitter=<i>number</i>] [worker_affinity=<i>mask</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "function",
@@ -301,6 +318,7 @@ val streamJsPeriodic = Directive(
 val streamJsPreloadObject = Directive(
     name = "js_preload_object",
     description = "Preloads JavaScript objects for use in stream processing",
+    syntax = listOf("<b>js_preload_object</b> <i>name.json</i> | <i>name</i> from <i>file.json</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "object_name",
@@ -322,6 +340,7 @@ val streamJsPreloadObject = Directive(
 val streamJsPreread = Directive(
     name = "js_preread",
     description = "Defines a JavaScript function to process data before stream connection routing",
+    syntax = listOf("<b>js_preread</b> <i>module.function</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "function",
@@ -337,6 +356,7 @@ val streamJsPreread = Directive(
 val streamJsSharedDictZone = Directive(
     name = "js_shared_dict_zone",
     description = "Configures a shared dictionary zone for JavaScript in stream context",
+    syntax = listOf("<b>js_shared_dict_zone</b> zone=<i>name</i>:<i>size</i> [timeout=<i>time</i>] [type=string|number] [evict] [state=<i>file</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "name",
@@ -358,6 +378,7 @@ val streamJsSharedDictZone = Directive(
 val streamJsFetchKeepalive = Directive(
     name = "js_fetch_keepalive",
     description = "Activates the cache for connections to destination servers with Fetch API",
+    syntax = listOf("<b>js_fetch_keepalive</b> <i>connections</i>;"),
     context = listOf(stream, streamServer),
     module = ngx_stream_js_module
 )
@@ -365,6 +386,7 @@ val streamJsFetchKeepalive = Directive(
 val streamJsFetchKeepaliveRequests = Directive(
     name = "js_fetch_keepalive_requests",
     description = "Sets the maximum number of requests through one keepalive connection with Fetch API",
+    syntax = listOf("<b>js_fetch_keepalive_requests</b> <i>number</i>;"),
     context = listOf(stream, streamServer),
     module = ngx_stream_js_module
 )
@@ -372,6 +394,7 @@ val streamJsFetchKeepaliveRequests = Directive(
 val streamJsFetchKeepaliveTime = Directive(
     name = "js_fetch_keepalive_time",
     description = "Limits the maximum time for requests through one keepalive connection with Fetch API",
+    syntax = listOf("<b>js_fetch_keepalive_time</b> <i>time</i>;"),
     context = listOf(stream, streamServer),
     module = ngx_stream_js_module
 )
@@ -379,6 +402,7 @@ val streamJsFetchKeepaliveTime = Directive(
 val streamJsFetchKeepaliveTimeout = Directive(
     name = "js_fetch_keepalive_timeout",
     description = "Sets a timeout for idle keepalive connections to destination servers with Fetch API",
+    syntax = listOf("<b>js_fetch_keepalive_timeout</b> <i>time</i>;"),
     context = listOf(stream, streamServer),
     module = ngx_stream_js_module
 )
@@ -386,6 +410,7 @@ val streamJsFetchKeepaliveTimeout = Directive(
 val streamJsFetchProxy = Directive(
     name = "js_fetch_proxy",
     description = "Configures a forward proxy URL with Fetch API",
+    syntax = listOf("<b>js_fetch_proxy</b> <i>url</i>;"),
     context = listOf(stream, streamServer),
     module = ngx_stream_js_module
 )
@@ -393,6 +418,7 @@ val streamJsFetchProxy = Directive(
 val jsLoadStreamNativeModule = Directive(
     name = "js_load_stream_native_module",
     description = "Loads a native module (shared library) for use in Stream JavaScript code (QuickJS only)",
+    syntax = listOf("<b>js_load_stream_native_module</b> <i>path</i> [as <i>name</i>];"),
     context = listOf(main),
     module = ngx_stream_js_module
 )

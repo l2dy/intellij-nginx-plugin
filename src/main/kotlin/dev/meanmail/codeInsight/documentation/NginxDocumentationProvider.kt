@@ -42,6 +42,15 @@ class NginxDocumentationProvider : AbstractDocumentationProvider() {
             // Sections table
             append(SECTIONS_START)
 
+            // Syntax row
+            if (directive.syntax.isNotEmpty()) {
+                append(SECTION_HEADER_START)
+                append("Syntax:")
+                append(SECTION_SEPARATOR)
+                append(directive.syntax.joinToString("<br>"))
+                append(SECTION_END)
+            }
+
             // Context row
             append(SECTION_HEADER_START)
             append("Context:")

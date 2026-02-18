@@ -12,6 +12,7 @@ val ngx_stream_proxy_module = NginxModule(
 val streamProxyBind = Directive(
     name = "proxy_bind",
     description = "Configures the local network interface for outgoing proxy connections, enabling precise source IP and port selection",
+    syntax = listOf("<b>proxy_bind</b> <i>address</i> [transparent] | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -35,6 +36,7 @@ val streamProxyBind = Directive(
 val streamProxyBufferSize = Directive(
     name = "proxy_buffer_size",
     description = "Sets the buffer size for reading data from the proxied server, optimizing memory usage and performance",
+    syntax = listOf("<b>proxy_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -51,6 +53,7 @@ val streamProxyBufferSize = Directive(
 val streamProxyConnectTimeout = Directive(
     name = "proxy_connect_timeout",
     description = "Defines the maximum time allowed for establishing a connection with the proxied server",
+    syntax = listOf("<b>proxy_connect_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -67,6 +70,7 @@ val streamProxyConnectTimeout = Directive(
 val streamProxyDownloadRate = Directive(
     name = "proxy_download_rate",
     description = "Limits the download speed from the proxied server, enabling bandwidth control",
+    syntax = listOf("<b>proxy_download_rate</b> <i>rate</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "rate",
@@ -91,6 +95,7 @@ val streamProxyHalfClose = ToggleDirective(
 val streamProxyNextUpstream = Directive(
     name = "proxy_next_upstream",
     description = "When a connection to the proxied server cannot be established, determines whether a client connection will be passed to the next server.",
+    syntax = listOf("<b>proxy_next_upstream</b> on | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "enable",
@@ -107,6 +112,7 @@ val streamProxyNextUpstream = Directive(
 val streamProxyNextUpstreamTimeout = Directive(
     name = "proxy_next_upstream_timeout",
     description = "Sets the maximum time allowed for trying multiple upstream servers during failover",
+    syntax = listOf("<b>proxy_next_upstream_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -123,6 +129,7 @@ val streamProxyNextUpstreamTimeout = Directive(
 val streamProxyNextUpstreamTries = Directive(
     name = "proxy_next_upstream_tries",
     description = "Limits the number of attempts to pass a connection to the next upstream server",
+    syntax = listOf("<b>proxy_next_upstream_tries</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -141,6 +148,7 @@ val streamProxyNextUpstreamTries = Directive(
 val streamProxyPass = Directive(
     name = "proxy_pass",
     description = "Defines the destination server or server group for proxying stream connections",
+    syntax = listOf("<b>proxy_pass</b> <i>address</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -172,6 +180,7 @@ val streamProxyProtocol = ToggleDirective(
 val streamProxyRequests = Directive(
     name = "proxy_requests",
     description = "Limits the maximum number of client requests per single connection",
+    syntax = listOf("<b>proxy_requests</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -189,6 +198,7 @@ val streamProxyRequests = Directive(
 val streamProxyResponses = Directive(
     name = "proxy_responses",
     description = "Controls the maximum number of server responses per client request",
+    syntax = listOf("<b>proxy_responses</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -222,6 +232,7 @@ val streamProxySsl = ToggleDirective(
 val streamProxySslCertificate = Directive(
     name = "proxy_ssl_certificate",
     description = "Specifies the client SSL certificate for authentication with proxied servers",
+    syntax = listOf("<b>proxy_ssl_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -237,6 +248,10 @@ val streamProxySslCertificate = Directive(
 val streamProxySslCertificateCache = Directive(
     name = "proxy_ssl_certificate_cache",
     description = "Enables caching of SSL certificates for proxied connections to improve performance",
+    syntax = listOf(
+        "<b>proxy_ssl_certificate_cache</b> off;",
+        "<b>proxy_ssl_certificate_cache</b> max=<i>N</i> [inactive=<i>time</i>] [valid=<i>time</i>];"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "state",
@@ -253,6 +268,7 @@ val streamProxySslCertificateCache = Directive(
 val streamProxySslCertificateKey = Directive(
     name = "proxy_ssl_certificate_key",
     description = "Specifies the private key for the client SSL certificate",
+    syntax = listOf("<b>proxy_ssl_certificate_key</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -268,6 +284,7 @@ val streamProxySslCertificateKey = Directive(
 val streamProxySslPasswordFile = Directive(
     name = "proxy_ssl_password_file",
     description = "Specifies a file containing passwords for encrypted SSL certificates",
+    syntax = listOf("<b>proxy_ssl_password_file</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -283,6 +300,7 @@ val streamProxySslPasswordFile = Directive(
 val streamProxySslProtocols = Directive(
     name = "proxy_ssl_protocols",
     description = "Configures the SSL/TLS protocols allowed for connections to proxied servers",
+    syntax = listOf("<b>proxy_ssl_protocols</b> [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];"),
     parameters = listOf(
         DirectiveParameter(
             name = "protocols",
@@ -308,6 +326,7 @@ val streamProxySslServerName = ToggleDirective(
 val streamProxySslTrustedCertificate = Directive(
     name = "proxy_ssl_trusted_certificate",
     description = "Specifies the trusted CA certificate for verifying proxied server certificates",
+    syntax = listOf("<b>proxy_ssl_trusted_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -331,6 +350,7 @@ val streamProxySslVerify = ToggleDirective(
 val streamProxySslVerifyDepth = Directive(
     name = "proxy_ssl_verify_depth",
     description = "Sets the maximum depth of CA certificate chain verification",
+    syntax = listOf("<b>proxy_ssl_verify_depth</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "depth",
@@ -349,6 +369,7 @@ val streamProxySslVerifyDepth = Directive(
 val streamProxySslCiphers = Directive(
     name = "proxy_ssl_ciphers",
     description = "Specifies the ciphers for SSL connections to proxied servers",
+    syntax = listOf("<b>proxy_ssl_ciphers</b> <i>ciphers</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "ciphers",
@@ -365,6 +386,7 @@ val streamProxySslCiphers = Directive(
 val streamProxySslConfCommand = Directive(
     name = "proxy_ssl_conf_command",
     description = "Sets OpenSSL configuration commands for SSL connections",
+    syntax = listOf("<b>proxy_ssl_conf_command</b> <i>name</i> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "command",
@@ -386,6 +408,7 @@ val streamProxySslConfCommand = Directive(
 val streamProxySslCrl = Directive(
     name = "proxy_ssl_crl",
     description = "Sets the path to the certificate revocation list (CRL) for SSL verification",
+    syntax = listOf("<b>proxy_ssl_crl</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -401,6 +424,7 @@ val streamProxySslCrl = Directive(
 val streamProxySslName = Directive(
     name = "proxy_ssl_name",
     description = "Sets the server name for SSL server name indication (SNI)",
+    syntax = listOf("<b>proxy_ssl_name</b> <i>name</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "name",
@@ -424,6 +448,7 @@ val streamProxySslSessionReuse = ToggleDirective(
 val streamProxyTimeout = Directive(
     name = "proxy_timeout",
     description = "Sets the timeout for read and write operations with the proxied server in stream context",
+    syntax = listOf("<b>proxy_timeout</b> <i>timeout</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -439,6 +464,7 @@ val streamProxyTimeout = Directive(
 val streamProxyUploadRate = Directive(
     name = "proxy_upload_rate",
     description = "Limits the upload speed to the proxied server in stream context",
+    syntax = listOf("<b>proxy_upload_rate</b> <i>rate</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "rate",

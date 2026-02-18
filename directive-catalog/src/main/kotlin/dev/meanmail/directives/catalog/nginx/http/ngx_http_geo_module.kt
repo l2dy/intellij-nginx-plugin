@@ -12,6 +12,7 @@ val ngx_http_geo_module = NginxModule(
 val geo = Directive(
     name = "geo",
     description = "Creates variables with values depending on the client IP address, useful for creating IP-based access controls or conditional configurations",
+    syntax = listOf("<b>geo</b> [<i>\$address</i>] <i>\$variable</i> { ... }"),
     parameters = listOf(
         DirectiveParameter(
             name = "address_variable",

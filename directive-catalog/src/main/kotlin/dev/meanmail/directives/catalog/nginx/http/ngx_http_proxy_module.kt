@@ -12,6 +12,7 @@ val ngx_http_proxy_module = NginxModule(
 val proxyBind = Directive(
     name = "proxy_bind",
     description = "Sets the local IP address and port for outgoing connections to a proxied server",
+    syntax = listOf("<b>proxy_bind</b> <i>address</i> [transparent] | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -35,6 +36,7 @@ val proxyBind = Directive(
 val proxyBufferSize = Directive(
     name = "proxy_buffer_size",
     description = "Sets the size of the buffer used for reading the first part of the response from the proxied server",
+    syntax = listOf("<b>proxy_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -59,6 +61,7 @@ val proxyBuffering = ToggleDirective(
 val proxyBuffers = Directive(
     name = "proxy_buffers",
     description = "Sets the number and size of buffers for reading a response from the proxied server",
+    syntax = listOf("<b>proxy_buffers</b> <i>number</i> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -82,6 +85,7 @@ val proxyBuffers = Directive(
 val proxyBusyBuffersSize = Directive(
     name = "proxy_busy_buffers_size",
     description = "Limits the total size of busy buffers that can be sent to the client",
+    syntax = listOf("<b>proxy_busy_buffers_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -98,6 +102,7 @@ val proxyBusyBuffersSize = Directive(
 val proxyCache = Directive(
     name = "proxy_cache",
     description = "Defines the cache zone to be used for storing responses from the proxied server",
+    syntax = listOf("<b>proxy_cache</b> <i>zone</i> | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "zone",
@@ -122,6 +127,7 @@ val proxyCacheBackgroundUpdate = ToggleDirective(
 val proxyCacheBypass = Directive(
     name = "proxy_cache_bypass",
     description = "Defines conditions under which the response will not be taken from the cache",
+    syntax = listOf("<b>proxy_cache_bypass</b> <i>string</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -145,6 +151,7 @@ val proxyCacheConvertHead = ToggleDirective(
 val proxyCacheKey = Directive(
     name = "proxy_cache_key",
     description = "Defines the key for caching a response from the proxied server",
+    syntax = listOf("<b>proxy_cache_key</b> <i>string</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "key",
@@ -168,6 +175,7 @@ val proxyCacheLock = ToggleDirective(
 val proxyCacheLockAge = Directive(
     name = "proxy_cache_lock_age",
     description = "Sets the time during which subsequent requests will wait for the first request's response to be cached",
+    syntax = listOf("<b>proxy_cache_lock_age</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -183,6 +191,7 @@ val proxyCacheLockAge = Directive(
 val proxyCacheLockTimeout = Directive(
     name = "proxy_cache_lock_timeout",
     description = "Sets the timeout for obtaining a cache lock",
+    syntax = listOf("<b>proxy_cache_lock_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -198,6 +207,7 @@ val proxyCacheLockTimeout = Directive(
 val proxyCacheMaxRangeOffset = Directive(
     name = "proxy_cache_max_range_offset",
     description = "Sets the maximum allowed offset for range requests when caching",
+    syntax = listOf("<b>proxy_cache_max_range_offset</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "offset",
@@ -213,6 +223,7 @@ val proxyCacheMaxRangeOffset = Directive(
 val proxyCacheMethods = Directive(
     name = "proxy_cache_methods",
     description = "Defines HTTP methods that can be cached",
+    syntax = listOf("<b>proxy_cache_methods</b> GET | HEAD | POST ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "cacheable_methods",
@@ -228,6 +239,7 @@ val proxyCacheMethods = Directive(
 val proxyCacheMinUses = Directive(
     name = "proxy_cache_min_uses",
     description = "Sets the minimum number of requests before a response is cached",
+    syntax = listOf("<b>proxy_cache_min_uses</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -243,6 +255,7 @@ val proxyCacheMinUses = Directive(
 val proxyCachePath = Directive(
     name = "proxy_cache_path",
     description = "Sets the path and configuration for the cache",
+    syntax = listOf("<b>proxy_cache_path</b> <i>path</i> [levels=<i>levels</i>] [use_temp_path=on|off] keys_zone=<i>name</i>:<i>size</i> [inactive=<i>time</i>] [max_size=<i>size</i>] [min_free=<i>size</i>] [manager_files=<i>number</i>] [manager_sleep=<i>time</i>] [manager_threshold=<i>time</i>] [loader_files=<i>number</i>] [loader_sleep=<i>time</i>] [loader_threshold=<i>time</i>] [purger=on|off] [purger_files=<i>number</i>] [purger_sleep=<i>time</i>] [purger_threshold=<i>time</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -264,6 +277,7 @@ val proxyCachePath = Directive(
 val proxyCachePurge = Directive(
     name = "proxy_cache_purge",
     description = "Defines conditions for purging cache entries",
+    syntax = listOf("<b>proxy_cache_purge</b> string ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -378,6 +392,7 @@ val proxyCacheRevalidate = ToggleDirective(
 val proxyCacheUseStale = Directive(
     name = "proxy_cache_use_stale",
     description = "Allows serving stale cached content under specific conditions",
+    syntax = listOf("<b>proxy_cache_use_stale</b> error | timeout | invalid_header | updating | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | off ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "stale_conditions",
@@ -393,6 +408,7 @@ val proxyCacheUseStale = Directive(
 val proxyCacheValid = Directive(
     name = "proxy_cache_valid",
     description = "Sets caching time for different response codes",
+    syntax = listOf("<b>proxy_cache_valid</b> [<i>code</i> ...] <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "code",
@@ -414,6 +430,7 @@ val proxyCacheValid = Directive(
 val proxyConnectTimeout = Directive(
     name = "proxy_connect_timeout",
     description = "Defines a timeout for establishing a connection with a proxied server",
+    syntax = listOf("<b>proxy_connect_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -430,6 +447,10 @@ val proxyConnectTimeout = Directive(
 val proxyCookieDomain = Directive(
     name = "proxy_cookie_domain",
     description = "Sets the domain for the Set-Cookie header in responses from the proxied server",
+    syntax = listOf(
+        "<b>proxy_cookie_domain</b> off;",
+        "<b>proxy_cookie_domain</b> <i>domain</i> <i>replacement</i>;"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "domain",
@@ -446,6 +467,7 @@ val proxyCookieDomain = Directive(
 val proxyCookieFlags = Directive(
     name = "proxy_cookie_flags",
     description = "Sets the flags for the Set-Cookie header in responses from the proxied server",
+    syntax = listOf("<b>proxy_cookie_flags</b> off | <i>cookie</i> [<i>flag</i> ...];"),
     parameters = listOf(
         DirectiveParameter(
             name = "flags",
@@ -462,6 +484,10 @@ val proxyCookieFlags = Directive(
 val proxyCookiePath = Directive(
     name = "proxy_cookie_path",
     description = "Sets the path for the Set-Cookie header in responses from the proxied server",
+    syntax = listOf(
+        "<b>proxy_cookie_path</b> off;",
+        "<b>proxy_cookie_path</b> <i>path</i> <i>replacement</i>;"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -486,6 +512,7 @@ val proxyForceRanges = ToggleDirective(
 val proxyHeadersHashBucketSize = Directive(
     name = "proxy_headers_hash_bucket_size",
     description = "Sets the bucket size for the hash tables used by proxy_hide_header and proxy_set_header directives",
+    syntax = listOf("<b>proxy_headers_hash_bucket_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -501,6 +528,7 @@ val proxyHeadersHashBucketSize = Directive(
 val proxyHeadersHashMaxSize = Directive(
     name = "proxy_headers_hash_max_size",
     description = "Sets the maximum size of the hash tables used by proxy_hide_header and proxy_set_header directives",
+    syntax = listOf("<b>proxy_headers_hash_max_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -516,6 +544,7 @@ val proxyHeadersHashMaxSize = Directive(
 val proxyHideHeader = Directive(
     name = "proxy_hide_header",
     description = "Prevents passing specified header fields from a proxied server to a client",
+    syntax = listOf("<b>proxy_hide_header</b> <i>field</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "field",
@@ -531,6 +560,7 @@ val proxyHideHeader = Directive(
 val proxyHttpVersion = Directive(
     name = "proxy_http_version",
     description = "Sets the HTTP protocol version for proxying requests to the backend server",
+    syntax = listOf("<b>proxy_http_version</b> 1.0 | 1.1 | 2;"),
     parameters = listOf(
         DirectiveParameter(
             name = "version",
@@ -556,6 +586,7 @@ val proxyIgnoreClientAbort = ToggleDirective(
 val proxyIgnoreHeaders = Directive(
     name = "proxy_ignore_headers",
     description = "Disables processing of certain response headers from the proxied server",
+    syntax = listOf("<b>proxy_ignore_headers</b> <i>field</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "headers",
@@ -589,6 +620,7 @@ val proxyInterceptErrors = ToggleDirective(
 val proxyLimitRate = Directive(
     name = "proxy_limit_rate",
     description = "Limits the transfer rate of a response from the proxied server to a client",
+    syntax = listOf("<b>proxy_limit_rate</b> <i>rate</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "rate",
@@ -605,6 +637,7 @@ val proxyLimitRate = Directive(
 val proxyMaxTempFileSize = Directive(
     name = "proxy_max_temp_file_size",
     description = "Limits the size of data written to a temporary file when the proxied server response cannot be stored in memory",
+    syntax = listOf("<b>proxy_max_temp_file_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -620,6 +653,7 @@ val proxyMaxTempFileSize = Directive(
 val proxyMethod = Directive(
     name = "proxy_method",
     description = "Specifies a custom HTTP method to be used when forwarding requests to the proxied server, overriding the original client request method",
+    syntax = listOf("<b>proxy_method</b> <i>method</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "method",
@@ -635,6 +669,7 @@ val proxyMethod = Directive(
 val proxyNextUpstream = Directive(
     name = "proxy_next_upstream",
     description = "Specifies in which cases a request should be passed to the next server in the upstream group",
+    syntax = listOf("<b>proxy_next_upstream</b> error | timeout | denied | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "conditions",
@@ -651,6 +686,7 @@ val proxyNextUpstream = Directive(
 val proxyNextUpstreamTimeout = Directive(
     name = "proxy_next_upstream_timeout",
     description = "Limits the time during which a request can be passed to the next server",
+    syntax = listOf("<b>proxy_next_upstream_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -667,6 +703,7 @@ val proxyNextUpstreamTimeout = Directive(
 val proxyNextUpstreamTries = Directive(
     name = "proxy_next_upstream_tries",
     description = "Sets the maximum number of possible tries for passing a request to the next server",
+    syntax = listOf("<b>proxy_next_upstream_tries</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -685,6 +722,7 @@ val proxyNextUpstreamTries = Directive(
 val proxyNoCache = Directive(
     name = "proxy_no_cache",
     description = "Defines conditions under which the response will not be saved to a cache",
+    syntax = listOf("<b>proxy_no_cache</b> <i>string</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "string",
@@ -700,6 +738,7 @@ val proxyNoCache = Directive(
 val proxyPass = Directive(
     name = "proxy_pass",
     description = "Sets the protocol, address, and optional port of a proxied server. Can use domain names, IP addresses, and Unix sockets",
+    syntax = listOf("<b>proxy_pass</b> <i>URL</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -723,6 +762,7 @@ val proxyPass = Directive(
 val proxyPassHeader = Directive(
     name = "proxy_pass_header",
     description = "Allows passing specified headers from the proxied server to the client, overriding the default header hiding behavior",
+    syntax = listOf("<b>proxy_pass_header</b> <i>field</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",
@@ -762,6 +802,7 @@ val proxyPassTrailers = ToggleDirective(
 val proxyReadTimeout = Directive(
     name = "proxy_read_timeout",
     description = "Defines the timeout for reading a response from the proxied server",
+    syntax = listOf("<b>proxy_read_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -778,6 +819,11 @@ val proxyReadTimeout = Directive(
 val proxyRedirect = Directive(
     name = "proxy_redirect",
     description = "Sets the text replacement for the Location and Refresh headers from the proxied server",
+    syntax = listOf(
+        "<b>proxy_redirect</b> default;",
+        "<b>proxy_redirect</b> off;",
+        "<b>proxy_redirect</b> <i>redirect</i> <i>replacement</i>;"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "replacement",
@@ -802,6 +848,7 @@ val proxyRequestBuffering = ToggleDirective(
 val proxySendLowat = Directive(
     name = "proxy_send_lowat",
     description = "Sets the low watermark for sending data to the proxied server",
+    syntax = listOf("<b>proxy_send_lowat</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -817,6 +864,7 @@ val proxySendLowat = Directive(
 val proxySendTimeout = Directive(
     name = "proxy_send_timeout",
     description = "Sets a timeout for transmitting a request to the proxied server",
+    syntax = listOf("<b>proxy_send_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -832,6 +880,7 @@ val proxySendTimeout = Directive(
 val proxySetBody = Directive(
     name = "proxy_set_body",
     description = "Allows changing the request body before passing it to the proxied server",
+    syntax = listOf("<b>proxy_set_body</b> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "body",
@@ -847,6 +896,7 @@ val proxySetBody = Directive(
 val proxySetHeader = Directive(
     name = "proxy_set_header",
     description = "Allows redefining or adding headers to be passed to the proxied server",
+    syntax = listOf("<b>proxy_set_header</b> <i>field</i> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",
@@ -876,6 +926,7 @@ val proxySocketKeepalive = ToggleDirective(
 val proxySslCertificate = Directive(
     name = "proxy_ssl_certificate",
     description = "Specifies the certificate file for authentication to a proxied HTTPS server",
+    syntax = listOf("<b>proxy_ssl_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -891,6 +942,10 @@ val proxySslCertificate = Directive(
 val proxySslCertificateCache = Directive(
     name = "proxy_ssl_certificate_cache",
     description = "Enables caching of SSL certificates used for authentication to a proxied HTTPS server",
+    syntax = listOf(
+        "<b>proxy_ssl_certificate_cache</b> off;",
+        "<b>proxy_ssl_certificate_cache</b> max=<i>N</i> [inactive=<i>time</i>] [valid=<i>time</i>];"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "state",
@@ -907,6 +962,7 @@ val proxySslCertificateCache = Directive(
 val proxySslCertificateKey = Directive(
     name = "proxy_ssl_certificate_key",
     description = "Specifies the secret key file for authentication to a proxied HTTPS server",
+    syntax = listOf("<b>proxy_ssl_certificate_key</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -922,6 +978,7 @@ val proxySslCertificateKey = Directive(
 val proxySslCiphers = Directive(
     name = "proxy_ssl_ciphers",
     description = "Specifies the enabled ciphers for requests to a proxied HTTPS server",
+    syntax = listOf("<b>proxy_ssl_ciphers</b> <i>ciphers</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "ciphers",
@@ -938,6 +995,7 @@ val proxySslCiphers = Directive(
 val proxySslConfCommand = Directive(
     name = "proxy_ssl_conf_command",
     description = "Sets custom OpenSSL configuration commands for HTTPS connections to the proxied server",
+    syntax = listOf("<b>proxy_ssl_conf_command</b> <i>name</i> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "command",
@@ -959,6 +1017,7 @@ val proxySslConfCommand = Directive(
 val proxySslCrl = Directive(
     name = "proxy_ssl_crl",
     description = "Specifies the certificate revocation list (CRL) file for verifying the certificate of the proxied HTTPS server",
+    syntax = listOf("<b>proxy_ssl_crl</b> <i>file</i>;"),
 
     parameters = listOf(
 
@@ -983,6 +1042,7 @@ val proxySslCrl = Directive(
 val proxySslName = Directive(
     name = "proxy_ssl_name",
     description = "Sets the server name for TLS Server Name Indication (SNI) when connecting to a proxied HTTPS server",
+    syntax = listOf("<b>proxy_ssl_name</b> <i>name</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "name",
@@ -998,6 +1058,7 @@ val proxySslName = Directive(
 val proxySslPasswordFile = Directive(
     name = "proxy_ssl_password_file",
     description = "Specifies a file with passphrases for secret keys where each passphrase is specified on a separate line",
+    syntax = listOf("<b>proxy_ssl_password_file</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -1013,6 +1074,7 @@ val proxySslPasswordFile = Directive(
 val proxySslProtocols = Directive(
     name = "proxy_ssl_protocols",
     description = "Specifies the SSL/TLS protocols to use when connecting to a proxied HTTPS server",
+    syntax = listOf("<b>proxy_ssl_protocols</b> [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];"),
     parameters = listOf(
         DirectiveParameter(
             name = "protocols",
@@ -1046,6 +1108,7 @@ val proxySslSessionReuse = ToggleDirective(
 val proxySslTrustedCertificate = Directive(
     name = "proxy_ssl_trusted_certificate",
     description = "Specifies the trusted CA certificates file for verifying the certificate of the proxied HTTPS server",
+    syntax = listOf("<b>proxy_ssl_trusted_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -1069,6 +1132,7 @@ val proxySslVerify = ToggleDirective(
 val proxySslVerifyDepth = Directive(
     name = "proxy_ssl_verify_depth",
     description = "Sets the maximum depth of certificate verification chain for a proxied HTTPS server",
+    syntax = listOf("<b>proxy_ssl_verify_depth</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "depth",
@@ -1087,6 +1151,7 @@ val proxySslVerifyDepth = Directive(
 val proxyStore = Directive(
     name = "proxy_store",
     description = "Enables or sets the path for storing the response from the proxied server on the local file system",
+    syntax = listOf("<b>proxy_store</b> on | off | <i>string</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -1103,6 +1168,7 @@ val proxyStore = Directive(
 val proxyStoreAccess = Directive(
     name = "proxy_store_access",
     description = "Sets the access permissions for files stored by proxy_store directive",
+    syntax = listOf("<b>proxy_store_access</b> <i>users</i>:<i>permissions</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "permissions",
@@ -1119,6 +1185,7 @@ val proxyStoreAccess = Directive(
 val proxyTempFileWriteSize = Directive(
     name = "proxy_temp_file_write_size",
     description = "Sets the size of data written to a temporary file at a time when proxying",
+    syntax = listOf("<b>proxy_temp_file_write_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -1135,6 +1202,7 @@ val proxyTempFileWriteSize = Directive(
 val proxyTempPath = Directive(
     name = "proxy_temp_path",
     description = "Sets the directory for storing temporary files when proxying",
+    syntax = listOf("<b>proxy_temp_path</b> <i>path</i> [<i>level1</i> [<i>level2</i> [<i>level3</i>]]];"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",

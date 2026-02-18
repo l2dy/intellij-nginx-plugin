@@ -12,6 +12,7 @@ val ngx_http_empty_gif_module = NginxModule(
 val emptyGif = Directive(
     name = "empty_gif",
     description = "Provides a location that always returns a 1x1 transparent GIF image",
+    syntax = listOf("<b>empty_gif</b>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "no_parameters",

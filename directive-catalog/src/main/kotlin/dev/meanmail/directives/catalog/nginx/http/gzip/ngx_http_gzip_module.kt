@@ -23,6 +23,7 @@ val gzip = ToggleDirective(
 val gzipBuffers = Directive(
     name = "gzip_buffers",
     description = "Configures the number and size of buffers used for gzip compression. Controls memory allocation during compression process.",
+    syntax = listOf("<b>gzip_buffers</b> <i>number</i> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -44,6 +45,7 @@ val gzipBuffers = Directive(
 val gzipCompLevel = Directive(
     name = "gzip_comp_level",
     description = "Sets the compression level for gzip, balancing between compression ratio and processing time.",
+    syntax = listOf("<b>gzip_comp_level</b> <i>level</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "level",
@@ -59,6 +61,7 @@ val gzipCompLevel = Directive(
 val gzipDisable = Directive(
     name = "gzip_disable",
     description = "Disables gzip compression for clients matching specified regular expressions.",
+    syntax = listOf("<b>gzip_disable</b> <i>regex</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "regex",
@@ -74,6 +77,7 @@ val gzipDisable = Directive(
 val gzipHttpVersion = Directive(
     name = "gzip_http_version",
     description = "Sets the minimum HTTP version required for gzip compression.",
+    syntax = listOf("<b>gzip_http_version</b> 1.0 | 1.1;"),
     parameters = listOf(
         DirectiveParameter(
             name = "version",
@@ -89,6 +93,7 @@ val gzipHttpVersion = Directive(
 val gzipMinLength = Directive(
     name = "gzip_min_length",
     description = "Sets the minimum length of a response to be eligible for gzip compression.",
+    syntax = listOf("<b>gzip_min_length</b> <i>length</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "length",
@@ -104,6 +109,7 @@ val gzipMinLength = Directive(
 val gzipProxied = Directive(
     name = "gzip_proxied",
     description = "Enables gzip compression for proxied requests based on specific conditions.",
+    syntax = listOf("<b>gzip_proxied</b> off | expired | no-cache | no-store | private | no_last_modified | no_etag | auth | any ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mode",
@@ -119,6 +125,7 @@ val gzipProxied = Directive(
 val gzipTypes = Directive(
     name = "gzip_types",
     description = "Specifies MIME types of responses that should be compressed.",
+    syntax = listOf("<b>gzip_types</b> <i>mime-type</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mime_types",

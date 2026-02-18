@@ -12,6 +12,7 @@ val ngx_http_referer_module = NginxModule(
 val refererHashBucketSize = Directive(
     name = "referer_hash_bucket_size",
     description = "Sets the size of hash bucket for the referer hash table to optimize memory usage",
+    syntax = listOf("<b>referer_hash_bucket_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -28,6 +29,7 @@ val refererHashBucketSize = Directive(
 val refererHashMaxSize = Directive(
     name = "referer_hash_max_size",
     description = "Sets the maximum size of the referer hash table to control memory allocation",
+    syntax = listOf("<b>referer_hash_max_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -44,6 +46,7 @@ val refererHashMaxSize = Directive(
 val validReferers = Directive(
     name = "valid_referers",
     description = "Defines a list of valid referrer sources for request validation and blocking",
+    syntax = listOf("<b>valid_referers</b> none | blocked | server_names | <i>string</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "referers",

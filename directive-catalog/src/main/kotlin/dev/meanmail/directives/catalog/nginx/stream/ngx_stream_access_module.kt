@@ -12,6 +12,7 @@ val ngx_stream_access_module = NginxModule(
 val streamAllow = Directive(
     name = "allow",
     description = "Allows access for specific IP addresses, networks, or UNIX-domain sockets",
+    syntax = listOf("<b>allow</b> <i>address</i> | <i>CIDR</i> | unix: | all;"),
     module = ngx_stream_access_module,
     parameters = listOf(
         DirectiveParameter(
@@ -32,6 +33,7 @@ val streamAllow = Directive(
 val streamDeny = Directive(
     name = "deny",
     description = "Denies access for specific IP addresses, networks, or UNIX-domain sockets",
+    syntax = listOf("<b>deny</b> <i>address</i> | <i>CIDR</i> | unix: | all;"),
     module = ngx_stream_access_module,
     parameters = listOf(
         DirectiveParameter(

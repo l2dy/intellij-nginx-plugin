@@ -12,6 +12,7 @@ val ngx_http_index_module = NginxModule(
 val index = Directive(
     name = "index",
     description = "Defines files that will be used as an index when a directory is requested",
+    syntax = listOf("<b>index</b> <i>file</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "index_files",

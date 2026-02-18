@@ -12,6 +12,7 @@ val ngx_stream_core_module = NginxModule(
 val stream = Directive(
     "stream",
     description = "Defines a stream context for handling stream-level configurations",
+    syntax = listOf("<b>stream</b> { ... }"),
 
     module = ngx_stream_core_module,
     context = listOf(main)
@@ -20,6 +21,7 @@ val stream = Directive(
 val streamServer = Directive(
     name = "server",
     description = "Defines a stream server block with configuration for handling stream connections",
+    syntax = listOf("<b>server</b> { ... }"),
 
     module = ngx_stream_core_module,
     parameters = listOf(
@@ -65,6 +67,7 @@ val streamServer = Directive(
 val streamListen = Directive(
     name = "listen",
     description = "Configures the address and port or UNIX-domain socket for the server to accept stream connections",
+    syntax = listOf("<b>listen</b> <i>address</i>:<i>port</i> [default_server] [ssl] [udp] [proxy_protocol] [setfib=<i>number</i>] [fastopen=<i>number</i>] [backlog=<i>number</i>] [rcvbuf=<i>size</i>] [sndbuf=<i>size</i>] [accept_filter=<i>filter</i>] [deferred] [bind] [ipv6only=on|off] [reuseport] [so_keepalive=on|off|[<i>keepidle</i>]:[<i>keepintvl</i>]:[<i>keepcnt</i>]];"),
     module = ngx_stream_core_module,
     parameters = listOf(
         DirectiveParameter(
@@ -90,6 +93,7 @@ val streamListen = Directive(
 val streamPrereadBufferSize = Directive(
     name = "preread_buffer_size",
     description = "Sets the buffer size for reading initial data from the proxied server before processing",
+    syntax = listOf("<b>preread_buffer_size</b> <i>size</i>;"),
     module = ngx_stream_core_module,
     parameters = listOf(
         DirectiveParameter(
@@ -104,6 +108,7 @@ val streamPrereadBufferSize = Directive(
 val streamPrereadTimeout = Directive(
     name = "preread_timeout",
     description = "Sets the timeout for reading initial data from the proxied server",
+    syntax = listOf("<b>preread_timeout</b> <i>timeout</i>;"),
     module = ngx_stream_core_module,
     parameters = listOf(
         DirectiveParameter(
@@ -118,6 +123,7 @@ val streamPrereadTimeout = Directive(
 val streamProxyProtocolTimeout = Directive(
     name = "proxy_protocol_timeout",
     description = "Sets the timeout for reading the PROXY protocol header from the proxied server",
+    syntax = listOf("<b>proxy_protocol_timeout</b> <i>timeout</i>;"),
     module = ngx_stream_core_module,
     parameters = listOf(
         DirectiveParameter(
@@ -132,6 +138,7 @@ val streamProxyProtocolTimeout = Directive(
 val streamResolver = Directive(
     name = "resolver",
     description = "Configures DNS servers for resolving hostnames to IP addresses",
+    syntax = listOf("<b>resolver</b> <i>address</i> ... [valid=<i>time</i>] [ipv4=on|off] [ipv6=on|off] [status_zone=<i>zone</i>];"),
     module = ngx_stream_core_module,
     parameters = listOf(
         DirectiveParameter(
@@ -158,6 +165,7 @@ val streamResolver = Directive(
 val streamResolverTimeout = Directive(
     name = "resolver_timeout",
     description = "Sets the timeout for resolving hostnames to IP addresses",
+    syntax = listOf("<b>resolver_timeout</b> <i>time</i>;"),
     module = ngx_stream_core_module,
     parameters = listOf(
         DirectiveParameter(
@@ -180,6 +188,7 @@ val streamTcpNodelay = ToggleDirective(
 val streamVariablesHashBucketSize = Directive(
     name = "variables_hash_bucket_size",
     description = "Sets the size of the variables hash bucket for efficient variable lookup",
+    syntax = listOf("<b>variables_hash_bucket_size</b> <i>size</i>;"),
     module = ngx_stream_core_module,
     parameters = listOf(
         DirectiveParameter(
@@ -195,6 +204,7 @@ val streamVariablesHashBucketSize = Directive(
 val streamVariablesHashMaxSize = Directive(
     name = "variables_hash_max_size",
     description = "Sets the maximum size of the variables hash table for efficient variable lookup",
+    syntax = listOf("<b>variables_hash_max_size</b> <i>size</i>;"),
     module = ngx_stream_core_module,
     parameters = listOf(
         DirectiveParameter(

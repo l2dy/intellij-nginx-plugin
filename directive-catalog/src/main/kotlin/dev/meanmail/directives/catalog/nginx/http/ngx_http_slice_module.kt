@@ -12,6 +12,7 @@ val ngx_http_slice_module = NginxModule(
 val slice = Directive(
     name = "slice",
     description = "Sets the size of the slice. Zero value disables splitting responses into slices",
+    syntax = listOf("<b>slice</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",

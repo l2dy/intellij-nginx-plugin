@@ -20,6 +20,7 @@ val mailSsl = ToggleDirective(
 val mailSslCertificate = Directive(
     name = "ssl_certificate",
     description = "Specifies the path to the SSL certificate file for mail",
+    syntax = listOf("<b>ssl_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -34,6 +35,7 @@ val mailSslCertificate = Directive(
 val mailSslCertificateKey = Directive(
     name = "ssl_certificate_key",
     description = "Specifies the path to the SSL certificate key file for mail",
+    syntax = listOf("<b>ssl_certificate_key</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -48,6 +50,7 @@ val mailSslCertificateKey = Directive(
 val mailSslCiphers = Directive(
     name = "ssl_ciphers",
     description = "Specifies the ciphers for SSL connections",
+    syntax = listOf("<b>ssl_ciphers</b> <i>ciphers</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "ciphers",
@@ -62,6 +65,7 @@ val mailSslCiphers = Directive(
 val mailSslClientCertificate = Directive(
     name = "ssl_client_certificate",
     description = "Specifies the path to the client CA certificate file for $mail",
+    syntax = listOf("<b>ssl_client_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -76,6 +80,7 @@ val mailSslClientCertificate = Directive(
 val mailSslConfCommand = Directive(
     name = "ssl_conf_command",
     description = "Sets OpenSSL configuration commands",
+    syntax = listOf("<b>ssl_conf_command</b> <i>name</i> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "command",
@@ -95,6 +100,7 @@ val mailSslConfCommand = Directive(
 val mailSslCrl = Directive(
     name = "ssl_crl",
     description = "Specifies the path to the certificate revocation list (CRL)",
+    syntax = listOf("<b>ssl_crl</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -109,6 +115,7 @@ val mailSslCrl = Directive(
 val mailSslDhparam = Directive(
     name = "ssl_dhparam",
     description = "Specifies the path to the Diffie-Hellman parameters file",
+    syntax = listOf("<b>ssl_dhparam</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -123,6 +130,7 @@ val mailSslDhparam = Directive(
 val mailSslEcdhCurve = Directive(
     name = "ssl_ecdh_curve",
     description = "Specifies the elliptic curve for ECDHE ciphers",
+    syntax = listOf("<b>ssl_ecdh_curve</b> <i>curve</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "curve",
@@ -137,6 +145,7 @@ val mailSslEcdhCurve = Directive(
 val mailSslPasswordFile = Directive(
     name = "ssl_password_file",
     description = "Specifies the path to the file with SSL private key passwords",
+    syntax = listOf("<b>ssl_password_file</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -159,6 +168,7 @@ val mailSslPreferServerCiphers = ToggleDirective(
 val mailSslProtocols = Directive(
     name = "ssl_protocols",
     description = "Specifies the SSL/TLS protocols to use",
+    syntax = listOf("<b>ssl_protocols</b> [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];"),
     parameters = listOf(
         DirectiveParameter(
             name = "protocols",
@@ -173,6 +183,7 @@ val mailSslProtocols = Directive(
 val mailSslSessionCache = Directive(
     name = "ssl_session_cache",
     description = "Configures the SSL session cache",
+    syntax = listOf("<b>ssl_session_cache</b> off | none | [builtin[:<i>size</i>]] [shared:<i>name</i>:<i>size</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "type",
@@ -192,6 +203,7 @@ val mailSslSessionCache = Directive(
 val mailSslSessionTicketKey = Directive(
     name = "ssl_session_ticket_key",
     description = "Specifies the path to the SSL session ticket key file",
+    syntax = listOf("<b>ssl_session_ticket_key</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -214,6 +226,7 @@ val mailSslSessionTickets = ToggleDirective(
 val mailSslSessionTimeout = Directive(
     name = "ssl_session_timeout",
     description = "Sets the timeout for SSL sessions",
+    syntax = listOf("<b>ssl_session_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -228,6 +241,7 @@ val mailSslSessionTimeout = Directive(
 val mailSslTrustedCertificate = Directive(
     name = "ssl_trusted_certificate",
     description = "Specifies the path to the trusted CA certificates file",
+    syntax = listOf("<b>ssl_trusted_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -242,6 +256,7 @@ val mailSslTrustedCertificate = Directive(
 val mailSslVerifyClient = Directive(
     name = "ssl_verify_client",
     description = "Configures client certificate verification",
+    syntax = listOf("<b>ssl_verify_client</b> on | off | optional | optional_no_ca;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mode",
@@ -256,6 +271,7 @@ val mailSslVerifyClient = Directive(
 val mailSslVerifyDepth = Directive(
     name = "ssl_verify_depth",
     description = "Sets the maximum depth of CA certificate chain verification",
+    syntax = listOf("<b>ssl_verify_depth</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "depth",
@@ -270,6 +286,7 @@ val mailSslVerifyDepth = Directive(
 val starttls = Directive(
     name = "starttls",
     description = "Configures STARTTLS support",
+    syntax = listOf("<b>starttls</b> on | off | only;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mode",

@@ -12,6 +12,7 @@ val ngx_mail_pop3_module = NginxModule(
 val pop3Auth = Directive(
     name = "pop3_auth",
     description = "Sets permitted methods of authentication for POP3 clients. Supported methods are: plain (USER/PASS, AUTH PLAIN, AUTH LOGIN), apop (APOP), cram-md5 (AUTH CRAM-MD5), and external (AUTH EXTERNAL)",
+    syntax = listOf("<b>pop3_auth</b> <i>method</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "method",
@@ -29,6 +30,7 @@ val pop3Auth = Directive(
 val pop3Capabilities = Directive(
     name = "pop3_capabilities",
     description = "Sets the POP3 protocol extensions list passed to the client in response to the CAPA command. Authentication methods and STLS are automatically added based on configuration",
+    syntax = listOf("<b>pop3_capabilities</b> <i>extension</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "extension",

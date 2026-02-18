@@ -20,6 +20,7 @@ val ngx_http_scgi_module = NginxModule(
 val scgiBind = Directive(
     name = "scgi_bind",
     description = "Specifies the local IP address and optional port for outgoing connections to the SCGI server",
+    syntax = listOf("<b>scgi_bind</b> <i>address</i> [transparent] | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -35,6 +36,7 @@ val scgiBind = Directive(
 val scgiBufferSize = Directive(
     name = "scgi_buffer_size",
     description = "Sets the buffer size for reading the first part of the response from the SCGI server",
+    syntax = listOf("<b>scgi_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -66,6 +68,7 @@ val scgiBuffering = ToggleDirective(
 val scgiBuffers = Directive(
     name = "scgi_buffers",
     description = "Configures the number and size of buffers for reading SCGI server responses",
+    syntax = listOf("<b>scgi_buffers</b> <i>number</i> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -89,6 +92,7 @@ val scgiBuffers = Directive(
 val scgiBusyBuffersSize = Directive(
     name = "scgi_busy_buffers_size",
     description = "Limits the total size of buffers that can be busy sending a response while the full response is not yet read",
+    syntax = listOf("<b>scgi_busy_buffers_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -109,6 +113,7 @@ val scgiCache = Directive(
         Same zone can be used in several places.
         The 'off' parameter disables caching inherited from previous level.
     """.trimIndent(),
+    syntax = listOf("<b>scgi_cache</b> <i>zone</i> | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "zone",
@@ -138,6 +143,7 @@ val scgiCacheBackgroundUpdate = ToggleDirective(
 val scgiCacheBypass = Directive(
     name = "scgi_cache_bypass",
     description = "Defines conditions for bypassing the cache and directly requesting from the SCGI server",
+    syntax = listOf("<b>scgi_cache_bypass</b> <i>string</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -153,6 +159,7 @@ val scgiCacheBypass = Directive(
 val scgiCacheKey = Directive(
     name = "scgi_cache_key",
     description = "Defines the key for caching SCGI server responses",
+    syntax = listOf("<b>scgi_cache_key</b> <i>string</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "key",
@@ -183,6 +190,7 @@ val scgiCacheLock = ToggleDirective(
 val scgiCacheLockAge = Directive(
     name = "scgi_cache_lock_age",
     description = "Sets the maximum age of a cache item to be considered for locking",
+    syntax = listOf("<b>scgi_cache_lock_age</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "age",
@@ -198,6 +206,7 @@ val scgiCacheLockAge = Directive(
 val scgiCacheLockTimeout = Directive(
     name = "scgi_cache_lock_timeout",
     description = "Sets the timeout for locking cache items",
+    syntax = listOf("<b>scgi_cache_lock_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -213,6 +222,7 @@ val scgiCacheLockTimeout = Directive(
 val scgiCacheMaxRangeOffset = Directive(
     name = "scgi_cache_max_range_offset",
     description = "Sets the maximum range offset for caching SCGI server responses",
+    syntax = listOf("<b>scgi_cache_max_range_offset</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "offset",
@@ -228,6 +238,7 @@ val scgiCacheMaxRangeOffset = Directive(
 val scgiCacheMethods = Directive(
     name = "scgi_cache_methods",
     description = "Defines the HTTP methods for which caching is enabled",
+    syntax = listOf("<b>scgi_cache_methods</b> GET | HEAD | POST ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "methods",
@@ -243,6 +254,7 @@ val scgiCacheMethods = Directive(
 val scgiCacheMinUses = Directive(
     name = "scgi_cache_min_uses",
     description = "Sets the minimum number of uses for caching SCGI server responses",
+    syntax = listOf("<b>scgi_cache_min_uses</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "uses",
@@ -258,6 +270,7 @@ val scgiCacheMinUses = Directive(
 val scgiCachePath = Directive(
     name = "scgi_cache_path",
     description = "Defines the path for caching SCGI server responses",
+    syntax = listOf("<b>scgi_cache_path</b> <i>path</i> [levels=<i>levels</i>] [use_temp_path=on|off] keys_zone=<i>name</i>:<i>size</i> [inactive=<i>time</i>] [max_size=<i>size</i>] [min_free=<i>size</i>] [manager_files=<i>number</i>] [manager_sleep=<i>time</i>] [manager_threshold=<i>time</i>] [loader_files=<i>number</i>] [loader_sleep=<i>time</i>] [loader_threshold=<i>time</i>] [purger=on|off] [purger_files=<i>number</i>] [purger_sleep=<i>time</i>] [purger_threshold=<i>time</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -273,6 +286,7 @@ val scgiCachePath = Directive(
 val scgiCachePurge = Directive(
     name = "scgi_cache_purge",
     description = "Defines the conditions under which cached responses are purged",
+    syntax = listOf("<b>scgi_cache_purge</b> string ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -299,6 +313,7 @@ val scgiCacheRevalidate = ToggleDirective(
 val scgiCacheUseStale = Directive(
     name = "scgi_cache_use_stale",
     description = "Defines the conditions under which stale cached responses are used",
+    syntax = listOf("<b>scgi_cache_use_stale</b> error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -314,6 +329,7 @@ val scgiCacheUseStale = Directive(
 val scgiCacheValid = Directive(
     name = "scgi_cache_valid",
     description = "Defines the validity period for cached SCGI server responses",
+    syntax = listOf("<b>scgi_cache_valid</b> [<i>code</i> ...] <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "validity",
@@ -329,6 +345,7 @@ val scgiCacheValid = Directive(
 val scgiConnectTimeout = Directive(
     name = "scgi_connect_timeout",
     description = "Sets the timeout for connecting to the SCGI server",
+    syntax = listOf("<b>scgi_connect_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -355,6 +372,7 @@ val scgiForceRanges = ToggleDirective(
 val scgiHideHeader = Directive(
     name = "scgi_hide_header",
     description = "Hides the specified header from the SCGI server response",
+    syntax = listOf("<b>scgi_hide_header</b> <i>field</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",
@@ -381,6 +399,7 @@ val scgiIgnoreClientAbort = ToggleDirective(
 val scgiIgnoreHeaders = Directive(
     name = "scgi_ignore_headers",
     description = "Ignores the specified headers from the SCGI server response",
+    syntax = listOf("<b>scgi_ignore_headers</b> <i>field</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "headers",
@@ -408,6 +427,7 @@ val scgiInterceptErrors = ToggleDirective(
 val scgiLimitRate = Directive(
     name = "scgi_limit_rate",
     description = "Sets the rate limit for the SCGI server response",
+    syntax = listOf("<b>scgi_limit_rate</b> <i>rate</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "rate",
@@ -423,6 +443,7 @@ val scgiLimitRate = Directive(
 val scgiMaxTempFileSize = Directive(
     name = "scgi_max_temp_file_size",
     description = "Sets the maximum size of temporary files for the SCGI server response",
+    syntax = listOf("<b>scgi_max_temp_file_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -438,6 +459,7 @@ val scgiMaxTempFileSize = Directive(
 val scgiNextUpstream = Directive(
     name = "scgi_next_upstream",
     description = "Defines the conditions under which the request is passed to the next upstream server",
+    syntax = listOf("<b>scgi_next_upstream</b> error | timeout | denied | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -453,6 +475,7 @@ val scgiNextUpstream = Directive(
 val scgiNextUpstreamTimeout = Directive(
     name = "scgi_next_upstream_timeout",
     description = "Sets the timeout for passing the request to the next upstream server",
+    syntax = listOf("<b>scgi_next_upstream_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -468,6 +491,7 @@ val scgiNextUpstreamTimeout = Directive(
 val scgiNextUpstreamTries = Directive(
     name = "scgi_next_upstream_tries",
     description = "Sets the number of tries for passing the request to the next upstream server",
+    syntax = listOf("<b>scgi_next_upstream_tries</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "tries",
@@ -483,6 +507,7 @@ val scgiNextUpstreamTries = Directive(
 val scgiNoCache = Directive(
     name = "scgi_no_cache",
     description = "Disables caching of SCGI server responses",
+    syntax = listOf("<b>scgi_no_cache</b> <i>string</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -503,6 +528,7 @@ val scgiParam = Directive(
         
         These parameters are passed as SCGI protocol headers.
     """.trimIndent(),
+    syntax = listOf("<b>scgi_param</b> <i>parameter</i> <i>value</i> [if_not_empty];"),
     parameters = listOf(
         DirectiveParameter(
             name = "parameter",
@@ -538,6 +564,7 @@ val scgiPass = Directive(
         
         Can also specify a server group defined in the upstream block.
     """.trimIndent(),
+    syntax = listOf("<b>scgi_pass</b> <i>address</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -553,6 +580,7 @@ val scgiPass = Directive(
 val scgiPassHeader = Directive(
     name = "scgi_pass_header",
     description = "Passes the specified header from the SCGI server response",
+    syntax = listOf("<b>scgi_pass_header</b> <i>field</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",
@@ -584,6 +612,7 @@ val scgiPassRequestHeaders = ToggleDirective(
 val scgiReadTimeout = Directive(
     name = "scgi_read_timeout",
     description = "Sets the timeout for reading the SCGI server response",
+    syntax = listOf("<b>scgi_read_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -615,6 +644,7 @@ val scgiRequestBuffering = ToggleDirective(
 val scgiSendTimeout = Directive(
     name = "scgi_send_timeout",
     description = "Sets the timeout for sending the request to the SCGI server",
+    syntax = listOf("<b>scgi_send_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -642,6 +672,7 @@ val scgiSocketKeepalive = ToggleDirective(
 val scgiStore = Directive(
     name = "scgi_store",
     description = "Enables saving of the SCGI server response to a file",
+    syntax = listOf("<b>scgi_store</b> on | off | <i>string</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -657,6 +688,7 @@ val scgiStore = Directive(
 val scgiStoreAccess = Directive(
     name = "scgi_store_access",
     description = "Sets the access permissions for files created when saving SCGI server responses",
+    syntax = listOf("<b>scgi_store_access</b> <i>users</i>:<i>permissions</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "permissions",
@@ -672,6 +704,7 @@ val scgiStoreAccess = Directive(
 val scgiTempFileWriteSize = Directive(
     name = "scgi_temp_file_write_size",
     description = "Sets the size of temporary files when buffering responses from the SCGI server",
+    syntax = listOf("<b>scgi_temp_file_write_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -688,6 +721,7 @@ val scgiTempFileWriteSize = Directive(
 val scgiTempPath = Directive(
     name = "scgi_temp_path",
     description = "Defines a directory for storing temporary files when buffering SCGI server responses",
+    syntax = listOf("<b>scgi_temp_path</b> <i>path</i> [<i>level1</i> [<i>level2</i> [<i>level3</i>]]];"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",

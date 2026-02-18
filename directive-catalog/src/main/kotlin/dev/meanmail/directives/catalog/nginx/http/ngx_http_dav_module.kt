@@ -20,6 +20,7 @@ val createFullPutPath = ToggleDirective(
 val davAccess = Directive(
     name = "dav_access",
     description = "Sets the access permissions for created files and directories",
+    syntax = listOf("<b>dav_access</b> <i>users</i>:<i>permissions</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "permissions",
@@ -36,6 +37,7 @@ val davAccess = Directive(
 val davMethods = Directive(
     name = "dav_methods",
     description = "Enables WebDAV HTTP methods for the location",
+    syntax = listOf("<b>dav_methods</b> off | <i>method</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "methods",
@@ -52,6 +54,7 @@ val davMethods = Directive(
 val minDeleteDepth = Directive(
     name = "min_delete_depth",
     description = "Sets the minimum directory depth allowed for DELETE requests",
+    syntax = listOf("<b>min_delete_depth</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "depth",

@@ -12,6 +12,7 @@ val ngx_http_uwsgi_module = NginxModule(
 val uwsgiBind = Directive(
     name = "uwsgi_bind",
     description = "Makes outgoing connections to a uwsgi server originate from the specified local IP address",
+    syntax = listOf("<b>uwsgi_bind</b> <i>address</i> [transparent] | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -35,6 +36,7 @@ val uwsgiBuffering = ToggleDirective(
 val uwsgiBufferSize = Directive(
     name = "uwsgi_buffer_size",
     description = "Sets the size of the buffer used for reading the first part of the response",
+    syntax = listOf("<b>uwsgi_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -51,6 +53,7 @@ val uwsgiBufferSize = Directive(
 val uwsgiBuffers = Directive(
     name = "uwsgi_buffers",
     description = "Sets the number and size of buffers for reading a response from the uwsgi server",
+    syntax = listOf("<b>uwsgi_buffers</b> <i>number</i> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -74,6 +77,7 @@ val uwsgiBuffers = Directive(
 val uwsgiBusyBuffersSize = Directive(
     name = "uwsgi_busy_buffers_size",
     description = "Limits the total size of buffers that can be busy sending a response to the client",
+    syntax = listOf("<b>uwsgi_busy_buffers_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -90,6 +94,7 @@ val uwsgiBusyBuffersSize = Directive(
 val uwsgiCache = Directive(
     name = "uwsgi_cache",
     description = "Defines a shared memory zone used for caching",
+    syntax = listOf("<b>uwsgi_cache</b> <i>zone</i> | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "zone",
@@ -114,6 +119,7 @@ val uwsgiCacheBackgroundUpdate = ToggleDirective(
 val uwsgiCacheBypass = Directive(
     name = "uwsgi_cache_bypass",
     description = "Defines conditions under which the response will not be taken from a cache",
+    syntax = listOf("<b>uwsgi_cache_bypass</b> <i>string</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -129,6 +135,7 @@ val uwsgiCacheBypass = Directive(
 val uwsgiCacheKey = Directive(
     name = "uwsgi_cache_key",
     description = "Defines a key for caching",
+    syntax = listOf("<b>uwsgi_cache_key</b> <i>string</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "key",
@@ -152,6 +159,7 @@ val uwsgiCacheLock = ToggleDirective(
 val uwsgiCacheLockAge = Directive(
     name = "uwsgi_cache_lock_age",
     description = "Sets the time for additional request to the uwsgi server",
+    syntax = listOf("<b>uwsgi_cache_lock_age</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -168,6 +176,7 @@ val uwsgiCacheLockAge = Directive(
 val uwsgiCacheLockTimeout = Directive(
     name = "uwsgi_cache_lock_timeout",
     description = "Sets a timeout for uwsgi_cache_lock",
+    syntax = listOf("<b>uwsgi_cache_lock_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -184,6 +193,7 @@ val uwsgiCacheLockTimeout = Directive(
 val uwsgiCacheMaxRangeOffset = Directive(
     name = "uwsgi_cache_max_range_offset",
     description = "Sets an offset in bytes for byte-range requests",
+    syntax = listOf("<b>uwsgi_cache_max_range_offset</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -199,6 +209,7 @@ val uwsgiCacheMaxRangeOffset = Directive(
 val uwsgiCacheMethods = Directive(
     name = "uwsgi_cache_methods",
     description = "Specifies HTTP methods for which responses will be cached",
+    syntax = listOf("<b>uwsgi_cache_methods</b> GET | HEAD | POST ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "method",
@@ -215,6 +226,7 @@ val uwsgiCacheMethods = Directive(
 val uwsgiCacheMinUses = Directive(
     name = "uwsgi_cache_min_uses",
     description = "Sets the number of requests after which the response will be cached",
+    syntax = listOf("<b>uwsgi_cache_min_uses</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -231,6 +243,7 @@ val uwsgiCacheMinUses = Directive(
 val uwsgiCachePath = Directive(
     name = "uwsgi_cache_path",
     description = "Sets the path and other parameters of a cache",
+    syntax = listOf("<b>uwsgi_cache_path</b> <i>path</i> [levels=<i>levels</i>] [use_temp_path=on|off] keys_zone=<i>name</i>:<i>size</i> [inactive=<i>time</i>] [max_size=<i>size</i>] [min_free=<i>size</i>] [manager_files=<i>number</i>] [manager_sleep=<i>time</i>] [manager_threshold=<i>time</i>] [loader_files=<i>number</i>] [loader_sleep=<i>time</i>] [loader_threshold=<i>time</i>] [purger=on|off] [purger_files=<i>number</i>] [purger_sleep=<i>time</i>] [purger_threshold=<i>time</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -252,6 +265,7 @@ val uwsgiCachePath = Directive(
 val uwsgiCachePurge = Directive(
     name = "uwsgi_cache_purge",
     description = "Allows purging specific cache entries",
+    syntax = listOf("<b>uwsgi_cache_purge</b> string ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "key",
@@ -275,6 +289,7 @@ val uwsgiCacheRevalidate = ToggleDirective(
 val uwsgiCacheUseStale = Directive(
     name = "uwsgi_cache_use_stale",
     description = "Allows using stale cached responses in specific situations",
+    syntax = listOf("<b>uwsgi_cache_use_stale</b> error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "type",
@@ -290,6 +305,7 @@ val uwsgiCacheUseStale = Directive(
 val uwsgiCacheValid = Directive(
     name = "uwsgi_cache_valid",
     description = "Sets caching time for different response codes",
+    syntax = listOf("<b>uwsgi_cache_valid</b> [<i>code</i> ...] <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "code",
@@ -311,6 +327,7 @@ val uwsgiCacheValid = Directive(
 val uwsgiConnectTimeout = Directive(
     name = "uwsgi_connect_timeout",
     description = "Sets a timeout for establishing a connection with the uwsgi server",
+    syntax = listOf("<b>uwsgi_connect_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -334,6 +351,7 @@ val uwsgiForceRanges = ToggleDirective(
 val uwsgiHideHeader = Directive(
     name = "uwsgi_hide_header",
     description = "Prevents passing specified headers from the uwsgi server response",
+    syntax = listOf("<b>uwsgi_hide_header</b> <i>field</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",
@@ -357,6 +375,7 @@ val uwsgiIgnoreClientAbort = ToggleDirective(
 val uwsgiIgnoreHeaders = Directive(
     name = "uwsgi_ignore_headers",
     description = "Disables processing of specified headers from the uwsgi server response",
+    syntax = listOf("<b>uwsgi_ignore_headers</b> <i>field</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",
@@ -396,6 +415,7 @@ val uwsgiKeepConn = ToggleDirective(
 val uwsgiLimitRate = Directive(
     name = "uwsgi_limit_rate",
     description = "Limits the transfer rate of a response from the uwsgi server to the client",
+    syntax = listOf("<b>uwsgi_limit_rate</b> <i>rate</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "rate",
@@ -411,6 +431,7 @@ val uwsgiLimitRate = Directive(
 val uwsgiMaxTempFileSize = Directive(
     name = "uwsgi_max_temp_file_size",
     description = "Sets the maximum size of temporary files used for storing uwsgi server responses",
+    syntax = listOf("<b>uwsgi_max_temp_file_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -426,6 +447,7 @@ val uwsgiMaxTempFileSize = Directive(
 val uwsgiModifier1 = Directive(
     name = "uwsgi_modifier1",
     description = "Sets the first modifier byte for the uWSGI protocol request",
+    syntax = listOf("<b>uwsgi_modifier1</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "value",
@@ -441,6 +463,7 @@ val uwsgiModifier1 = Directive(
 val uwsgiModifier2 = Directive(
     name = "uwsgi_modifier2",
     description = "Sets the second modifier byte for the uWSGI protocol request",
+    syntax = listOf("<b>uwsgi_modifier2</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "value",
@@ -456,6 +479,7 @@ val uwsgiModifier2 = Directive(
 val uwsgiNextUpstream = Directive(
     name = "uwsgi_next_upstream",
     description = "Specifies conditions for passing a request to the next uwsgi server if the current server fails",
+    syntax = listOf("<b>uwsgi_next_upstream</b> error | timeout | denied | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -471,6 +495,7 @@ val uwsgiNextUpstream = Directive(
 val uwsgiNextUpstreamTimeout = Directive(
     name = "uwsgi_next_upstream_timeout",
     description = "Sets the maximum time for passing a request to the next server",
+    syntax = listOf("<b>uwsgi_next_upstream_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -486,6 +511,7 @@ val uwsgiNextUpstreamTimeout = Directive(
 val uwsgiNextUpstreamTries = Directive(
     name = "uwsgi_next_upstream_tries",
     description = "Sets the maximum number of possible tries for passing a request to the next server",
+    syntax = listOf("<b>uwsgi_next_upstream_tries</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -501,6 +527,7 @@ val uwsgiNextUpstreamTries = Directive(
 val uwsgiNoCache = Directive(
     name = "uwsgi_no_cache",
     description = "Defines conditions for not caching a response",
+    syntax = listOf("<b>uwsgi_no_cache</b> <i>string</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -516,6 +543,7 @@ val uwsgiNoCache = Directive(
 val uwsgiParam = Directive(
     name = "uwsgi_param",
     description = "Sets a parameter to be passed to the uwsgi server",
+    syntax = listOf("<b>uwsgi_param</b> <i>parameter</i> <i>value</i> [if_not_empty];"),
     parameters = listOf(
         DirectiveParameter(
             name = "parameter",
@@ -537,6 +565,7 @@ val uwsgiParam = Directive(
 val uwsgiPass = Directive(
     name = "uwsgi_pass",
     description = "Passes requests to a uwsgi server",
+    syntax = listOf("<b>uwsgi_pass</b> [<i>protocol</i>://]<i>address</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "server",
@@ -552,6 +581,7 @@ val uwsgiPass = Directive(
 val uwsgiPassHeader = Directive(
     name = "uwsgi_pass_header",
     description = "Allows passing specified headers from the uwsgi server response",
+    syntax = listOf("<b>uwsgi_pass_header</b> <i>field</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",
@@ -583,6 +613,7 @@ val uwsgiPassRequestHeaders = ToggleDirective(
 val uwsgiReadTimeout = Directive(
     name = "uwsgi_read_timeout",
     description = "Sets a timeout for reading a response from the uwsgi server",
+    syntax = listOf("<b>uwsgi_read_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -606,6 +637,7 @@ val uwsgiRequestBuffering = ToggleDirective(
 val uwsgiSendTimeout = Directive(
     name = "uwsgi_send_timeout",
     description = "Sets a timeout for transmitting a request to the uwsgi server",
+    syntax = listOf("<b>uwsgi_send_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -629,6 +661,7 @@ val uwsgiSocketKeepAlive = ToggleDirective(
 val uwsgiSslCertificate = Directive(
     name = "uwsgi_ssl_certificate",
     description = "Specifies the path to the SSL certificate for secure connections to uwsgi servers",
+    syntax = listOf("<b>uwsgi_ssl_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -644,6 +677,10 @@ val uwsgiSslCertificate = Directive(
 val uwsgiSslCertificateCache = Directive(
     name = "uwsgi_ssl_certificate_cache",
     description = "Enables caching of SSL certificates for secure connections to uwsgi servers",
+    syntax = listOf(
+        "<b>uwsgi_ssl_certificate_cache</b> off;",
+        "<b>uwsgi_ssl_certificate_cache</b> max=<i>N</i> [inactive=<i>time</i>] [valid=<i>time</i>];"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "enabled",
@@ -659,6 +696,7 @@ val uwsgiSslCertificateCache = Directive(
 val uwsgiSslCertificateKey = Directive(
     name = "uwsgi_ssl_certificate_key",
     description = "Specifies the path to the private key for the SSL certificate",
+    syntax = listOf("<b>uwsgi_ssl_certificate_key</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -674,6 +712,7 @@ val uwsgiSslCertificateKey = Directive(
 val uwsgiSslCiphers = Directive(
     name = "uwsgi_ssl_ciphers",
     description = "Specifies the ciphers for secure connections to uwsgi servers",
+    syntax = listOf("<b>uwsgi_ssl_ciphers</b> <i>ciphers</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "ciphers",
@@ -689,6 +728,7 @@ val uwsgiSslCiphers = Directive(
 val uwsgiSslConfCommand = Directive(
     name = "uwsgi_ssl_conf_command",
     description = "Sets custom OpenSSL configuration commands for secure connections to uwsgi servers",
+    syntax = listOf("<b>uwsgi_ssl_conf_command</b> <i>name</i> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "command",
@@ -710,6 +750,7 @@ val uwsgiSslConfCommand = Directive(
 val uwsgiSslCrl = Directive(
     name = "uwsgi_ssl_crl",
     description = "Specifies a file with revoked certificates (Certificate Revocation List) for verifying uwsgi server certificates",
+    syntax = listOf("<b>uwsgi_ssl_crl</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -725,6 +766,7 @@ val uwsgiSslCrl = Directive(
 val uwsgiSslName = Directive(
     name = "uwsgi_ssl_name",
     description = "Sets the server name for SSL/TLS server name indication (SNI) extension",
+    syntax = listOf("<b>uwsgi_ssl_name</b> <i>name</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "name",
@@ -740,6 +782,7 @@ val uwsgiSslName = Directive(
 val uwsgiSslPasswordFile = Directive(
     name = "uwsgi_ssl_password_file",
     description = "Specifies a file with passwords for SSL private keys",
+    syntax = listOf("<b>uwsgi_ssl_password_file</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -755,6 +798,7 @@ val uwsgiSslPasswordFile = Directive(
 val uwsgiSslProtocols = Directive(
     name = "uwsgi_ssl_protocols",
     description = "Enables protocols for secure connections to uwsgi servers",
+    syntax = listOf("<b>uwsgi_ssl_protocols</b> [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];"),
     parameters = listOf(
         DirectiveParameter(
             name = "protocols",
@@ -786,6 +830,7 @@ val uwsgiSslSessionReuse = ToggleDirective(
 val uwsgiSslTrustedCertificate = Directive(
     name = "uwsgi_ssl_trusted_certificate",
     description = "Specifies a file with trusted CA certificates for secure connections to uwsgi servers",
+    syntax = listOf("<b>uwsgi_ssl_trusted_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -809,6 +854,7 @@ val uwsgiSslVerify = ToggleDirective(
 val uwsgiSslVerifyDepth = Directive(
     name = "uwsgi_ssl_verify_depth",
     description = "Sets the maximum depth of the uwsgi server certificate verification chain",
+    syntax = listOf("<b>uwsgi_ssl_verify_depth</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "depth",
@@ -824,6 +870,7 @@ val uwsgiSslVerifyDepth = Directive(
 val uwsgiStore = Directive(
     name = "uwsgi_store",
     description = "Enables storing responses from uwsgi servers to files",
+    syntax = listOf("<b>uwsgi_store</b> on | off | <i>string</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -839,6 +886,7 @@ val uwsgiStore = Directive(
 val uwsgiStoreAccess = Directive(
     name = "uwsgi_store_access",
     description = "Sets access permissions for files created with uwsgi_store",
+    syntax = listOf("<b>uwsgi_store_access</b> <i>users</i>:<i>permissions</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "permissions",
@@ -900,6 +948,7 @@ val uwsgiStoreNoUpdateError = ToggleDirective(
 val uwsgiTempFileWriteSize = Directive(
     name = "uwsgi_temp_file_write_size",
     description = "Sets the size of temporary files used for storing responses from uwsgi servers",
+    syntax = listOf("<b>uwsgi_temp_file_write_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -916,6 +965,7 @@ val uwsgiTempFileWriteSize = Directive(
 val uwsgiTempPath = Directive(
     name = "uwsgi_temp_path",
     description = "Defines a directory for storing temporary files with responses from uwsgi servers",
+    syntax = listOf("<b>uwsgi_temp_path</b> <i>path</i> [<i>level1</i> [<i>level2</i> [<i>level3</i>]]];"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",

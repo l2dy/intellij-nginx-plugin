@@ -20,6 +20,7 @@ val ssl = ToggleDirective(
 val sslBufferSize = Directive(
     name = "ssl_buffer_size",
     description = "Sets the size of the buffer used for sending data. Default size is 16k, which corresponds to minimal overhead when sending big responses",
+    syntax = listOf("<b>ssl_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -47,6 +48,7 @@ val sslCertificate = Directive(
         Supports variables in filename since version 1.15.9 (with potential performance implications).
         Can use 'data:${'$'}variable' syntax since 1.15.10 to load certificate from a variable.
     """.trimIndent(),
+    syntax = listOf("<b>ssl_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -61,6 +63,10 @@ val sslCertificate = Directive(
 val sslCertificateCache = Directive(
     name = "ssl_certificate_cache",
     description = "Configures the cache for SSL certificates to improve performance by avoiding repeated file reads",
+    syntax = listOf(
+        "<b>ssl_certificate_cache</b> off;",
+        "<b>ssl_certificate_cache</b> max=<i>N</i> [inactive=<i>time</i>] [valid=<i>time</i>];"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "enabled",
@@ -76,6 +82,7 @@ val sslCertificateCache = Directive(
 val sslCertificateKey = Directive(
     name = "ssl_certificate_key",
     description = "Specifies the path to a file with the secret key in the PEM format for the given virtual server",
+    syntax = listOf("<b>ssl_certificate_key</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -90,6 +97,7 @@ val sslCertificateKey = Directive(
 val sslCiphers = Directive(
     name = "ssl_ciphers",
     description = "Specifies the enabled ciphers for SSL connections. The ciphers are specified in the OpenSSL library format",
+    syntax = listOf("<b>ssl_ciphers</b> <i>ciphers</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "ciphers",
@@ -104,6 +112,7 @@ val sslCiphers = Directive(
 val sslClientCertificate = Directive(
     name = "ssl_client_certificate",
     description = "Specifies the trusted CA certificates for client certificate authentication",
+    syntax = listOf("<b>ssl_client_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -118,6 +127,7 @@ val sslClientCertificate = Directive(
 val sslConfCommand = Directive(
     name = "ssl_conf_command",
     description = "Sets arbitrary OpenSSL configuration commands for the SSL context. Allows fine-tuning of SSL/TLS parameters not directly supported by NGINX",
+    syntax = listOf("<b>ssl_conf_command</b> <i>name</i> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "command",
@@ -137,6 +147,7 @@ val sslConfCommand = Directive(
 val sslCrl = Directive(
     name = "ssl_crl",
     description = "Specifies a file with revoked certificates (Certificate Revocation List) that will be used in the client certificate verification",
+    syntax = listOf("<b>ssl_crl</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -151,6 +162,7 @@ val sslCrl = Directive(
 val sslDhparam = Directive(
     name = "ssl_dhparam",
     description = "Specifies the path to a file containing Diffie-Hellman parameters for DHE ciphers",
+    syntax = listOf("<b>ssl_dhparam</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -173,6 +185,7 @@ val sslEarlyData = ToggleDirective(
 val sslEcdhCurve = Directive(
     name = "ssl_ecdh_curve",
     description = "Specifies a curve for ECDHE ciphers used in SSL connections",
+    syntax = listOf("<b>ssl_ecdh_curve</b> <i>curve</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "curve",
@@ -187,6 +200,7 @@ val sslEcdhCurve = Directive(
 val sslOcsp = Directive(
     name = "ssl_ocsp",
     description = "Enables or configures OCSP (Online Certificate Status Protocol) stapling",
+    syntax = listOf("<b>ssl_ocsp</b> on | off | leaf;"),
     parameters = listOf(
         DirectiveParameter(
             name = "parameter",
@@ -207,6 +221,7 @@ val sslOcsp = Directive(
 val sslOcspCache = Directive(
     name = "ssl_ocsp_cache",
     description = "Configures the storage of OCSP responses for SSL connections",
+    syntax = listOf("<b>ssl_ocsp_cache</b> off | [shared:<i>name</i>:<i>size</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -222,6 +237,7 @@ val sslOcspCache = Directive(
 val sslOcspResponder = Directive(
     name = "ssl_ocsp_responder",
     description = "Specifies the OCSP responder URL for certificate validation",
+    syntax = listOf("<b>ssl_ocsp_responder</b> <i>url</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "url",
@@ -237,6 +253,7 @@ val sslOcspResponder = Directive(
 val sslPasswordFile = Directive(
     name = "ssl_password_file",
     description = "Specifies a file with passwords used to decrypt SSL private keys",
+    syntax = listOf("<b>ssl_password_file</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -268,6 +285,7 @@ val sslProtocols = Directive(
 
         If specified at server level, can use default server's value.
     """.trimIndent(),
+    syntax = listOf("<b>ssl_protocols</b> [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];"),
     parameters = listOf(
         DirectiveParameter(
             name = "protocols",
@@ -290,6 +308,7 @@ val sslRejectHandshake = ToggleDirective(
 val sslSessionCache = Directive(
     name = "ssl_session_cache",
     description = "Configures the SSL session cache for reusing SSL sessions",
+    syntax = listOf("<b>ssl_session_cache</b> off | none | [builtin[:<i>size</i>]] [shared:<i>name</i>:<i>size</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "type",
@@ -309,6 +328,7 @@ val sslSessionCache = Directive(
 val sslSessionTicketKey = Directive(
     name = "ssl_session_ticket_key",
     description = "Specifies a file with the secret key used to encrypt and decrypt TLS session tickets",
+    syntax = listOf("<b>ssl_session_ticket_key</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -331,6 +351,7 @@ val sslSessionTickets = ToggleDirective(
 val sslSessionTimeout = Directive(
     name = "ssl_session_timeout",
     description = "Sets the time for which an SSL session will be valid",
+    syntax = listOf("<b>ssl_session_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -353,6 +374,7 @@ val sslStapling = ToggleDirective(
 val sslStaplingFile = Directive(
     name = "ssl_stapling_file",
     description = "Specifies a file with the OCSP response for SSL stapling",
+    syntax = listOf("<b>ssl_stapling_file</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "file",
@@ -368,6 +390,7 @@ val sslStaplingFile = Directive(
 val sslStaplingResponder = Directive(
     name = "ssl_stapling_responder",
     description = "Specifies the OCSP responder URL for SSL stapling",
+    syntax = listOf("<b>ssl_stapling_responder</b> <i>url</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "url",
@@ -391,6 +414,7 @@ val sslStaplingVerify = ToggleDirective(
 val sslTrustedCertificate = Directive(
     name = "ssl_trusted_certificate",
     description = "Specifies a file with trusted CA certificates for SSL/TLS connections",
+    syntax = listOf("<b>ssl_trusted_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -405,6 +429,7 @@ val sslTrustedCertificate = Directive(
 val sslVerifyClient = Directive(
     name = "ssl_verify_client",
     description = "Configures client certificate verification",
+    syntax = listOf("<b>ssl_verify_client</b> on | off | optional | optional_no_ca;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mode",
@@ -419,6 +444,7 @@ val sslVerifyClient = Directive(
 val sslVerifyDepth = Directive(
     name = "ssl_verify_depth",
     description = "Sets the maximum depth of client certificate verification chain",
+    syntax = listOf("<b>ssl_verify_depth</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "depth",
@@ -441,6 +467,7 @@ val sslCertificateCompression = ToggleDirective(
 val sslEchFile = Directive(
     name = "ssl_ech_file",
     description = "Specifies a file with encrypted ClientHello configuration for TLS 1.3 ECH",
+    syntax = listOf("<b>ssl_ech_file</b> <i>file</i>;"),
     context = listOf(http, server),
     module = ngx_http_ssl_module
 )

@@ -15,6 +15,7 @@ val ngx_http_gzip_static_module = NginxModule(
 val gzipStatic = Directive(
     name = "gzip_static",
     description = "Enables serving of pre-compressed .gz files instead of compressing files on-the-fly. Allows efficient delivery of static pre-compressed content.",
+    syntax = listOf("<b>gzip_static</b> on | off | always;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mode",

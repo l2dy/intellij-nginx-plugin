@@ -12,6 +12,7 @@ val ngx_http_geoip_module = NginxModule(
 val geoipCountry = Directive(
     name = "geoip_country",
     description = "Specifies the path to the MaxMind GeoIP country database for determining the country of the client's IP address",
+    syntax = listOf("<b>geoip_country</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "database_file",
@@ -27,6 +28,7 @@ val geoipCountry = Directive(
 val geoipCity = Directive(
     name = "geoip_city",
     description = "Specifies the path to the MaxMind GeoIP city database for determining detailed location information",
+    syntax = listOf("<b>geoip_city</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "database_file",
@@ -42,6 +44,7 @@ val geoipCity = Directive(
 val geoipOrg = Directive(
     name = "geoip_org",
     description = "Specifies the path to the MaxMind GeoIP organization database for determining the organization associated with an IP address",
+    syntax = listOf("<b>geoip_org</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "database_file",
@@ -57,6 +60,7 @@ val geoipOrg = Directive(
 val geoipProxy = Directive(
     name = "geoip_proxy",
     description = "Defines trusted proxy networks for correctly identifying the original client IP address when behind a proxy",
+    syntax = listOf("<b>geoip_proxy</b> <i>address</i> | <i>CIDR</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "network",

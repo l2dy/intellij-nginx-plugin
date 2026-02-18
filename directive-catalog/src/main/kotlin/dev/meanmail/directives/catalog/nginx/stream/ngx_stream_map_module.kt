@@ -12,6 +12,7 @@ val ngx_stream_map_module = NginxModule(
 val streamMap = Directive(
     name = "map",
     description = "Creates a new variable based on values of another variable in stream context, supporting complex transformation rules",
+    syntax = listOf("<b>map</b> <i>string</i> <i>\$variable</i> { ... }"),
     parameters = listOf(
         DirectiveParameter(
             name = "source",
@@ -39,6 +40,7 @@ val streamMap = Directive(
 val streamMapHashBucketSize = Directive(
     name = "map_hash_bucket_size",
     description = "Sets the hash table bucket size for map directives in stream context, optimizing mapping performance",
+    syntax = listOf("<b>map_hash_bucket_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -57,6 +59,7 @@ val streamMapHashBucketSize = Directive(
 val streamMapHashMaxSize = Directive(
     name = "map_hash_max_size",
     description = "Sets the maximum hash table size for map directives in stream context, controlling memory utilization",
+    syntax = listOf("<b>map_hash_max_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",

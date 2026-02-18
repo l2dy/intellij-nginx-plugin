@@ -29,6 +29,7 @@ val subFilter = Directive(
         - Multiple directives can be specified on same level (since 1.9.4)
         - Inherited from previous level if no directives on current level
     """.trimIndent(),
+    syntax = listOf("<b>sub_filter</b> <i>string</i> <i>replacement</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "string",
@@ -82,6 +83,7 @@ val subFilterTypes = Directive(
         - Special value "*" matches any MIME type (since 0.8.29)
         - Multiple types can be specified
     """.trimIndent(),
+    syntax = listOf("<b>sub_filter_types</b> <i>mime-type</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mime-type",

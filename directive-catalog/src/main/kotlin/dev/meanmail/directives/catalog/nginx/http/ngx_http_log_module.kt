@@ -12,6 +12,10 @@ val ngx_http_log_module = NginxModule(
 val accessLog = Directive(
     name = "access_log",
     description = "Sets the path, format, and configuration for a buffered log write",
+    syntax = listOf(
+        "<b>access_log</b> <i>path</i> [<i>format</i> [buffer=<i>size</i>] [gzip[=<i>level</i>]] [flush=<i>time</i>] [if=<i>condition</i>]];",
+        "<b>access_log</b> off;"
+    ),
     parameters = listOf(
         DirectiveParameter(
             "path",
@@ -51,6 +55,7 @@ val accessLog = Directive(
 val logFormat = Directive(
     name = "log_format",
     description = "Specifies log format with optional character escaping",
+    syntax = listOf("<b>log_format</b> <i>name</i> [escape=default|json|none] <i>string</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             "name",
@@ -73,6 +78,10 @@ val logFormat = Directive(
 val openLogFileCache = Directive(
     name = "open_log_file_cache",
     description = "Configures caching of log file descriptors to improve performance",
+    syntax = listOf(
+        "<b>open_log_file_cache</b> max=<i>N</i> [inactive=<i>time</i>] [min_uses=<i>N</i>] [valid=<i>time</i>];",
+        "<b>open_log_file_cache</b> off;"
+    ),
     parameters = listOf(
         DirectiveParameter(
             "max",

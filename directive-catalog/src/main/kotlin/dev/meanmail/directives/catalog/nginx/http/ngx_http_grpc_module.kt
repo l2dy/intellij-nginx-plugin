@@ -12,6 +12,7 @@ val ngx_http_grpc_module = NginxModule(
 val grpcBindOff = Directive(
     name = "grpc_bind",
     description = "Specifies the local IP address and port to bind gRPC connections",
+    syntax = listOf("<b>grpc_bind</b> <i>address</i> [transparent ] | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -33,6 +34,7 @@ val grpcBindOff = Directive(
 val grpcBind = Directive(
     name = "grpc_bind",
     description = "Specifies the local IP address and port to bind gRPC connections",
+    syntax = listOf("<b>grpc_bind</b> <i>address</i> [transparent ] | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -54,6 +56,7 @@ val grpcBind = Directive(
 val grpcBufferSize = Directive(
     name = "grpc_buffer_size",
     description = "Sets the buffer size for reading gRPC server responses",
+    syntax = listOf("<b>grpc_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -70,6 +73,7 @@ val grpcBufferSize = Directive(
 val grpcConnectTimeout = Directive(
     name = "grpc_connect_timeout",
     description = "Defines the timeout for establishing a connection with the gRPC server",
+    syntax = listOf("<b>grpc_connect_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -86,6 +90,7 @@ val grpcConnectTimeout = Directive(
 val grpcHideHeader = Directive(
     name = "grpc_hide_header",
     description = "Hides specified headers from the gRPC server response",
+    syntax = listOf("<b>grpc_hide_header</b> <i>field</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",
@@ -101,6 +106,7 @@ val grpcHideHeader = Directive(
 val grpcIgnoreHeaders = Directive(
     name = "grpc_ignore_headers",
     description = "Ignores specified headers from the gRPC server response",
+    syntax = listOf("<b>grpc_ignore_headers</b> <i>field</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",
@@ -125,6 +131,7 @@ val grpcInterceptErrors = ToggleDirective(
 val grpcNextUpstream = Directive(
     name = "grpc_next_upstream",
     description = "Specifies conditions for passing a request to the next server if the current server fails",
+    syntax = listOf("<b>grpc_next_upstream</b> error | timeout | denied | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...;"),
     parameters = listOf(
         DirectiveParameter( // TODO: Define all params
             name = "conditions",
@@ -141,6 +148,7 @@ val grpcNextUpstream = Directive(
 val grpcNextUpstreamTimeout = Directive(
     name = "grpc_next_upstream_timeout",
     description = "Sets the maximum time for passing a request to the next server",
+    syntax = listOf("<b>grpc_next_upstream_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -157,6 +165,7 @@ val grpcNextUpstreamTimeout = Directive(
 val grpcNextUpstreamTries = Directive(
     name = "grpc_next_upstream_tries",
     description = "Sets the maximum number of attempts to pass a request to the next server",
+    syntax = listOf("<b>grpc_next_upstream_tries</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "tries",
@@ -173,6 +182,7 @@ val grpcNextUpstreamTries = Directive(
 val grpcPass = Directive(
     name = "grpc_pass",
     description = "Specifies the gRPC server address to which requests should be passed",
+    syntax = listOf("<b>grpc_pass</b> <i>address</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -188,6 +198,7 @@ val grpcPass = Directive(
 val grpcPassHeader = Directive(
     name = "grpc_pass_header",
     description = "Allows passing specified headers from the gRPC server to the client",
+    syntax = listOf("<b>grpc_pass_header</b> <i>field</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",
@@ -203,6 +214,7 @@ val grpcPassHeader = Directive(
 val grpcReadTimeout = Directive(
     name = "grpc_read_timeout",
     description = "Sets the timeout for reading a response from the gRPC server",
+    syntax = listOf("<b>grpc_read_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -219,6 +231,7 @@ val grpcReadTimeout = Directive(
 val grpcSendTimeout = Directive(
     name = "grpc_send_timeout",
     description = "Sets the timeout for transmitting a request to the gRPC server",
+    syntax = listOf("<b>grpc_send_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -235,6 +248,7 @@ val grpcSendTimeout = Directive(
 val grpcSetHeader = Directive(
     name = "grpc_set_header",
     description = "Sets additional headers to be sent to the gRPC server",
+    syntax = listOf("<b>grpc_set_header</b> <i>field</i> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",
@@ -266,6 +280,7 @@ val grpcSocketKeepalive = ToggleDirective(
 val grpcSslCertificate = Directive(
     name = "grpc_ssl_certificate",
     description = "Specifies the path to the client SSL certificate for gRPC connections",
+    syntax = listOf("<b>grpc_ssl_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -281,6 +296,10 @@ val grpcSslCertificate = Directive(
 val grpcSslCertificateCacheOff = Directive(
     name = "grpc_ssl_certificate_cache",
     description = "Enables or disables caching of SSL certificates for gRPC connections",
+    syntax = listOf(
+        "<b>grpc_ssl_certificate_cache</b> off;",
+        "<b>grpc_ssl_certificate_cache</b> max=<i>N</i> [inactive=<i>time</i>] [valid=<i>time</i>];"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "max",
@@ -308,6 +327,10 @@ val grpcSslCertificateCacheOff = Directive(
 val grpcSslCertificateCache = Directive(
     name = "grpc_ssl_certificate_cache",
     description = "Enables or disables caching of SSL certificates for gRPC connections",
+    syntax = listOf(
+        "<b>grpc_ssl_certificate_cache</b> off;",
+        "<b>grpc_ssl_certificate_cache</b> max=<i>N</i> [inactive=<i>time</i>] [valid=<i>time</i>];"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "max",
@@ -335,6 +358,7 @@ val grpcSslCertificateCache = Directive(
 val grpcSslCertificateKey = Directive(
     name = "grpc_ssl_certificate_key",
     description = "Specifies the path to the client SSL certificate key for gRPC connections",
+    syntax = listOf("<b>grpc_ssl_certificate_key</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -350,6 +374,7 @@ val grpcSslCertificateKey = Directive(
 val grpcSslCiphers = Directive(
     name = "grpc_ssl_ciphers",
     description = "Specifies the list of supported SSL/TLS ciphers for gRPC connections",
+    syntax = listOf("<b>grpc_ssl_ciphers</b> <i>ciphers</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "ciphers",
@@ -366,6 +391,7 @@ val grpcSslCiphers = Directive(
 val grpcSslConfCommand = Directive(
     name = "grpc_ssl_conf_command",
     description = "Specifies the OpenSSL configuration command for gRPC connections",
+    syntax = listOf("<b>grpc_ssl_conf_command</b> <i>name</i> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "name",
@@ -387,6 +413,7 @@ val grpcSslConfCommand = Directive(
 val grpcSslCrl = Directive(
     name = "grpc_ssl_crl",
     description = "Specifies the path to the Certificate Revocation List (CRL) for gRPC connections",
+    syntax = listOf("<b>grpc_ssl_crl</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -402,6 +429,7 @@ val grpcSslCrl = Directive(
 val grpcSslName = Directive(
     name = "grpc_ssl_name",
     description = "Specifies the server name for gRPC connections",
+    syntax = listOf("<b>grpc_ssl_name</b> <i>name</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "name",
@@ -417,6 +445,7 @@ val grpcSslName = Directive(
 val grpcSslPasswordFile = Directive(
     name = "grpc_ssl_password_file",
     description = "Specifies the path to the password file for the SSL certificate key for gRPC connections",
+    syntax = listOf("<b>grpc_ssl_password_file</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -432,6 +461,7 @@ val grpcSslPasswordFile = Directive(
 val grpcSslProtocols = Directive(
     name = "grpc_ssl_protocols",
     description = "Enables the specified SSL/TLS protocols for gRPC connections",
+    syntax = listOf("<b>grpc_ssl_protocols</b> [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];"),
     parameters = listOf(
         DirectiveParameter(
             name = "protocols",
@@ -464,6 +494,7 @@ val grpcSslSessionReuse = ToggleDirective(
 val grpcSslTrustedCertificate = Directive(
     name = "grpc_ssl_trusted_certificate",
     description = "Specifies a file with trusted CA certificates in the PEM format used to verify the certificate of the gRPC SSL server.",
+    syntax = listOf("<b>grpc_ssl_trusted_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -487,6 +518,7 @@ val grpcSslVerify = ToggleDirective(
 val grpcSslVerifyDepth = Directive(
     name = "grpc_ssl_verify_depth",
     description = "Specifies the maximum depth for SSL/TLS verification for gRPC connections",
+    syntax = listOf("<b>grpc_ssl_verify_depth</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "depth",

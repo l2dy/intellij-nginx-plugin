@@ -12,6 +12,7 @@ val ngx_stream_return_module = NginxModule(
 val streamReturn = Directive(
     name = "return",
     description = "Sends a specified value to the client and closes the connection",
+    syntax = listOf("<b>return</b> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "value",

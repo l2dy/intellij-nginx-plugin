@@ -12,6 +12,7 @@ val ngx_http_browser_module = NginxModule(
 val ancientBrowser = Directive(
     name = "ancient_browser",
     description = "Defines browsers considered outdated or ancient",
+    syntax = listOf("<b>ancient_browser</b> <i>string</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "browser_name",
@@ -27,6 +28,7 @@ val ancientBrowser = Directive(
 val ancientBrowserValue = Directive(
     name = "ancient_browser_value",
     description = "Sets the value returned for ancient browsers",
+    syntax = listOf("<b>ancient_browser_value</b> <i>string</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "value",
@@ -43,6 +45,10 @@ val ancientBrowserValue = Directive(
 val modernBrowser = Directive(
     name = "modern_browser",
     description = "Defines browsers considered modern or up-to-date",
+    syntax = listOf(
+        "<b>modern_browser</b> <i>browser</i> <i>version</i>;",
+        "<b>modern_browser</b> unlisted;"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "browser_name",
@@ -58,6 +64,7 @@ val modernBrowser = Directive(
 val modernBrowserValue = Directive(
     name = "modern_browser_value",
     description = "Sets the value returned for modern browsers",
+    syntax = listOf("<b>modern_browser_value</b> <i>string</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "value",

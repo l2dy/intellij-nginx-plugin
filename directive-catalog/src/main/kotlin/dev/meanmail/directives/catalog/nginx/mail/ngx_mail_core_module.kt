@@ -13,6 +13,7 @@ val ngx_mail_core_module = NginxModule(
 val mail = Directive(
     name = "mail",
     description = "Provides configuration context for mail server directives",
+    syntax = listOf("<b>mail</b> { ... }"),
 
     context = listOf(main),
     module = ngx_mail_core_module
@@ -21,6 +22,7 @@ val mail = Directive(
 val mailServer = Directive(
     name = "server",
     description = "Configures a mail server block",
+    syntax = listOf("<b>server</b> { ... }"),
 
     parameters = listOf(
 
@@ -103,6 +105,7 @@ val mailServer = Directive(
 val mailListen = Directive(
     name = "listen",
     description = "Sets the address and port for the mail server socket",
+    syntax = listOf("<b>listen</b> <i>address</i>:<i>port</i> [ssl] [proxy_protocol] [backlog=<i>number</i>] [rcvbuf=<i>size</i>] [sndbuf=<i>size</i>] [bind] [ipv6only=on|off] [so_keepalive=on|off|[<i>keepidle</i>]:[<i>keepintvl</i>]:[<i>keepcnt</i>]];"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -128,6 +131,7 @@ val mailListen = Directive(
 val mailMaxErrors = Directive(
     name = "max_errors",
     description = "Sets the number of protocol errors before closing the connection",
+    syntax = listOf("<b>max_errors</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -144,6 +148,7 @@ val mailMaxErrors = Directive(
 val mailProtocol = Directive(
     name = "protocol",
     description = "Specifies the mail protocol to use",
+    syntax = listOf("<b>protocol</b> imap | pop3 | smtp;"),
     parameters = listOf(
         DirectiveParameter(
             name = "protocol_type",
@@ -160,6 +165,10 @@ val mailProtocol = Directive(
 val mailResolver = Directive(
     name = "resolver",
     description = "Defines DNS servers used to resolve hostnames",
+    syntax = listOf(
+        "<b>resolver</b> <i>address</i> ... [valid=<i>time</i>] [ipv4=on|off] [ipv6=on|off] [status_zone=<i>zone</i>];",
+        "<b>resolver</b> off;"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -186,6 +195,7 @@ val mailResolver = Directive(
 val mailResolverTimeout = Directive(
     name = "resolver_timeout",
     description = "Sets the resolution timeout for DNS queries",
+    syntax = listOf("<b>resolver_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -200,6 +210,7 @@ val mailResolverTimeout = Directive(
 val mailServerName = Directive(
     name = "server_name",
     description = "Sets the server name for mail server",
+    syntax = listOf("<b>server_name</b> <i>name</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "name",
@@ -215,6 +226,7 @@ val mailServerName = Directive(
 val mailTimeout = Directive(
     name = "timeout",
     description = "Sets the timeout for mail server connections",
+    syntax = listOf("<b>timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",

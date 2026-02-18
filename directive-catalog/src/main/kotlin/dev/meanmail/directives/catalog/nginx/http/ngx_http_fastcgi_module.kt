@@ -12,6 +12,7 @@ val ngx_http_fastcgi_module = NginxModule(
 val fastcgiBind = Directive(
     name = "fastcgi_bind",
     description = "Specifies the local IP address and port for connections to FastCGI servers",
+    syntax = listOf("<b>fastcgi_bind</b> <i>address</i> [transparent] | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -27,6 +28,7 @@ val fastcgiBind = Directive(
 val fastcgiBufferSize = Directive(
     name = "fastcgi_buffer_size",
     description = "Sets the size of the buffer used for reading the first part of the FastCGI server response",
+    syntax = listOf("<b>fastcgi_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -43,6 +45,7 @@ val fastcgiBufferSize = Directive(
 val fastcgiBuffers = Directive(
     name = "fastcgi_buffers",
     description = "Configures the number and size of buffers used for reading FastCGI server responses",
+    syntax = listOf("<b>fastcgi_buffers</b> <i>number</i> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -66,6 +69,7 @@ val fastcgiBuffers = Directive(
 val fastcgiBusyBuffersSize = Directive(
     name = "fastcgi_busy_buffers_size",
     description = "Sets the maximum size of busy buffers when processing FastCGI server responses",
+    syntax = listOf("<b>fastcgi_busy_buffers_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -90,6 +94,7 @@ val fastcgiBuffering = ToggleDirective(
 val fastcgiCache = Directive(
     name = "fastcgi_cache",
     description = "Defines a zone for caching FastCGI server responses",
+    syntax = listOf("<b>fastcgi_cache</b> <i>zone</i> | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "zone",
@@ -119,6 +124,7 @@ val fastcgiCacheBackgroundUpdate = ToggleDirective(
 val fastcgiCacheBypass = Directive(
     name = "fastcgi_cache_bypass",
     description = "Defines conditions for bypassing the FastCGI cache",
+    syntax = listOf("<b>fastcgi_cache_bypass</b> <i>string</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -134,6 +140,7 @@ val fastcgiCacheBypass = Directive(
 val fastcgiCacheKey = Directive(
     name = "fastcgi_cache_key",
     description = "Defines the key used for storing and retrieving FastCGI cache entries",
+    syntax = listOf("<b>fastcgi_cache_key</b> <i>string</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "key",
@@ -157,6 +164,7 @@ val fastcgiCacheLock = ToggleDirective(
 val fastcgiCacheLockAge = Directive(
     name = "fastcgi_cache_lock_age",
     description = "Sets the maximum time a request can wait to acquire a cache lock",
+    syntax = listOf("<b>fastcgi_cache_lock_age</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -173,6 +181,7 @@ val fastcgiCacheLockAge = Directive(
 val fastcgiCacheLockTimeout = Directive(
     name = "fastcgi_cache_lock_timeout",
     description = "Sets the timeout for waiting to acquire a cache lock",
+    syntax = listOf("<b>fastcgi_cache_lock_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -189,6 +198,7 @@ val fastcgiCacheLockTimeout = Directive(
 val fastcgiCacheMaxRangeOffset = Directive(
     name = "fastcgi_cache_max_range_offset",
     description = "Sets the maximum offset for partial content caching from the FastCGI server",
+    syntax = listOf("<b>fastcgi_cache_max_range_offset</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "offset",
@@ -205,6 +215,7 @@ val fastcgiCacheMaxRangeOffset = Directive(
 val fastcgiCacheMethods = Directive(
     name = "fastcgi_cache_methods",
     description = "Specifies HTTP methods for which FastCGI responses will be cached",
+    syntax = listOf("<b>fastcgi_cache_methods</b> GET | HEAD | POST ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "methods",
@@ -221,6 +232,7 @@ val fastcgiCacheMethods = Directive(
 val fastcgiCacheMinUses = Directive(
     name = "fastcgi_cache_min_uses",
     description = "Sets the minimum number of requests before a response is cached",
+    syntax = listOf("<b>fastcgi_cache_min_uses</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "uses",
@@ -237,6 +249,7 @@ val fastcgiCacheMinUses = Directive(
 val fastcgiCachePath = Directive(
     name = "fastcgi_cache_path",
     description = "Sets the path and parameters for the FastCGI cache",
+    syntax = listOf("<b>fastcgi_cache_path</b> <i>path</i> [levels=<i>levels</i>] [use_temp_path=on|off] keys_zone=<i>name</i>:<i>size</i> [inactive=<i>time</i>] [max_size=<i>size</i>] [min_free=<i>size</i>] [manager_files=<i>number</i>] [manager_sleep=<i>time</i>] [manager_threshold=<i>time</i>] [loader_files=<i>number</i>] [loader_sleep=<i>time</i>] [loader_threshold=<i>time</i>] [purger=on|off] [purger_files=<i>number</i>] [purger_sleep=<i>time</i>] [purger_threshold=<i>time</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -258,6 +271,7 @@ val fastcgiCachePath = Directive(
 val fastcgiCachePurge = Directive(
     name = "fastcgi_cache_purge",
     description = "Defines conditions for purging cached content",
+    syntax = listOf("<b>fastcgi_cache_purge</b> string ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -281,6 +295,7 @@ val fastcgiCacheRevalidate = ToggleDirective(
 val fastcgiCacheUseStale = Directive(
     name = "fastcgi_cache_use_stale",
     description = "Defines conditions for serving stale cached content when the FastCGI server is unavailable",
+    syntax = listOf("<b>fastcgi_cache_use_stale</b> error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "conditions",
@@ -297,6 +312,7 @@ val fastcgiCacheUseStale = Directive(
 val fastcgiCacheValid = Directive(
     name = "fastcgi_cache_valid",
     description = "Sets the time for caching responses with specific status codes",
+    syntax = listOf("<b>fastcgi_cache_valid</b> [<i>code</i> ...] <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "status_codes",
@@ -318,6 +334,7 @@ val fastcgiCacheValid = Directive(
 val fastcgiCatchStderr = Directive(
     name = "fastcgi_catch_stderr",
     description = "Enables or disables catching of stderr messages from the FastCGI server",
+    syntax = listOf("<b>fastcgi_catch_stderr</b> <i>string</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "flag",
@@ -333,6 +350,7 @@ val fastcgiCatchStderr = Directive(
 val fastcgiConnectTimeout = Directive(
     name = "fastcgi_connect_timeout",
     description = "Sets the timeout for establishing a connection with a FastCGI server",
+    syntax = listOf("<b>fastcgi_connect_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -365,6 +383,7 @@ val fastcgiForceRanges = ToggleDirective(
 val fastcgiHideHeader = Directive(
     name = "fastcgi_hide_header",
     description = "Prevents specific headers from being passed from the FastCGI server response to the client",
+    syntax = listOf("<b>fastcgi_hide_header</b> <i>field</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",
@@ -380,6 +399,7 @@ val fastcgiHideHeader = Directive(
 val fastcgiIgnoreHeaders = Directive(
     name = "fastcgi_ignore_headers",
     description = "Disables processing of specific headers received from the FastCGI server",
+    syntax = listOf("<b>fastcgi_ignore_headers</b> <i>field</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "headers",
@@ -403,6 +423,7 @@ val fastcgiIgnoreClientAbort = ToggleDirective(
 val fastcgiIndex = Directive(
     name = "fastcgi_index",
     description = "Defines the default index file for FastCGI requests",
+    syntax = listOf("<b>fastcgi_index</b> <i>name</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "file",
@@ -434,6 +455,7 @@ val fastcgiKeepConn = ToggleDirective(
 val fastcgiLimitRate = Directive(
     name = "fastcgi_limit_rate",
     description = "Limits the rate of response transmission from the FastCGI server",
+    syntax = listOf("<b>fastcgi_limit_rate</b> <i>rate</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "rate",
@@ -450,6 +472,7 @@ val fastcgiLimitRate = Directive(
 val fastcgiMaxTempFileSize = Directive(
     name = "fastcgi_max_temp_file_size",
     description = "Sets the maximum size of temporary files used for buffering FastCGI server responses",
+    syntax = listOf("<b>fastcgi_max_temp_file_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -466,6 +489,7 @@ val fastcgiMaxTempFileSize = Directive(
 val fastcgiNextUpstream = Directive(
     name = "fastcgi_next_upstream",
     description = "Specifies conditions for passing a request to the next FastCGI server if the current server fails",
+    syntax = listOf("<b>fastcgi_next_upstream</b> error | timeout | denied | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "conditions",
@@ -482,6 +506,7 @@ val fastcgiNextUpstream = Directive(
 val fastcgiNextUpstreamTries = Directive(
     name = "fastcgi_next_upstream_tries",
     description = "Limits the number of possible tries for passing a request to the next FastCGI server",
+    syntax = listOf("<b>fastcgi_next_upstream_tries</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "attempts",
@@ -498,6 +523,7 @@ val fastcgiNextUpstreamTries = Directive(
 val fastcgiNextUpstreamTimeout = Directive(
     name = "fastcgi_next_upstream_timeout",
     description = "Sets the overall time limit for passing a request to the next FastCGI server",
+    syntax = listOf("<b>fastcgi_next_upstream_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -514,6 +540,7 @@ val fastcgiNextUpstreamTimeout = Directive(
 val fastcgiNoCache = Directive(
     name = "fastcgi_no_cache",
     description = "Defines the conditions under which the response will not be cached",
+    syntax = listOf("<b>fastcgi_no_cache</b> <i>string</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -552,6 +579,7 @@ val fastcgiParams = Directive(
 val fastcgiParam = Directive(
     name = "fastcgi_param",
     description = "Defines or modifies FastCGI parameters passed to the FastCGI server",
+    syntax = listOf("<b>fastcgi_param</b> <i>parameter</i> <i>value</i> [if_not_empty];"),
     parameters = listOf(
         DirectiveParameter(
             name = "parameter",
@@ -580,6 +608,7 @@ val fastcgiParam = Directive(
 val fastcgiPass = Directive(
     name = "fastcgi_pass",
     description = "Defines the FastCGI server or upstream group to which requests will be proxied",
+    syntax = listOf("<b>fastcgi_pass</b> <i>address</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "server",
@@ -595,6 +624,7 @@ val fastcgiPass = Directive(
 val fastcgiPassHeader = Directive(
     name = "fastcgi_pass_header",
     description = "Allows passing specified headers from the FastCGI server to the client",
+    syntax = listOf("<b>fastcgi_pass_header</b> <i>field</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",
@@ -626,6 +656,7 @@ val fastcgiPassRequestHeaders = ToggleDirective(
 val fastcgiReadTimeout = Directive(
     name = "fastcgi_read_timeout",
     description = "Sets the timeout for reading a response from the FastCGI server",
+    syntax = listOf("<b>fastcgi_read_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -650,6 +681,7 @@ val fastcgiRequestBuffering = ToggleDirective(
 val fastcgiSendTimeout = Directive(
     name = "fastcgi_send_timeout",
     description = "Sets the timeout for transmitting a request to the FastCGI server",
+    syntax = listOf("<b>fastcgi_send_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -666,6 +698,7 @@ val fastcgiSendTimeout = Directive(
 val fastcgiSendLowat = Directive(
     name = "fastcgi_send_lowat",
     description = "Sets the minimum amount of data to be sent in a packet when communicating with the FastCGI server",
+    syntax = listOf("<b>fastcgi_send_lowat</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -690,6 +723,7 @@ val fastcgiSocketKeepalive = ToggleDirective(
 val fastcgiSplitPathInfo = Directive(
     name = "fastcgi_split_path_info",
     description = "Defines a regular expression for splitting the request URI into path and script name for FastCGI processing",
+    syntax = listOf("<b>fastcgi_split_path_info</b> <i>regex</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "regex",
@@ -705,6 +739,7 @@ val fastcgiSplitPathInfo = Directive(
 val fastcgiStore = Directive(
     name = "fastcgi_store",
     description = "Enables saving the response from the FastCGI server to a file on disk",
+    syntax = listOf("<b>fastcgi_store</b> on | off | <i>string</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -720,6 +755,7 @@ val fastcgiStore = Directive(
 val fastcgiStoreAccess = Directive(
     name = "fastcgi_store_access",
     description = "Sets the access permissions for files created by fastcgi_store",
+    syntax = listOf("<b>fastcgi_store_access</b> <i>users</i>:<i>permissions</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "permissions",
@@ -736,6 +772,7 @@ val fastcgiStoreAccess = Directive(
 val fastcgiTempPath = Directive(
     name = "fastcgi_temp_path",
     description = "Defines the directory for storing temporary files when buffering FastCGI server responses",
+    syntax = listOf("<b>fastcgi_temp_path</b> <i>path</i> [<i>level1</i> [<i>level2</i> [<i>level3</i>]]];"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -770,6 +807,7 @@ val fastcgiTempPath = Directive(
 val fastcgiTempFileWriteSize = Directive(
     name = "fastcgi_temp_file_write_size",
     description = "Sets the size of temporary files when buffering responses from the FastCGI server",
+    syntax = listOf("<b>fastcgi_temp_file_write_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",

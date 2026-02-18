@@ -15,6 +15,7 @@ val ngx_http_auth_request_module = NginxModule(
 val authRequest = Directive(
     name = "auth_request",
     description = "Enables external authorization request for client access",
+    syntax = listOf("<b>auth_request</b> <i>uri</i> | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "uri",
@@ -30,6 +31,7 @@ val authRequest = Directive(
 val authRequestSet = Directive(
     name = "auth_request_set",
     description = "Sets a variable based on the authorization request response",
+    syntax = listOf("<b>auth_request_set</b> <i>\$variable</i> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "variable",

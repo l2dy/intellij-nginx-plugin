@@ -28,6 +28,7 @@ val autoindexExactSize = ToggleDirective(
 val autoindexFormat = Directive(
     name = "autoindex_format",
     description = "Sets the output format for directory listing",
+    syntax = listOf("<b>autoindex_format</b> html | xml | json | jsonp;"),
     parameters = listOf(
         DirectiveParameter(
             name = "format",

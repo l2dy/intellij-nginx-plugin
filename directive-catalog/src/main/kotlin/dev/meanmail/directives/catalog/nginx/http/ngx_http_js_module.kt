@@ -12,6 +12,7 @@ val ngx_http_js_module = NginxModule(
 val jsImport = Directive(
     name = "js_import",
     description = "Imports JavaScript modules for use in Nginx configuration",
+    syntax = listOf("<b>js_import</b> <i>module.js</i> | <i>export_name from module.js</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "module",
@@ -27,6 +28,7 @@ val jsImport = Directive(
 val jsInclude = Directive(
     name = "js_include",
     description = "Includes JavaScript files for use in Nginx configuration",
+    syntax = listOf("<b>js_include</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "file",
@@ -42,6 +44,7 @@ val jsInclude = Directive(
 val jsPath = Directive(
     name = "js_path",
     description = "Sets the search path for JavaScript modules used in Nginx configuration",
+    syntax = listOf("<b>js_path</b> <i>path</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "directory",
@@ -57,6 +60,7 @@ val jsPath = Directive(
 val jsPeriodic = Directive(
     name = "js_periodic",
     description = "Specifies a content handler to run at regular interval. The handler receives a session object as its first argument, it also has access to global objects such as ngx.",
+    syntax = listOf("<b>js_periodic</b> <i>module.function</i> [interval=<i>time</i>] [jitter=<i>number</i>] [worker_affinity=<i>mask</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "function",
@@ -78,6 +82,7 @@ val jsPeriodic = Directive(
 val jsPreloadObject = Directive(
     name = "js_preload_object",
     description = "Preloads a JavaScript object for use in Nginx configuration",
+    syntax = listOf("<b>js_preload_object</b> <i>name.json</i> | <i>name</i> from <i>file.json</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "object_name",
@@ -99,6 +104,7 @@ val jsPreloadObject = Directive(
 val jsBodyFilter = Directive(
     name = "js_body_filter",
     description = "Applies a JavaScript function to modify the response body before sending to the client",
+    syntax = listOf("<b>js_body_filter</b> <i>module.function</i> [<i>buffer_type</i>=<i>string</i> | <i>buffer</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "javascript_function",
@@ -114,6 +120,7 @@ val jsBodyFilter = Directive(
 val jsContent = Directive(
     name = "js_content",
     description = "Specifies a JavaScript function to handle request content",
+    syntax = listOf("<b>js_content</b> <i>module.function</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "javascript_function",
@@ -129,6 +136,7 @@ val jsContent = Directive(
 val jsContextReuse = Directive(
     name = "js_context_reuse",
     description = "Sets a maximum number of JS context to be reused for QuickJS engine. Each context is used for a single request. The finished context is put into a pool of reusable contexts. If the pool is full, the context is destroyed.",
+    syntax = listOf("<b>js_context_reuse</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "max_contexts",
@@ -145,6 +153,7 @@ val jsContextReuse = Directive(
 val jsEngine = Directive(
     name = "js_engine",
     description = "Specifies the JavaScript engine to use for processing",
+    syntax = listOf("<b>js_engine</b> njs | qjs;"),
     parameters = listOf(
         DirectiveParameter(
             name = "engine",
@@ -162,6 +171,7 @@ val jsEngine = Directive(
 val jsFetchBufferSize = Directive(
     name = "js_fetch_buffer_size",
     description = "Sets the size of the buffer used for reading and writing with Fetch API.",
+    syntax = listOf("<b>js_fetch_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -178,6 +188,7 @@ val jsFetchBufferSize = Directive(
 val jsFetchCiphers = Directive(
     name = "js_fetch_ciphers",
     description = "Configures SSL/TLS ciphers for JavaScript fetch operations",
+    syntax = listOf("<b>js_fetch_ciphers</b> <i>ciphers</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "ciphers",
@@ -194,6 +205,7 @@ val jsFetchCiphers = Directive(
 val jsFetchMaxResponseBufferSize = Directive(
     name = "js_fetch_max_response_buffer_size",
     description = "Sets the maximum size of the response received with Fetch API.",
+    syntax = listOf("<b>js_fetch_max_response_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -210,6 +222,7 @@ val jsFetchMaxResponseBufferSize = Directive(
 val jsFetchProtocols = Directive(
     name = "js_fetch_protocols",
     description = "Specifies SSL/TLS protocols for JavaScript fetch operations",
+    syntax = listOf("<b>js_fetch_protocols</b> [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];"),
     parameters = listOf(
         DirectiveParameter(
             name = "protocols",
@@ -225,6 +238,7 @@ val jsFetchProtocols = Directive(
 val jsFetchTimeout = Directive(
     name = "js_fetch_timeout",
     description = "Defines a timeout for reading and writing for Fetch API. The timeout is set only between two successive read/write operations, not for the whole response. If no data is transmitted within this time, the connection is closed.",
+    syntax = listOf("<b>js_fetch_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -240,6 +254,7 @@ val jsFetchTimeout = Directive(
 val jsFetchTrustedCertificate = Directive(
     name = "js_fetch_trusted_certificate",
     description = "Specifies a trusted certificate file for SSL/TLS verification in JavaScript fetch operations",
+    syntax = listOf("<b>js_fetch_trusted_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "certificate_file",
@@ -263,6 +278,7 @@ val jsFetchVerify = ToggleDirective(
 val jsFetchVerifyDepth = Directive(
     name = "js_fetch_verify_depth",
     description = "Sets the maximum depth of SSL certificate verification chain",
+    syntax = listOf("<b>js_fetch_verify_depth</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "depth",
@@ -279,6 +295,7 @@ val jsFetchVerifyDepth = Directive(
 val jsHeaderFilter = Directive(
     name = "js_header_filter",
     description = "Applies a JavaScript function to modify response headers before sending to the client",
+    syntax = listOf("<b>js_header_filter</b> <i>module.function</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "javascript_function",
@@ -294,6 +311,7 @@ val jsHeaderFilter = Directive(
 val jsSet = Directive(
     name = "js_set",
     description = "Sets an Nginx variable using a JavaScript function",
+    syntax = listOf("<b>js_set</b> <i>\$variable</i> <i>module.function</i> [nocache];"),
     parameters = listOf(
         DirectiveParameter(
             name = "variable",
@@ -315,6 +333,7 @@ val jsSet = Directive(
 var jsSharedDictZone = Directive(
     name = "js_shared_dict_zone",
     description = "Defines a shared memory zone for JavaScript objects",
+    syntax = listOf("<b>js_shared_dict_zone</b> zone=<i>name</i>:<i>size</i> [timeout=<i>time</i>] [type=string|number] [evict] [state=<i>file</i>];"),
     context = listOf(http),
     module = ngx_http_js_module
 )
@@ -322,6 +341,7 @@ var jsSharedDictZone = Directive(
 val jsVar = Directive(
     name = "js_var",
     description = "Sets an Nginx variable using a JavaScript expression",
+    syntax = listOf("<b>js_var</b> <i>\$variable</i> [<i>value</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "variable",
@@ -343,6 +363,7 @@ val jsVar = Directive(
 val jsFetchKeepalive = Directive(
     name = "js_fetch_keepalive",
     description = "Activates the cache for connections to destination servers with Fetch API",
+    syntax = listOf("<b>js_fetch_keepalive</b> <i>connections</i>;"),
     context = listOf(http, server, location),
     module = ngx_http_js_module
 )
@@ -350,6 +371,7 @@ val jsFetchKeepalive = Directive(
 val jsFetchKeepaliveRequests = Directive(
     name = "js_fetch_keepalive_requests",
     description = "Sets the maximum number of requests through one keepalive connection with Fetch API",
+    syntax = listOf("<b>js_fetch_keepalive_requests</b> <i>number</i>;"),
     context = listOf(http, server, location),
     module = ngx_http_js_module
 )
@@ -357,6 +379,7 @@ val jsFetchKeepaliveRequests = Directive(
 val jsFetchKeepaliveTime = Directive(
     name = "js_fetch_keepalive_time",
     description = "Limits the maximum time for requests through one keepalive connection with Fetch API",
+    syntax = listOf("<b>js_fetch_keepalive_time</b> <i>time</i>;"),
     context = listOf(http, server, location),
     module = ngx_http_js_module
 )
@@ -364,6 +387,7 @@ val jsFetchKeepaliveTime = Directive(
 val jsFetchKeepaliveTimeout = Directive(
     name = "js_fetch_keepalive_timeout",
     description = "Sets a timeout for idle keepalive connections to destination servers with Fetch API",
+    syntax = listOf("<b>js_fetch_keepalive_timeout</b> <i>time</i>;"),
     context = listOf(http, server, location),
     module = ngx_http_js_module
 )
@@ -371,6 +395,7 @@ val jsFetchKeepaliveTimeout = Directive(
 val jsFetchProxy = Directive(
     name = "js_fetch_proxy",
     description = "Configures a forward proxy URL with Fetch API",
+    syntax = listOf("<b>js_fetch_proxy</b> <i>url</i>;"),
     context = listOf(http, server, location),
     module = ngx_http_js_module
 )
@@ -378,6 +403,7 @@ val jsFetchProxy = Directive(
 val jsLoadHttpNativeModule = Directive(
     name = "js_load_http_native_module",
     description = "Loads a native module (shared library) for use in HTTP JavaScript code (QuickJS only)",
+    syntax = listOf("<b>js_load_http_native_module</b> <i>path</i> [as <i>name</i>];"),
     context = listOf(main),
     module = ngx_http_js_module
 )

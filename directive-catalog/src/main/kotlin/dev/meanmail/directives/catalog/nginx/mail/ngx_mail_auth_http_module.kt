@@ -12,6 +12,7 @@ val ngx_mail_auth_http_module = NginxModule(
 val mailAuthHttp = Directive(
     name = "auth_http",
     description = "Sets the URL of the HTTP authentication server for mail authentication",
+    syntax = listOf("<b>auth_http</b> <i>URL</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "url",
@@ -27,6 +28,7 @@ val mailAuthHttp = Directive(
 val mailAuthHttpHeader = Directive(
     name = "auth_http_header",
     description = "Appends a specified header to requests sent to the authentication server",
+    syntax = listOf("<b>auth_http_header</b> <i>header</i> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",
@@ -56,6 +58,7 @@ val mailAuthHttpPassClientCert = ToggleDirective(
 val mailAuthHttpTimeout = Directive(
     name = "auth_http_timeout",
     description = "Sets the timeout for communication with the authentication server",
+    syntax = listOf("<b>auth_http_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",

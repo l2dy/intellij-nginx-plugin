@@ -12,6 +12,7 @@ val ngx_http_addition_module = NginxModule(
 val addAfterBody = Directive(
     "add_after_body",
     description = "Adds content after the response body",
+    syntax = listOf("<b>add_after_body</b> <i>uri</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "file",
@@ -27,6 +28,7 @@ val addAfterBody = Directive(
 val addBeforeBody = Directive(
     "add_before_body",
     description = "Adds content before the response body",
+    syntax = listOf("<b>add_before_body</b> <i>uri</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "file",
@@ -42,6 +44,7 @@ val addBeforeBody = Directive(
 val additionTypes = Directive(
     "addition_types",
     description = "Specifies MIME types for which content addition is performed",
+    syntax = listOf("<b>addition_types</b> <i>mime-type</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mime_type",

@@ -12,6 +12,7 @@ val ngx_http_xslt_module = NginxModule(
 val xmlEntities = Directive(
     name = "xml_entities",
     description = "Specifies the DTD file that declares character entities. Compiled at configuration stage. Used instead of external XML subset for technical reasons.",
+    syntax = listOf("<b>xml_entities</b> <i>path</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -35,6 +36,7 @@ val xsltLastModified = ToggleDirective(
 val xsltParam = Directive(
     name = "xslt_param",
     description = "Defines parameters for XSLT stylesheets. Value is treated as an XPath expression and can contain variables.",
+    syntax = listOf("<b>xslt_param</b> <i>parameter</i> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "parameter",
@@ -56,6 +58,7 @@ val xsltParam = Directive(
 val xsltStringParam = Directive(
     name = "xslt_string_param",
     description = "Defines string parameters for XSLT stylesheets. XPath expressions in the value are not interpreted.",
+    syntax = listOf("<b>xslt_string_param</b> <i>parameter</i> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "parameter",
@@ -77,6 +80,7 @@ val xsltStringParam = Directive(
 val xsltStylesheet = Directive(
     name = "xslt_stylesheet",
     description = "Defines XSLT stylesheet and optional parameters. Stylesheet is compiled at configuration stage. Multiple stylesheets can be applied sequentially.",
+    syntax = listOf("<b>xslt_stylesheet</b> <i>stylesheet</i> [<i>parameter</i>=<i>value</i> ...];"),
     parameters = listOf(
         DirectiveParameter(
             name = "stylesheet",
@@ -98,6 +102,7 @@ val xsltStylesheet = Directive(
 val xsltTypes = Directive(
     name = "xslt_types",
     description = "Enables transformations for specified MIME types. Special value '*' matches any MIME type. HTML responses changed to 'text/html'.",
+    syntax = listOf("<b>xslt_types</b> <i>mime-type</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mime_type",

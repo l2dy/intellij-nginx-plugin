@@ -20,6 +20,7 @@ val gunzip = ToggleDirective(
 val gunzipBuffers = Directive(
     name = "gunzip_buffers",
     description = "Configures the number and size of buffers used for decompressing gzipped responses. This directive allows fine-tuning memory allocation for gunzip operations.",
+    syntax = listOf("<b>gunzip_buffers</b> <i>number</i> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",

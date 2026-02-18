@@ -12,6 +12,7 @@ val ngx_http_rewrite_module = NginxModule(
 val locationIf = Directive(
     name = "if",
     description = "Creates a conditional block within a location context, executing directives when the specified condition is true",
+    syntax = listOf("<b>if</b> (<i>condition</i>) { ... }"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -27,6 +28,7 @@ val locationIf = Directive(
 val `if` = Directive(
     name = "if",
     description = "Creates a conditional configuration block that executes directives when the specified condition is true",
+    syntax = listOf("<b>if</b> (<i>condition</i>) { ... }"),
     parameters = listOf(
         DirectiveParameter(
             name = "condition",
@@ -42,6 +44,7 @@ val `if` = Directive(
 val `break` = Directive(
     name = "break",
     description = "Stops processing the current set of rewrite module directives and continues request processing in the current location",
+    syntax = listOf("<b>break</b>;"),
 
     context = listOf(server, location, `if`),
     module = ngx_http_rewrite_module
@@ -50,6 +53,11 @@ val `break` = Directive(
 val `return` = Directive(
     name = "return",
     description = "Stops request processing and returns a specified HTTP status code or redirects to another URL",
+    syntax = listOf(
+        "<b>return</b> <i>code</i> [<i>text</i>];",
+        "<b>return</b> <i>code</i> <i>URL</i>;",
+        "<b>return</b> <i>URL</i>;"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "code",
@@ -71,6 +79,7 @@ val `return` = Directive(
 val rewrite = Directive(
     name = "rewrite",
     description = "Modifies the request URI using PCRE regular expressions, potentially changing the request processing path",
+    syntax = listOf("<b>rewrite</b> <i>regex</i> <i>replacement</i> [<i>flag</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "regex",
@@ -107,6 +116,7 @@ val rewriteLog = ToggleDirective(
 val set = Directive(
     name = "set",
     description = "Assigns a value to a specified NGINX variable for dynamic request processing",
+    syntax = listOf("<b>set</b> <i>\$variable</i> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "variable",

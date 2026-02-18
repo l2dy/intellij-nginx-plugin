@@ -12,6 +12,7 @@ val ngx_stream_pass_module = NginxModule(
 val streamPass = Directive(
     "pass",
     description = "Redirects the incoming stream connection to a specified backend server or server group",
+    syntax = listOf("<b>pass</b> <i>address</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",

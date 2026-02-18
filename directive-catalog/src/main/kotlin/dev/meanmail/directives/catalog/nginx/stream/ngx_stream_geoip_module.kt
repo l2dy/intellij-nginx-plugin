@@ -12,6 +12,7 @@ val ngx_stream_geoip_module = NginxModule(
 val streamGeoipCountry = Directive(
     name = "geoip_country",
     description = "Specifies the path to the GeoIP country database",
+    syntax = listOf("<b>geoip_country</b> <i>file</i>;"),
     module = ngx_stream_geoip_module,
     parameters = listOf(
         DirectiveParameter(
@@ -27,6 +28,7 @@ val streamGeoipCountry = Directive(
 val streamGeoipCity = Directive(
     name = "geoip_city",
     description = "Specifies the path to the GeoIP city database",
+    syntax = listOf("<b>geoip_city</b> <i>file</i>;"),
     module = ngx_stream_geoip_module,
     parameters = listOf(
         DirectiveParameter(
@@ -42,6 +44,7 @@ val streamGeoipCity = Directive(
 val streamGeoipOrg = Directive(
     name = "geoip_org",
     description = "Specifies the path to the GeoIP organization database",
+    syntax = listOf("<b>geoip_org</b> <i>file</i>;"),
     module = ngx_stream_geoip_module,
     parameters = listOf(
         DirectiveParameter(

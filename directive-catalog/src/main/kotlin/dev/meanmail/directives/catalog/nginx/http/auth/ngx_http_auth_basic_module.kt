@@ -16,6 +16,7 @@ val ngx_http_auth_basic_module = NginxModule(
 val authBasic = Directive(
     name = "auth_basic",
     description = "Enables HTTP basic authentication and specifies the authentication realm",
+    syntax = listOf("<b>auth_basic</b> <i>string</i> | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "realm",
@@ -32,6 +33,7 @@ val authBasic = Directive(
 val authBasicUserFile = Directive(
     name = "auth_basic_user_file",
     description = "Specifies the path to the file containing user credentials for basic authentication",
+    syntax = listOf("<b>auth_basic_user_file</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "file_path",

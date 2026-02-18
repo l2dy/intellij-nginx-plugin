@@ -13,6 +13,7 @@ val ngx_stream_geo_module = NginxModule(
 val streamGeo = Directive(
     name = "geo",
     description = "Defines a geolocation variable based on the client IP address in stream context, enabling dynamic content and routing decisions",
+    syntax = listOf("<b>geo</b> [<i>\$address</i>] <i>\$variable</i> { ... }"),
     module = ngx_stream_geo_module,
     parameters = listOf(
         DirectiveParameter(

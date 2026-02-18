@@ -12,6 +12,7 @@ val ngx_http_core_module = NginxModule(
 val http = Directive(
     "http",
     description = "Enables HTTP support",
+    syntax = listOf("<b>http</b> { ... }"),
     parameters = listOf(
         DirectiveParameter(
             name = "http_config",
@@ -27,6 +28,7 @@ val http = Directive(
 val server = Directive(
     "server",
     description = "Starts a new server block",
+    syntax = listOf("<b>server</b> { ... }"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -71,6 +73,10 @@ val server = Directive(
 val location = Directive(
     "location",
     description = "Location directives are used to control the behavior of a single location in a server block.",
+    syntax = listOf(
+        "<b>location</b> [ = | ~ | ~* | ^~ ] <i>uri</i> { ... }",
+        "<b>location</b> @<i>name</i> { ... }"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -94,6 +100,7 @@ val absoluteRedirect = ToggleDirective(
 val aio = Directive(
     "aio",
     description = "Enables or disables asynchronous file I/O",
+    syntax = listOf("<b>aio</b> on | off | threads[=<i>pool</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "mode",
@@ -118,6 +125,7 @@ val aioWrite = ToggleDirective(
 val alias = Directive(
     "alias",
     description = "Defines an alternative location for serving files",
+    syntax = listOf("<b>alias</b> <i>path</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -141,6 +149,7 @@ val chunkedTransferEncoding = ToggleDirective(
 val clientBodyBufferSize = Directive(
     "client_body_buffer_size",
     description = "Sets the buffer size for reading client request body",
+    syntax = listOf("<b>client_body_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -157,6 +166,7 @@ val clientBodyBufferSize = Directive(
 val clientBodyInFileOnly = Directive(
     "client_body_in_file_only",
     description = "Controls client request body storage",
+    syntax = listOf("<b>client_body_in_file_only</b> on | clean | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mode",
@@ -182,6 +192,7 @@ val clientBodyInSingleBuffer = ToggleDirective(
 val clientBodyTempPath = Directive(
     "client_body_temp_path",
     description = "Sets the directory for storing client request bodies",
+    syntax = listOf("<b>client_body_temp_path</b> <i>path</i> [<i>level1</i> [<i>level2</i> [<i>level3</i>]]];"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -197,6 +208,7 @@ val clientBodyTempPath = Directive(
 val clientBodyTimeout = Directive(
     "client_body_timeout",
     description = "Sets the timeout for reading client request body",
+    syntax = listOf("<b>client_body_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "duration",
@@ -213,6 +225,7 @@ val clientBodyTimeout = Directive(
 val clientHeaderBufferSize = Directive(
     "client_header_buffer_size",
     description = "Sets the buffer size for reading client request headers",
+    syntax = listOf("<b>client_header_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -229,6 +242,7 @@ val clientHeaderBufferSize = Directive(
 val clientHeaderTimeout = Directive(
     "client_header_timeout",
     description = "Sets the timeout for reading client request headers",
+    syntax = listOf("<b>client_header_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "duration",
@@ -245,6 +259,7 @@ val clientHeaderTimeout = Directive(
 val clientMaxBodySize = Directive(
     "client_max_body_size",
     description = "Sets the maximum allowed size of client request body",
+    syntax = listOf("<b>client_max_body_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -261,6 +276,7 @@ val clientMaxBodySize = Directive(
 val defaultType = Directive(
     "default_type",
     description = "Sets the default MIME type for responses",
+    syntax = listOf("<b>default_type</b> <i>mime-type</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mime_type",
@@ -277,6 +293,7 @@ val defaultType = Directive(
 val directio = Directive(
     "directio",
     description = "Enables or sets the threshold for direct I/O",
+    syntax = listOf("<b>directio</b> <i>size</i> | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -293,6 +310,7 @@ val directio = Directive(
 val directioAlignment = Directive(
     "directio_alignment",
     description = "Sets the alignment for direct I/O",
+    syntax = listOf("<b>directio_alignment</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "bytes",
@@ -308,6 +326,10 @@ val directioAlignment = Directive(
 val disableSymlinks = Directive(
     "disable_symlinks",
     description = "Controls symbolic link checking for files",
+    syntax = listOf(
+        "<b>disable_symlinks</b> off;",
+        "<b>disable_symlinks</b> on | if_not_owner [from=<i>part</i>];"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "mode",
@@ -325,6 +347,7 @@ val disableSymlinks = Directive(
 val errorPage = Directive(
     "error_page",
     description = "Defines custom error pages for specific HTTP status codes",
+    syntax = listOf("<b>error_page</b> <i>code</i> ... [=[<i>response</i>]] <i>uri</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "codes",
@@ -354,6 +377,7 @@ val etag = ToggleDirective(
 val ifModifiedSince = Directive(
     "if_modified_since",
     description = "Controls handling of the If-Modified-Since request header",
+    syntax = listOf("<b>if_modified_since</b> off | exact | before;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mode",
@@ -379,6 +403,7 @@ val ignoreInvalidHeaders = ToggleDirective(
 val internal = Directive(
     "internal",
     description = "Restricts access to a location to internal requests only",
+    syntax = listOf("<b>internal</b>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "flag",
@@ -394,6 +419,7 @@ val internal = Directive(
 val keepaliveDisable = Directive(
     "keepalive_disable",
     description = "Disables keep-alive connections for specific user agents",
+    syntax = listOf("<b>keepalive_disable</b> none | <i>browser</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "user_agents",
@@ -410,6 +436,7 @@ val keepaliveDisable = Directive(
 val keepaliveMinTimeout = Directive(
     "keepalive_min_timeout",
     description = "Sets the minimum timeout for keep-alive connections",
+    syntax = listOf("<b>keepalive_min_timeout</b> <i>timeout</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -426,6 +453,7 @@ val keepaliveMinTimeout = Directive(
 val keepaliveRequests = Directive(
     "keepalive_requests",
     description = "Sets the maximum number of requests that can be served through a keep-alive connection",
+    syntax = listOf("<b>keepalive_requests</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -441,6 +469,7 @@ val keepaliveRequests = Directive(
 val keepaliveTime = Directive(
     "keepalive_time",
     description = "Sets the maximum time a keep-alive connection can be open",
+    syntax = listOf("<b>keepalive_time</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -456,6 +485,7 @@ val keepaliveTime = Directive(
 val keepaliveTimeout = Directive(
     "keepalive_timeout",
     description = "Sets the timeout for keep-alive connections",
+    syntax = listOf("<b>keepalive_timeout</b> <i>timeout</i> [<i>header_timeout</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -471,6 +501,7 @@ val keepaliveTimeout = Directive(
 val largeClientHeaderBuffers = Directive(
     "large_client_header_buffers",
     description = "Sets the maximum number and size of buffers for large client headers",
+    syntax = listOf("<b>large_client_header_buffers</b> <i>number</i> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -494,6 +525,7 @@ val largeClientHeaderBuffers = Directive(
 val limitExcept = Directive(
     "limit_except",
     description = "Limit access to specific HTTP methods within a location block",
+    syntax = listOf("<b>limit_except</b> <i>method</i> ... { ... }"),
     parameters = listOf(
         DirectiveParameter(
             name = "methods",
@@ -509,6 +541,7 @@ val limitExcept = Directive(
 val limitRate = Directive(
     "limit_rate",
     description = "Limits the rate of response transmission to a client",
+    syntax = listOf("<b>limit_rate</b> <i>rate</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "rate",
@@ -525,6 +558,7 @@ val limitRate = Directive(
 val limitRateAfter = Directive(
     "limit_rate_after",
     description = "Sets the amount of data transferred before rate limiting begins",
+    syntax = listOf("<b>limit_rate_after</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -541,6 +575,7 @@ val limitRateAfter = Directive(
 val lingeringClose = Directive(
     "lingering_close",
     description = "Controls how NGINX handles lingering close of client connections",
+    syntax = listOf("<b>lingering_close</b> off | on | always;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mode",
@@ -558,6 +593,7 @@ val lingeringClose = Directive(
 val lingeringTime = Directive(
     "lingering_time",
     description = "Sets the maximum time for lingering connections",
+    syntax = listOf("<b>lingering_time</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "duration",
@@ -574,6 +610,7 @@ val lingeringTime = Directive(
 val lingeringTimeout = Directive(
     "lingering_timeout",
     description = "Sets the timeout for lingering connections",
+    syntax = listOf("<b>lingering_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "duration",
@@ -622,6 +659,7 @@ val maxErrors = Directive(
 val maxRanges = Directive(
     "max_ranges",
     description = "Sets the maximum number of ranges allowed in a request",
+    syntax = listOf("<b>max_ranges</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -661,6 +699,10 @@ val msieRefresh = ToggleDirective(
 val openFileCache = Directive(
     "open_file_cache",
     description = "Configures caching of file descriptors, file sizes, and modification times",
+    syntax = listOf(
+        "<b>open_file_cache</b> off;",
+        "<b>open_file_cache</b> max=<i>N</i> [inactive=<i>time</i>];"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "max",
@@ -685,6 +727,7 @@ val openFileCacheErrors = ToggleDirective(
 val openFileCacheMinUses = Directive(
     "open_file_cache_min_uses",
     description = "Sets the minimum number of file uses to keep in cache",
+    syntax = listOf("<b>open_file_cache_min_uses</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -701,6 +744,7 @@ val openFileCacheMinUses = Directive(
 val openFileCacheValid = Directive(
     "open_file_cache_valid",
     description = "Sets the time after which cached file information is validated",
+    syntax = listOf("<b>open_file_cache_valid</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "duration",
@@ -717,6 +761,7 @@ val openFileCacheValid = Directive(
 val outputBuffers = Directive(
     "output_buffers",
     description = "Sets the number and size of buffers used for writing response",
+    syntax = listOf("<b>output_buffers</b> <i>number</i> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -748,6 +793,7 @@ val portInRedirect = ToggleDirective(
 val postponeOutput = Directive(
     "postpone_output",
     description = "Sets the minimum amount of bytes to postpone output",
+    syntax = listOf("<b>postpone_output</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -764,6 +810,7 @@ val postponeOutput = Directive(
 val readAhead = Directive(
     "read_ahead",
     description = "Sets the size of read-ahead for file operations",
+    syntax = listOf("<b>read_ahead</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -788,6 +835,7 @@ val recursiveErrorPages = ToggleDirective(
 val requestPoolSize = Directive(
     "request_pool_size",
     description = "Sets the size of the request pool",
+    syntax = listOf("<b>request_pool_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -812,6 +860,7 @@ val resetTimedoutConnection = ToggleDirective(
 val resolver = Directive(
     "resolver",
     description = "Sets the name servers for DNS resolution",
+    syntax = listOf("<b>resolver</b> <i>address</i> ... [valid=<i>time</i>] [ipv4=on|off] [ipv6=on|off] [status_zone=<i>zone</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -838,6 +887,7 @@ val resolver = Directive(
 val resolverTimeout = Directive(
     "resolver_timeout",
     description = "Sets the timeout for DNS resolution",
+    syntax = listOf("<b>resolver_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -852,6 +902,7 @@ val resolverTimeout = Directive(
 val root = Directive(
     "root",
     description = "Sets the root directory for location block",
+    syntax = listOf("<b>root</b> <i>path</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -868,6 +919,7 @@ val root = Directive(
 val satisfy = Directive(
     "satisfy",
     description = "Defines the access control logic for a location",
+    syntax = listOf("<b>satisfy</b> all | any;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mode",
@@ -885,6 +937,7 @@ val satisfy = Directive(
 val sendLowat = Directive(
     "send_lowat",
     description = "Sets the minimum amount of data to send in a single packet",
+    syntax = listOf("<b>send_lowat</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -901,6 +954,7 @@ val sendLowat = Directive(
 val sendTimeout = Directive(
     "send_timeout",
     description = "Sets the timeout for sending data to a client",
+    syntax = listOf("<b>send_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "duration",
@@ -925,6 +979,7 @@ val sendfile = ToggleDirective(
 val sendfileMaxChunk = Directive(
     "sendfile_max_chunk",
     description = "Sets the maximum chunk size for sendfile",
+    syntax = listOf("<b>sendfile_max_chunk</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -949,6 +1004,7 @@ val serverNameInRedirect = ToggleDirective(
 val serverNamesHashBucketSize = Directive(
     "server_names_hash_bucket_size",
     description = "Sets the bucket size for server names hash table",
+    syntax = listOf("<b>server_names_hash_bucket_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -965,6 +1021,7 @@ val serverNamesHashBucketSize = Directive(
 val serverNamesHashMaxSize = Directive(
     "server_names_hash_max_size",
     description = "Sets the maximum size of the server names hash table",
+    syntax = listOf("<b>server_names_hash_max_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -981,6 +1038,7 @@ val serverNamesHashMaxSize = Directive(
 val serverTokens = Directive(
     "server_tokens",
     description = "Enables or disables displaying NGINX version in error messages and server response headers",
+    syntax = listOf("<b>server_tokens</b> on | off | build | <i>string</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "value",
@@ -997,6 +1055,7 @@ val serverTokens = Directive(
 val earlyHints = Directive(
     "early_hints",
     description = "Enables processing and forwarding of 103 Early Hints from upstream (proxy/gRPC)",
+    syntax = listOf("<b>early_hints</b> <i>string</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "string",
@@ -1013,6 +1072,7 @@ val earlyHints = Directive(
 val subrequestOutputBufferSize = Directive(
     "subrequest_output_buffer_size",
     description = "Sets the buffer size for subrequest output",
+    syntax = listOf("<b>subrequest_output_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -1029,6 +1089,7 @@ val subrequestOutputBufferSize = Directive(
 val typesHashBucketSize = Directive(
     "types_hash_bucket_size",
     description = "Sets the bucket size for the types hash table",
+    syntax = listOf("<b>types_hash_bucket_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -1045,6 +1106,7 @@ val typesHashBucketSize = Directive(
 val typesHashMaxSize = Directive(
     "types_hash_max_size",
     description = "Sets the maximum size of the types hash table",
+    syntax = listOf("<b>types_hash_max_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -1061,6 +1123,7 @@ val typesHashMaxSize = Directive(
 val types = Directive(
     "types",
     description = "Defines MIME types for file extensions",
+    syntax = listOf("<b>types</b> { ... }"),
     parameters = listOf(
         DirectiveParameter(
             name = "mime_types",
@@ -1076,6 +1139,10 @@ val types = Directive(
 val tryFiles = Directive(
     "try_files",
     description = "Checks the existence of files in a specified order and uses the first found file or performs an internal redirect",
+    syntax = listOf(
+        "<b>try_files</b> <i>file</i> ... <i>uri</i>;",
+        "<b>try_files</b> <i>file</i> ... =<i>code</i>;"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "files_or_uri",
@@ -1121,6 +1188,7 @@ val underscoresInHeaders = ToggleDirective(
 val variablesHashBucketSize = Directive(
     "variables_hash_bucket_size",
     description = "Sets the bucket size for the variables hash table",
+    syntax = listOf("<b>variables_hash_bucket_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -1136,6 +1204,7 @@ val variablesHashBucketSize = Directive(
 val variablesHashMaxSize = Directive(
     "variables_hash_max_size",
     description = "Sets the maximum size of the variables hash table",
+    syntax = listOf("<b>variables_hash_max_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -1152,6 +1221,11 @@ val variablesHashMaxSize = Directive(
 val listen = Directive(
     "listen",
     description = "Configures the IP address and port for server block",
+    syntax = listOf(
+        "<b>listen</b> <i>address</i>[:<i>port</i>] [default_server] [ssl] [http2 | quic] [proxy_protocol] [setfib=<i>number</i>] [fastopen=<i>number</i>] [backlog=<i>number</i>] [rcvbuf=<i>size</i>] [sndbuf=<i>size</i>] [accept_filter=<i>filter</i>] [deferred] [bind] [ipv6only=on|off] [reuseport] [so_keepalive=on|off|[<i>keepidle</i>]:[<i>keepintvl</i>]:[<i>keepcnt</i>]];",
+        "<b>listen</b> <i>port</i> [default_server] [ssl] [http2 | quic] [proxy_protocol] [setfib=<i>number</i>] [fastopen=<i>number</i>] [backlog=<i>number</i>] [rcvbuf=<i>size</i>] [sndbuf=<i>size</i>] [accept_filter=<i>filter</i>] [deferred] [bind] [ipv6only=on|off] [reuseport] [so_keepalive=on|off|[<i>keepidle</i>]:[<i>keepintvl</i>]:[<i>keepcnt</i>]];",
+        "<b>listen</b> unix:<i>path</i> [default_server] [ssl] [http2 | quic] [proxy_protocol] [backlog=<i>number</i>] [rcvbuf=<i>size</i>] [sndbuf=<i>size</i>] [accept_filter=<i>filter</i>] [deferred] [bind] [so_keepalive=on|off|[<i>keepidle</i>]:[<i>keepintvl</i>]:[<i>keepcnt</i>]];"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -1177,6 +1251,7 @@ val listen = Directive(
 val serverName = Directive(
     "server_name",
     description = "Sets the server names for the current server block",
+    syntax = listOf("<b>server_name</b> <i>name</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "name",
@@ -1192,6 +1267,7 @@ val serverName = Directive(
 val authDelay = Directive(
     "auth_delay",
     "Delays processing of unauthorized requests with 401 response code to prevent timing attacks",
+    syntax = listOf("<b>auth_delay</b> <i>time</i>;"),
     context = listOf(http, server, location),
     module = ngx_http_core_module
 )
@@ -1199,6 +1275,7 @@ val authDelay = Directive(
 val connectionPoolSize = Directive(
     "connection_pool_size",
     "Allows accurate tuning of per-connection memory allocations",
+    syntax = listOf("<b>connection_pool_size</b> <i>size</i>;"),
     context = listOf(http, server),
     module = ngx_http_core_module
 )

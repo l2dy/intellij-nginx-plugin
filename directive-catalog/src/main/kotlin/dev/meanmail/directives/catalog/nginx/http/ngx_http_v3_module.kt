@@ -28,6 +28,7 @@ val http3Hq = ToggleDirective(
 val http3MaxConcurrentStreams = Directive(
     name = "http3_max_concurrent_streams",
     description = "Sets the maximum number of concurrent HTTP/3 streams in a connection",
+    syntax = listOf("<b>http3_max_concurrent_streams</b> <i>number</i>;"),
     context = listOf(http, server),
     module = ngx_http_v3_module
 )
@@ -35,6 +36,7 @@ val http3MaxConcurrentStreams = Directive(
 val http3StreamBufferSize = Directive(
     name = "http3_stream_buffer_size",
     description = "Sets the size of the buffer used for reading and writing of the QUIC streams",
+    syntax = listOf("<b>http3_stream_buffer_size</b> <i>size</i>;"),
     context = listOf(http, server),
     module = ngx_http_v3_module
 )
@@ -42,6 +44,7 @@ val http3StreamBufferSize = Directive(
 val quicActiveConnectionIdLimit = Directive(
     name = "quic_active_connection_id_limit",
     description = "Sets the QUIC active_connection_id_limit transport parameter value",
+    syntax = listOf("<b>quic_active_connection_id_limit</b> <i>number</i>;"),
     context = listOf(http, server),
     module = ngx_http_v3_module
 )
@@ -65,6 +68,7 @@ val quicGso = ToggleDirective(
 val quicHostKey = Directive(
     name = "quic_host_key",
     description = "Sets a file with the secret key used to encrypt stateless reset and address validation tokens",
+    syntax = listOf("<b>quic_host_key</b> <i>file</i>;"),
     context = listOf(http, server),
     module = ngx_http_v3_module
 )

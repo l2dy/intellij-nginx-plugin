@@ -12,6 +12,7 @@ val ngx_http_headers_module = NginxModule(
 val addHeader = Directive(
     name = "add_header",
     description = "Adds custom HTTP headers to responses. Allows dynamically inserting additional headers to HTTP responses.",
+    syntax = listOf("<b>add_header</b> <i>name</i> <i>value</i> [always];"),
     parameters = listOf(
         DirectiveParameter(
             name = "header_name",
@@ -39,6 +40,7 @@ val addHeader = Directive(
 val addTrailer = Directive(
     name = "add_trailer",
     description = "Adds custom HTTP trailers to responses. Allows appending additional metadata at the end of HTTP responses.",
+    syntax = listOf("<b>add_trailer</b> <i>name</i> <i>value</i> [always];"),
     parameters = listOf(
         DirectiveParameter(
             name = "trailer_name",
@@ -66,6 +68,10 @@ val addTrailer = Directive(
 val expires = Directive(
     name = "expires",
     description = "Controls the Expires and Cache-Control headers for responses. Manages caching behavior and content expiration.",
+    syntax = listOf(
+        "<b>expires</b> [modified] <i>time</i>;",
+        "<b>expires</b> epoch | max | off;"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -81,6 +87,7 @@ val expires = Directive(
 val addHeaderInherit = Directive(
     name = "add_header_inherit",
     description = "Allows altering inheritance rules for add_header directives",
+    syntax = listOf("<b>add_header_inherit</b> on | off | merge;"),
     context = listOf(http, server, location, locationIf),
     module = ngx_http_headers_module
 )
@@ -88,6 +95,7 @@ val addHeaderInherit = Directive(
 val addTrailerInherit = Directive(
     name = "add_trailer_inherit",
     description = "Allows altering inheritance rules for add_trailer directives",
+    syntax = listOf("<b>add_trailer_inherit</b> on | off | merge;"),
     context = listOf(http, server, location, locationIf),
     module = ngx_http_headers_module
 )

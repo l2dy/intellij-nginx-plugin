@@ -12,6 +12,7 @@ val ngx_http_secure_link_module = NginxModule(
 val secureLink = Directive(
     name = "secure_link",
     description = "Defines a string with variables to extract the checksum value and lifetime of a link",
+    syntax = listOf("<b>secure_link</b> <i>expression</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "expression",
@@ -27,6 +28,7 @@ val secureLink = Directive(
 val secureLinkMd5 = Directive(
     name = "secure_link_md5",
     description = "Defines an expression for computing the MD5 hash value to compare with the request value",
+    syntax = listOf("<b>secure_link_md5</b> <i>expression</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "expression",
@@ -42,6 +44,7 @@ val secureLinkMd5 = Directive(
 val secureLinkSecret = Directive(
     name = "secure_link_secret",
     description = "Defines a secret word for checking the authenticity of requested links",
+    syntax = listOf("<b>secure_link_secret</b> <i>word</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "word",

@@ -28,6 +28,7 @@ val ssiLastModified = ToggleDirective(
 val ssiMinFileChunk = Directive(
     name = "ssi_min_file_chunk",
     description = "Sets the minimum size for response parts stored on disk to optimize sendfile usage",
+    syntax = listOf("<b>ssi_min_file_chunk</b> size;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -51,6 +52,7 @@ val ssiSilentErrors = ToggleDirective(
 val ssiTypes = Directive(
     name = "ssi_types",
     description = "Enables processing of SSI commands in responses with specified MIME types, in addition to 'text/html'",
+    syntax = listOf("<b>ssi_types</b> <i>mime-type</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mime_types",
@@ -66,6 +68,7 @@ val ssiTypes = Directive(
 val ssiValueLength = Directive(
     name = "ssi_value_length",
     description = "Sets the maximum length of parameter values in SSI commands",
+    syntax = listOf("<b>ssi_value_length</b> <i>length</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "length",

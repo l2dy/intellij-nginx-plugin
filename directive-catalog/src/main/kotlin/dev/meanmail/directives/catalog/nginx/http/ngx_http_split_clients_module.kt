@@ -12,6 +12,7 @@ val ngx_http_split_clients_module = NginxModule(
 val splitClients = Directive(
     name = "split_clients",
     description = "Creates a variable for A/B testing by hashing a given string and distributing clients into percentage-based groups",
+    syntax = listOf("<b>split_clients</b> <i>string</i> <i>\$variable</i> { ... }"),
     parameters = listOf(
         DirectiveParameter(
             name = "string",

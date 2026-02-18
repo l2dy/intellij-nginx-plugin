@@ -50,6 +50,7 @@ data class DirectiveParameter(
 open class Directive(
     val name: String,
     val description: String,
+    val syntax: List<String> = emptyList(),
     val parameters: List<DirectiveParameter> = emptyList(),
     val context: List<Directive>,
     val module: NginxModule
@@ -208,9 +209,10 @@ class ToggleDirective(
     context: List<Directive>,
     module: NginxModule
 ) : Directive(
-    name,
-    description,
-    listOf(
+    name = name,
+    description = description,
+    syntax = listOf("<b>$name</b> on | off;"),
+    parameters = listOf(
         DirectiveParameter(
             name = "state",
             description = "Enables or disables the directive",
@@ -219,8 +221,8 @@ class ToggleDirective(
             defaultValue = if (enabled) "on" else "off"
         )
     ),
-    context,
-    module
+    context = context,
+    module = module
 )
 
 open class NginxModule(

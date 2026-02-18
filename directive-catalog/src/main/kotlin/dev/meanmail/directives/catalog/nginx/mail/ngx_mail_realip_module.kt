@@ -12,6 +12,7 @@ val ngx_mail_realip_module = NginxModule(
 val mailSetRealIpFrom = Directive(
     name = "set_real_ip_from",
     description = "Defines trusted addresses that are known to send correct replacement addresses",
+    syntax = listOf("<b>set_real_ip_from</b> <i>address</i> | <i>CIDR</i> | unix:;"),
     module = ngx_mail_realip_module,
     parameters = listOf(
         DirectiveParameter(

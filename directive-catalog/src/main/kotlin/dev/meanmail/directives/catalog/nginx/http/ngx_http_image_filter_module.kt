@@ -12,6 +12,14 @@ val ngx_http_image_filter_module = NginxModule(
 val imageFilter = Directive(
     name = "image_filter",
     description = "Sets the type of transformation to perform on images",
+    syntax = listOf(
+        "<b>image_filter</b> off;",
+        "<b>image_filter</b> test;",
+        "<b>image_filter</b> size;",
+        "<b>image_filter</b> rotate 90 | 180 | 270;",
+        "<b>image_filter</b> resize <i>width</i> <i>height</i>;",
+        "<b>image_filter</b> crop <i>width</i> <i>height</i>;"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "operation",
@@ -35,6 +43,7 @@ val imageFilter = Directive(
 val imageFilterBuffer = Directive(
     name = "image_filter_buffer",
     description = "Sets the maximum size of the buffer used for reading images",
+    syntax = listOf("<b>image_filter_buffer</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -59,6 +68,7 @@ val imageFilterInterlace = ToggleDirective(
 val imageFilterJpegQuality = Directive(
     name = "image_filter_jpeg_quality",
     description = "Sets the quality of the transformed JPEG images",
+    syntax = listOf("<b>image_filter_jpeg_quality</b> <i>quality</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "quality",
@@ -75,6 +85,7 @@ val imageFilterJpegQuality = Directive(
 val imageFilterSharpen = Directive(
     name = "image_filter_sharpen",
     description = "Increases sharpness of the final image",
+    syntax = listOf("<b>image_filter_sharpen</b> <i>percent</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "percent",
@@ -91,6 +102,7 @@ val imageFilterSharpen = Directive(
 val imageFilterTransparency = Directive(
     name = "image_filter_transparency",
     description = "Defines whether transparency should be preserved in image transformations",
+    syntax = listOf("<b>image_filter_transparency</b> on|off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "state",
@@ -107,6 +119,7 @@ val imageFilterTransparency = Directive(
 val imageFilterWebpQuality = Directive(
     name = "image_filter_webp_quality",
     description = "Sets the quality of the transformed WebP images",
+    syntax = listOf("<b>image_filter_webp_quality</b> <i>quality</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "quality",
