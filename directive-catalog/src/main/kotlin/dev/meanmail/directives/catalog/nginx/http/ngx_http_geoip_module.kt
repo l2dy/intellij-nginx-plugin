@@ -69,18 +69,10 @@ val geoipProxy = Directive(
     module = ngx_http_geoip_module
 )
 
-val geoipProxyRecursive = Directive(
-    name = "geoip_proxy_recursive",
-    description = "Determines whether to recursively search for the original client IP address through multiple proxy layers",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            description = "Enable or disable recursive proxy IP search",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val geoipProxyRecursive = ToggleDirective(
+    "geoip_proxy_recursive",
+    "Determines whether to recursively search for the original client IP address through multiple proxy layers",
+    enabled = false,
     context = listOf(http),
     module = ngx_http_geoip_module
 )

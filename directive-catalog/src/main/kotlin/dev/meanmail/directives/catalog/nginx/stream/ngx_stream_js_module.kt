@@ -135,18 +135,10 @@ val streamJsFetchTrustedCertificate = Directive(
     module = ngx_stream_js_module
 )
 
-val streamJsFetchVerify = Directive(
-    name = "js_fetch_verify",
-    description = "Enables or disables verification of the remote certificate",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            description = "Enable (on) or disable (off) certificate verification",
-            valueType = ValueType.BOOLEAN,
-            defaultValue = "on",
-            required = false
-        )
-    ),
+val streamJsFetchVerify = ToggleDirective(
+    "js_fetch_verify",
+    "Enables or disables verification of the remote certificate",
+    enabled = true,
     context = listOf(stream, streamServer),
     module = ngx_stream_js_module
 )

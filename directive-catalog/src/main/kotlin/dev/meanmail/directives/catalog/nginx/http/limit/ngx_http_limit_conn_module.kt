@@ -54,18 +54,10 @@ val limitConn = Directive(
     module = ngx_http_limit_conn_module
 )
 
-val limitConnDryRun = Directive(
-    name = "limit_conn_dry_run",
-    description = "Enables dry run mode for connection limiting",
-    parameters = listOf(
-        DirectiveParameter(
-            "state",
-            "Enables or disables dry run mode",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val limitConnDryRun = ToggleDirective(
+    "limit_conn_dry_run",
+    "Enables dry run mode for connection limiting",
+    enabled = false,
     context = listOf(server, location, http),
     module = ngx_http_limit_conn_module
 )

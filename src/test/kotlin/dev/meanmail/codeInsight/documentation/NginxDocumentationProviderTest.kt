@@ -97,13 +97,13 @@ class NginxDocumentationProviderTest : BasePlatformTestCase() {
         val doc = configureAndGetDoc(
             """
             http {
-                server_tokens<caret> on;
+                tcp_nodelay<caret> on;
             }
             """.trimIndent()
         )
 
-        assertContains(doc, DocumentationMarkup.DEFINITION_START + "server_tokens")
-        assertContains(doc, "Enables or disables displaying NGINX version")
+        assertContains(doc, DocumentationMarkup.DEFINITION_START + "tcp_nodelay")
+        assertContains(doc, "Enables or disables the TCP_NODELAY option")
         assertContains(doc, "<b>state</b>")
         assertContains(doc, "Allowed values: on, off")
         assertContains(doc, "default: on")
@@ -205,15 +205,15 @@ class NginxDocumentationProviderTest : BasePlatformTestCase() {
         val info = configureAndGetQuickNav(
             """
             http {
-                server_tokens<caret> on;
+                tcp_nodelay<caret> on;
             }
             """.trimIndent()
         )
 
-        assertTrue("Expected quick nav to start with '<b>server_tokens</b>', got: $info",
-            info.startsWith("<b>server_tokens</b>"))
+        assertTrue("Expected quick nav to start with '<b>tcp_nodelay</b>', got: $info",
+            info.startsWith("<b>tcp_nodelay</b>"))
         assertContains(info, "ngx_http_core_module")
-        assertContains(info, "Enables or disables displaying NGINX version")
+        assertContains(info, "Enables or disables the TCP_NODELAY option")
     }
 
 }

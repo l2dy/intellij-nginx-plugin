@@ -252,18 +252,10 @@ val jsFetchTrustedCertificate = Directive(
     module = ngx_http_js_module
 )
 
-val jsFetchVerify = Directive(
-    name = "js_fetch_verify",
-    description = "Enables or disables verification of the HTTPS server certificate with Fetch API.",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            description = "Enable (on) or disable (off) certificate verification",
-            valueType = ValueType.BOOLEAN,
-            defaultValue = "on",
-            required = false
-        )
-    ),
+val jsFetchVerify = ToggleDirective(
+    "js_fetch_verify",
+    "Enables or disables verification of the HTTPS server certificate with Fetch API.",
+    enabled = true,
     context = listOf(http, server, location),
     module = ngx_http_js_module
 )

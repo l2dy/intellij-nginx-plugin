@@ -49,18 +49,10 @@ val mp4MaxBufferSize = Directive(
     module = ngx_http_mp4_module
 )
 
-val mp4StartKeyFrame = Directive(
-    name = "mp4_start_key_frame",
-    description = "Enables prepending the video with a key frame before the start point",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            description = "Enable or disable prepending key frame",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val mp4StartKeyFrame = ToggleDirective(
+    "mp4_start_key_frame",
+    "Enables prepending the video with a key frame before the start point",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_mp4_module
 )

@@ -148,17 +148,10 @@ val mailSslPasswordFile = Directive(
     module = ngx_mail_ssl_module
 )
 
-val mailSslPreferServerCiphers = Directive(
-    name = "ssl_prefer_server_ciphers",
-    description = "Enables server cipher preferences over client preferences",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Server cipher preference state",
-            allowedValues = listOf("on", "off"),
-        )
-    ),
+val mailSslPreferServerCiphers = ToggleDirective(
+    "ssl_prefer_server_ciphers",
+    "Enables server cipher preferences over client preferences",
+    enabled = false,
     context = listOf(mail, mailServer),
     module = ngx_mail_ssl_module
 )
@@ -210,17 +203,10 @@ val mailSslSessionTicketKey = Directive(
     module = ngx_mail_ssl_module
 )
 
-val mailSslSessionTickets = Directive(
-    name = "ssl_session_tickets",
-    description = "Enables or disables SSL session tickets",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "TLS session tickets state",
-            allowedValues = listOf("on", "off"),
-        )
-    ),
+val mailSslSessionTickets = ToggleDirective(
+    "ssl_session_tickets",
+    "Enables or disables SSL session tickets",
+    enabled = true,
     context = listOf(mail, mailServer),
     module = ngx_mail_ssl_module
 )

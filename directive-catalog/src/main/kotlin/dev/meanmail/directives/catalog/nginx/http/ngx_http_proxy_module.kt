@@ -48,18 +48,10 @@ val proxyBufferSize = Directive(
     module = ngx_http_proxy_module
 )
 
-val proxyBuffering = Directive(
-    name = "proxy_buffering",
-    description = "Enables or disables buffering of responses from the proxied server",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "enabled",
-            description = "Whether to enable buffering of responses from the proxied server",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "on"
-        )
-    ),
+val proxyBuffering = ToggleDirective(
+    "proxy_buffering",
+    "Enables or disables buffering of responses from the proxied server",
+    enabled = true,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )
@@ -119,18 +111,10 @@ val proxyCache = Directive(
     module = ngx_http_proxy_module
 )
 
-val proxyCacheBackgroundUpdate = Directive(
-    name = "proxy_cache_background_update",
-    description = "Enables background updating of expired cache items",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "enabled",
-            description = "Whether to enable background updating of expired cache items",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val proxyCacheBackgroundUpdate = ToggleDirective(
+    "proxy_cache_background_update",
+    "Enables background updating of expired cache items",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )
@@ -150,18 +134,10 @@ val proxyCacheBypass = Directive(
     module = ngx_http_proxy_module
 )
 
-val proxyCacheConvertHead = Directive(
-    name = "proxy_cache_convert_head",
-    description = "Enables converting HEAD requests to GET requests for caching",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "enabled",
-            description = "Whether to convert HEAD requests to GET requests for caching",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "on"
-        )
-    ),
+val proxyCacheConvertHead = ToggleDirective(
+    "proxy_cache_convert_head",
+    "Enables converting HEAD requests to GET requests for caching",
+    enabled = true,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )
@@ -181,18 +157,10 @@ val proxyCacheKey = Directive(
     module = ngx_http_proxy_module
 )
 
-val proxyCacheLock = Directive(
-    name = "proxy_cache_lock",
-    description = "Enables cache lock to prevent multiple simultaneous requests for the same content",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "enabled",
-            description = "Whether to enable cache lock",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val proxyCacheLock = ToggleDirective(
+    "proxy_cache_lock",
+    "Enables cache lock to prevent multiple simultaneous requests for the same content",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )
@@ -399,18 +367,10 @@ val proxyCachePurge = Directive(
     module = ngx_http_proxy_module
 )
 
-val proxyCacheRevalidate = Directive(
-    name = "proxy_cache_revalidate",
-    description = "Enables or disables revalidation of stale cache items",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "enabled",
-            description = "Whether to enable revalidation",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val proxyCacheRevalidate = ToggleDirective(
+    "proxy_cache_revalidate",
+    "Enables or disables revalidation of stale cache items",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )
@@ -515,18 +475,10 @@ val proxyCookiePath = Directive(
     module = ngx_http_proxy_module
 )
 
-val proxyForceRanges = Directive(
-    name = "proxy_force_ranges",
-    description = "Enables byte-range support for proxied requests regardless of the Range request header field",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "enabled",
-            description = "Whether to enable byte-range support",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val proxyForceRanges = ToggleDirective(
+    "proxy_force_ranges",
+    "Enables byte-range support for proxied requests regardless of the Range request header field",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )
@@ -626,18 +578,10 @@ val proxyIgnoreHeaders = Directive(
     module = ngx_http_proxy_module
 )
 
-val proxyInterceptErrors = Directive(
-    name = "proxy_intercept_errors",
-    description = "Determines whether NGINX will process error responses from the proxied server or pass them directly to the client",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "enabled",
-            description = "When enabled, NGINX will process error responses (status codes 4xx, 5xx) from the proxied server using error_page directive",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val proxyInterceptErrors = ToggleDirective(
+    "proxy_intercept_errors",
+    "Determines whether NGINX will process error responses from the proxied server or pass them directly to the client",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )
@@ -791,50 +735,26 @@ val proxyPassHeader = Directive(
     module = ngx_http_proxy_module
 )
 
-val proxyPassRequestBody = Directive(
-    name = "proxy_pass_request_body",
-    description = "Determines whether the original request body is passed to the proxied server",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "enabled",
-            description = "When enabled, the original client request body is passed to the proxied server",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "on"
-        )
-    ),
+val proxyPassRequestBody = ToggleDirective(
+    "proxy_pass_request_body",
+    "Determines whether the original request body is passed to the proxied server",
+    enabled = true,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )
 
-val proxyPassRequestHeaders = Directive(
-    name = "proxy_pass_request_headers",
-    description = "Determines whether the original request headers are passed to the proxied server",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "enabled",
-            description = "When enabled, the original client request headers are passed to the proxied server",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "on"
-        )
-    ),
+val proxyPassRequestHeaders = ToggleDirective(
+    "proxy_pass_request_headers",
+    "Determines whether the original request headers are passed to the proxied server",
+    enabled = true,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )
 
-val proxyPassTrailers = Directive(
-    name = "proxy_pass_trailers",
-    description = "Indicates whether trailer fields from the proxied server should be passed to the client",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "enabled",
-            description = "Whether to pass trailers",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val proxyPassTrailers = ToggleDirective(
+    "proxy_pass_trailers",
+    "Indicates whether trailer fields from the proxied server should be passed to the client",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )
@@ -871,18 +791,10 @@ val proxyRedirect = Directive(
     module = ngx_http_proxy_module
 )
 
-val proxyRequestBuffering = Directive(
-    name = "proxy_request_buffering",
-    description = "Enables or disables buffering of a client request body",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "enabled",
-            description = "Whether to enable request buffering",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "on"
-        )
-    ),
+val proxyRequestBuffering = ToggleDirective(
+    "proxy_request_buffering",
+    "Enables or disables buffering of a client request body",
+    enabled = true,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )
@@ -953,18 +865,10 @@ val proxySetHeader = Directive(
     module = ngx_http_proxy_module
 )
 
-val proxySocketKeepalive = Directive(
-    name = "proxy_socket_keepalive",
-    description = "Configures the TCP keepalive behavior for upstream connections",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Enables or disables TCP keepalive for proxy connections. Helps maintain long-lived connections",
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val proxySocketKeepalive = ToggleDirective(
+    "proxy_socket_keepalive",
+    "Configures the TCP keepalive behavior for upstream connections",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )
@@ -1123,34 +1027,18 @@ val proxySslProtocols = Directive(
     module = ngx_http_proxy_module
 )
 
-val proxySslServerName = Directive(
-    name = "proxy_ssl_server_name",
-    description = "Enables or disables passing of the server name during SSL/TLS handshake to a proxied HTTPS server",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Enables sending of the original server name during SSL/TLS connection",
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val proxySslServerName = ToggleDirective(
+    "proxy_ssl_server_name",
+    "Enables or disables passing of the server name during SSL/TLS handshake to a proxied HTTPS server",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )
 
-val proxySslSessionReuse = Directive(
-    name = "proxy_ssl_session_reuse",
-    description = "Enables or disables reuse of SSL sessions when connecting to a proxied HTTPS server",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Enables or disables SSL session reuse to improve performance",
-            required = false,
-            defaultValue = "on"
-        )
-    ),
+val proxySslSessionReuse = ToggleDirective(
+    "proxy_ssl_session_reuse",
+    "Enables or disables reuse of SSL sessions when connecting to a proxied HTTPS server",
+    enabled = true,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )
@@ -1170,18 +1058,10 @@ val proxySslTrustedCertificate = Directive(
     module = ngx_http_proxy_module
 )
 
-val proxySslVerify = Directive(
-    name = "proxy_ssl_verify",
-    description = "Enables or disables verification of the proxied HTTPS server's certificate",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Enables or disables verification of the proxied server's SSL certificate",
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val proxySslVerify = ToggleDirective(
+    "proxy_ssl_verify",
+    "Enables or disables verification of the proxied HTTPS server's certificate",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_proxy_module
 )

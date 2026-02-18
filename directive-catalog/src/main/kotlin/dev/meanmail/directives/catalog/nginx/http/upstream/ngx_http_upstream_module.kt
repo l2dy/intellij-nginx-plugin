@@ -158,20 +158,19 @@ val hash = Directive(
     module = ngx_http_upstream_module
 )
 
-val ip_hash = ToggleDirective(
+val ip_hash = Directive(
     "ip_hash",
-    """
+    description = """
         Specifies that a group should use IP-based load balancing.
         The first three octets of the client IPv4 address, or the entire IPv6 address,
         are used as a hashing key.
-        
+
         Ensures requests from the same client will always be passed to the same server
         except when this server is unavailable.
-        
+
         To temporarily remove a server while preserving the client IP mapping,
         mark it with the 'down' parameter.
     """.trimIndent(),
-    enabled = true,
     context = listOf(upstream),
     module = ngx_http_upstream_module
 )

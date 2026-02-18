@@ -67,18 +67,10 @@ val limitReq = Directive(
     module = ngx_http_limit_req_module
 )
 
-val limitReqDryRun = Directive(
-    name = "limit_req_dry_run",
-    description = "Enables dry run mode for request rate limiting without actual blocking",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            description = "Enables or disables dry run mode",
-            valueType = ValueType.BOOLEAN,
-            required = true,
-            defaultValue = "off"
-        )
-    ),
+val limitReqDryRun = ToggleDirective(
+    "limit_req_dry_run",
+    "Enables dry run mode for request rate limiting without actual blocking",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_limit_req_module
 )

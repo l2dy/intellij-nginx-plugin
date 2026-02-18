@@ -182,32 +182,18 @@ val masterProcess = ToggleDirective(
     module = ngx_core_module
 )
 
-val multiAccept = Directive(
-    name = "multi_accept",
-    description = "Enables or disables multiple connection handling",
-    parameters = listOf(
-        DirectiveParameter(
-            valueType = ValueType.BOOLEAN,
-            name = "state",
-            description = "Multiple connection handling state",
-            allowedValues = listOf("on", "off")
-        )
-    ),
+val multiAccept = ToggleDirective(
+    "multi_accept",
+    "Enables or disables multiple connection handling",
+    enabled = false,
     context = listOf(events),
     module = ngx_core_module
 )
 
-val pcreJit = Directive(
-    name = "pcre_jit",
-    description = "Enables or disables PCRE JIT compilation",
-    parameters = listOf(
-        DirectiveParameter(
-            valueType = ValueType.BOOLEAN,
-            name = "state",
-            description = "PCRE JIT compilation state",
-            allowedValues = listOf("on", "off")
-        )
-    ),
+val pcreJit = ToggleDirective(
+    "pcre_jit",
+    "Enables or disables PCRE JIT compilation",
+    enabled = false,
     context = listOf(main),
     module = ngx_core_module
 )
