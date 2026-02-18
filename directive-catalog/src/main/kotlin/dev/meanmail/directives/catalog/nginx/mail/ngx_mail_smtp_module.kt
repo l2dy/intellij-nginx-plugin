@@ -12,6 +12,7 @@ val ngx_mail_smtp_module = NginxModule(
 val smtpAuth = Directive(
     name = "smtp_auth",
     description = "Sets permitted methods of SASL authentication for SMTP clients",
+    syntax = listOf("<b>smtp_auth</b> <i>method</i> ...;"),
     module = ngx_mail_smtp_module,
     parameters = listOf(
         DirectiveParameter(
@@ -30,6 +31,7 @@ val smtpAuth = Directive(
 val smtpCapabilities = Directive(
     name = "smtp_capabilities",
     description = "Sets the SMTP protocol extensions list passed to the client in response to the EHLO command",
+    syntax = listOf("<b>smtp_capabilities</b> <i>extension</i> ...;"),
     module = ngx_mail_smtp_module,
     parameters = listOf(
         DirectiveParameter(
@@ -46,6 +48,7 @@ val smtpCapabilities = Directive(
 val smtpClientBuffer = Directive(
     name = "smtp_client_buffer",
     description = "Sets the size of the buffer used for reading SMTP commands",
+    syntax = listOf("<b>smtp_client_buffer</b> <i>size</i>;"),
     module = ngx_mail_smtp_module,
     parameters = listOf(
         DirectiveParameter(
@@ -61,6 +64,7 @@ val smtpClientBuffer = Directive(
 val smtpGreetingDelay = Directive(
     name = "smtp_greeting_delay",
     description = "Sets a delay before sending an SMTP greeting to reject premature clients",
+    syntax = listOf("<b>smtp_greeting_delay</b> <i>time</i>;"),
     module = ngx_mail_smtp_module,
     parameters = listOf(
         DirectiveParameter(

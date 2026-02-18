@@ -12,6 +12,7 @@ val ngx_http_charset_module = NginxModule(
 val charset = Directive(
     name = "charset",
     description = "Sets the character set for responses",
+    syntax = listOf("<b>charset</b> <i>charset</i> | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "charset_name",
@@ -28,6 +29,7 @@ val charset = Directive(
 val charsetMap = Directive(
     name = "charset_map",
     description = "Defines a mapping between character sets",
+    syntax = listOf("<b>charset_map</b> <i>charset1</i> <i>charset2</i> { ... }"),
     parameters = listOf(
         DirectiveParameter(
             name = "source_charset",
@@ -49,6 +51,7 @@ val charsetMap = Directive(
 val charsetTypes = Directive(
     name = "charset_types",
     description = "Specifies MIME types for which character set conversion is performed",
+    syntax = listOf("<b>charset_types</b> <i>mime-type</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mime_types",
@@ -74,6 +77,7 @@ val overrideCharset = ToggleDirective(
 val sourceCharset = Directive(
     name = "source_charset",
     description = "Specifies the source character set for conversion",
+    syntax = listOf("<b>source_charset</b> <i>charset</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "charset_name",

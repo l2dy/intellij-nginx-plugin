@@ -12,6 +12,7 @@ val ngx_http_mirror_module = NginxModule(
 val mirror = Directive(
     name = "mirror",
     description = "Sets the URI to which an original request will be mirrored",
+    syntax = listOf("<b>mirror</b> <i>uri</i> | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "uri",

@@ -12,6 +12,7 @@ val ngx_http_access_module = NginxModule(
 val allow = Directive(
     "allow",
     description = "Allows access for specified IP addresses or networks",
+    syntax = listOf("<b>allow</b> <i>address</i> | <i>CIDR</i> | unix: | all;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -32,6 +33,7 @@ val allow = Directive(
 val deny = Directive(
     "deny",
     description = "Denies access for specified IP addresses or networks",
+    syntax = listOf("<b>deny</b> <i>address</i> | <i>CIDR</i> | unix: | all;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",

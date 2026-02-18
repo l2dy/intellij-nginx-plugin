@@ -12,6 +12,7 @@ val ngx_stream_realip_module = NginxModule(
 val streamSetRealIpFrom = Directive(
     name = "set_real_ip_from",
     description = "Defines trusted IP addresses or networks for determining the real client IP address in stream context",
+    syntax = listOf("<b>set_real_ip_from</b> <i>address</i> | <i>CIDR</i> | unix:;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",

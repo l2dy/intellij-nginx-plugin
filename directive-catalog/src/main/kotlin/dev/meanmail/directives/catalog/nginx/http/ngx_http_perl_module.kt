@@ -12,6 +12,7 @@ val ngx_http_perl_module = NginxModule(
 val perl = Directive(
     name = "perl",
     description = "Sets a Perl handler for the given location",
+    syntax = listOf("<b>perl</b> <i>module</i>::<i>function</i>|'sub { ... }';"),
     parameters = listOf(
         DirectiveParameter(
             name = "handler",
@@ -27,6 +28,7 @@ val perl = Directive(
 val perlModules = Directive(
     name = "perl_modules",
     description = "Sets an additional path for Perl modules",
+    syntax = listOf("<b>perl_modules</b> <i>path</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -42,6 +44,7 @@ val perlModules = Directive(
 val perlRequire = Directive(
     name = "perl_require",
     description = "Defines a module to be loaded during each reconfiguration",
+    syntax = listOf("<b>perl_require</b> <i>module</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "module",
@@ -57,6 +60,7 @@ val perlRequire = Directive(
 val perlSet = Directive(
     name = "perl_set",
     description = "Installs a Perl handler for the specified variable",
+    syntax = listOf("<b>perl_set</b> <i>\$variable</i> <i>module</i>::<i>function</i>|'sub { ... }';"),
     parameters = listOf(
         DirectiveParameter(
             name = "variable",

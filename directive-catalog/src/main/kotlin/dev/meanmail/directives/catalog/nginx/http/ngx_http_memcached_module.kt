@@ -12,6 +12,7 @@ val ngx_http_memcached_module = NginxModule(
 val memcachedBind = Directive(
     name = "memcached_bind",
     description = "Specifies the local IP address for outgoing connections to a Memcached server",
+    syntax = listOf("<b>memcached_bind</b> <i>address</i> [transparent ] | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -27,6 +28,7 @@ val memcachedBind = Directive(
 val memcachedBufferSize = Directive(
     name = "memcached_buffer_size",
     description = "Sets the buffer size for reading response from the Memcached server",
+    syntax = listOf("<b>memcached_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -43,6 +45,7 @@ val memcachedBufferSize = Directive(
 val memcachedConnectTimeout = Directive(
     name = "memcached_connect_timeout",
     description = "Sets the timeout for establishing a connection to the Memcached server",
+    syntax = listOf("<b>memcached_connect_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -75,6 +78,7 @@ val memcachedForceRanges = Directive(
 val memcachedGzipFlag = Directive(
     name = "memcached_gzip_flag",
     description = "Sets a flag to test for compressed content in Memcached response",
+    syntax = listOf("<b>memcached_gzip_flag</b> <i>flag</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "flag",
@@ -90,6 +94,7 @@ val memcachedGzipFlag = Directive(
 val memcachedNextUpstream = Directive(
     name = "memcached_next_upstream",
     description = "Defines conditions for failing over to another Memcached server",
+    syntax = listOf("<b>memcached_next_upstream</b> error | timeout | denied | invalid_response | not_found | off ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "conditions",
@@ -107,6 +112,7 @@ val memcachedNextUpstream = Directive(
 val memcachedNextUpstreamTimeout = Directive(
     name = "memcached_next_upstream_timeout",
     description = "Sets the maximum time for attempting to select a next upstream server",
+    syntax = listOf("<b>memcached_next_upstream_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -123,6 +129,7 @@ val memcachedNextUpstreamTimeout = Directive(
 val memcachedNextUpstreamTries = Directive(
     name = "memcached_next_upstream_tries",
     description = "Limits the number of attempts to select an upstream server",
+    syntax = listOf("<b>memcached_next_upstream_tries</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "tries",
@@ -138,6 +145,7 @@ val memcachedNextUpstreamTries = Directive(
 val memcachedPass = Directive(
     name = "memcached_pass",
     description = "Defines the Memcached server address for retrieving cached content",
+    syntax = listOf("<b>memcached_pass</b> <i>address</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "server_address",
@@ -153,6 +161,7 @@ val memcachedPass = Directive(
 val memcachedReadTimeout = Directive(
     name = "memcached_read_timeout",
     description = "Sets the timeout for reading response from the Memcached server",
+    syntax = listOf("<b>memcached_read_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -168,6 +177,7 @@ val memcachedReadTimeout = Directive(
 val memcachedSendTimeout = Directive(
     name = "memcached_send_timeout",
     description = "Sets the timeout for sending requests to the Memcached server",
+    syntax = listOf("<b>memcached_send_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",

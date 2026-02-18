@@ -12,6 +12,7 @@ val ngx_stream_split_clients_module = NginxModule(
 val streamSplitClients = Directive(
     name = "split_clients",
     description = "Creates a variable for A/B testing by hashing the input string and distributing clients across different groups",
+    syntax = listOf("<b>split_clients</b> <i>string</i> <i>\$variable</i> { ... }"),
     parameters = listOf(
         DirectiveParameter(
             name = "string",

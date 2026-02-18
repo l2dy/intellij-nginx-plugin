@@ -13,6 +13,7 @@ val ngx_stream_upstream_module = NginxModule(
 val streamUpstream = Directive(
     name = "upstream",
     description = "Defines a group of servers for load balancing in stream context",
+    syntax = listOf("<b>upstream</b> <i>name</i> { ... }"),
     context = listOf(stream),
     module = ngx_stream_upstream_module
 )
@@ -20,6 +21,7 @@ val streamUpstream = Directive(
 val streamUpstreamServer = Directive(
     name = "server",
     description = "Defines a server in an upstream group for load balancing in stream context",
+    syntax = listOf("<b>server</b> <i>address</i> [<i>parameters</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -64,6 +66,7 @@ val streamUpstreamServer = Directive(
 val streamUpstreamZone = Directive(
     name = "zone",
     description = "Defines a shared memory zone for upstream servers in stream context",
+    syntax = listOf("<b>zone</b> <i>name</i> [<i>size</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "name",
@@ -83,6 +86,7 @@ val streamUpstreamZone = Directive(
 val streamUpstreamHash = Directive(
     name = "hash",
     description = "Configures hash-based load balancing method in stream context",
+    syntax = listOf("<b>hash</b> <i>key</i> [consistent];"),
     parameters = listOf(
         DirectiveParameter(
             name = "key",
@@ -103,6 +107,7 @@ val streamUpstreamHash = Directive(
 val streamUpstreamLeastConn = Directive(
     name = "least_conn",
     description = "Selects the server with the least number of active connections in stream context",
+    syntax = listOf("<b>least_conn</b>;"),
     context = listOf(streamUpstream),
     module = ngx_stream_upstream_module
 )
@@ -110,6 +115,7 @@ val streamUpstreamLeastConn = Directive(
 val streamUpstreamRandom = Directive(
     name = "random",
     description = "Configures random load balancing method in stream context",
+    syntax = listOf("<b>random</b> [two [<i>method</i>]];"),
     parameters = listOf(
         DirectiveParameter(
             name = "two",
@@ -132,6 +138,7 @@ val streamUpstreamRandom = Directive(
 val streamUpstreamResolver = Directive(
     name = "resolver",
     description = "Configures DNS servers for upstream server resolution in stream context",
+    syntax = listOf("<b>resolver</b> <i>address</i> ... [valid=<i>time</i>] [ipv4=on|off] [ipv6=on|off] [status_zone=<i>zone</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -158,6 +165,7 @@ val streamUpstreamResolver = Directive(
 val streamUpstreamResolverTimeout = Directive(
     name = "resolver_timeout",
     description = "Sets the timeout for DNS server resolution in stream context",
+    syntax = listOf("<b>resolver_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",

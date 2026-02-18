@@ -14,6 +14,7 @@ val ngx_stream_ssl_module = NginxModule(
 val streamSslAlpn = Directive(
     name = "ssl_alpn",
     description = "Configures ALPN (Application-Layer Protocol Negotiation) for SSL/TLS stream connections",
+    syntax = listOf("<b>ssl_alpn</b> <i>protocol</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             name = "protocol",
@@ -28,6 +29,7 @@ val streamSslAlpn = Directive(
 val streamSslCertificate = Directive(
     name = "ssl_certificate",
     description = "Sets the path to the SSL/TLS certificate file for the server",
+    syntax = listOf("<b>ssl_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -42,6 +44,10 @@ val streamSslCertificate = Directive(
 val streamSslCertificateCache = Directive(
     name = "ssl_certificate_cache",
     description = "Enables or disables the SSL certificate cache",
+    syntax = listOf(
+        "<b>ssl_certificate_cache</b> off;",
+        "<b>ssl_certificate_cache</b> max=<i>N</i> [inactive=<i>time</i>] [valid=<i>time</i>];"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "enabled",
@@ -57,6 +63,7 @@ val streamSslCertificateCache = Directive(
 val streamSslCertificateKey = Directive(
     name = "ssl_certificate_key",
     description = "Sets the path to the SSL/TLS certificate private key file",
+    syntax = listOf("<b>ssl_certificate_key</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -71,6 +78,7 @@ val streamSslCertificateKey = Directive(
 val streamSslCiphers = Directive(
     name = "ssl_ciphers",
     description = "Specifies the enabled ciphers for SSL/TLS connections",
+    syntax = listOf("<b>ssl_ciphers</b> <i>ciphers</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "ciphers",
@@ -85,6 +93,7 @@ val streamSslCiphers = Directive(
 val streamSslClientCertificate = Directive(
     name = "ssl_client_certificate",
     description = "Sets the path to the trusted CA certificate for client certificate verification",
+    syntax = listOf("<b>ssl_client_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -99,6 +108,7 @@ val streamSslClientCertificate = Directive(
 val streamSslConfCommand = Directive(
     name = "ssl_conf_command",
     description = "Sets OpenSSL configuration commands for SSL/TLS connections",
+    syntax = listOf("<b>ssl_conf_command</b> <i>name</i> <i>value</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "command",
@@ -118,6 +128,7 @@ val streamSslConfCommand = Directive(
 val streamSslCrl = Directive(
     name = "ssl_crl",
     description = "Sets the path to the certificate revocation list (CRL) for client certificate verification",
+    syntax = listOf("<b>ssl_crl</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -132,6 +143,7 @@ val streamSslCrl = Directive(
 val streamSslDhparam = Directive(
     name = "ssl_dhparam",
     description = "Sets the path to the Diffie-Hellman parameters file for key exchange",
+    syntax = listOf("<b>ssl_dhparam</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -146,6 +158,7 @@ val streamSslDhparam = Directive(
 val streamSslEcdhCurve = Directive(
     name = "ssl_ecdh_curve",
     description = "Specifies the elliptic curve for ECDHE key exchange",
+    syntax = listOf("<b>ssl_ecdh_curve</b> <i>curve</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "curve",
@@ -160,6 +173,7 @@ val streamSslEcdhCurve = Directive(
 val streamSslHandshakeTimeout = Directive(
     name = "ssl_handshake_timeout",
     description = "Sets the timeout for SSL/TLS handshake completion",
+    syntax = listOf("<b>ssl_handshake_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -174,6 +188,7 @@ val streamSslHandshakeTimeout = Directive(
 val streamSslPasswordFile = Directive(
     name = "ssl_password_file",
     description = "Sets the path to a file containing SSL certificate passwords",
+    syntax = listOf("<b>ssl_password_file</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -196,6 +211,7 @@ val streamSslPreferServerCiphers = ToggleDirective(
 val streamSslProtocols = Directive(
     name = "ssl_protocols",
     description = "Specifies the SSL/TLS protocols to use",
+    syntax = listOf("<b>ssl_protocols</b> [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];"),
     parameters = listOf(
         DirectiveParameter(
             name = "protocols",
@@ -210,6 +226,7 @@ val streamSslProtocols = Directive(
 val streamSslSessionCache = Directive(
     name = "ssl_session_cache",
     description = "Configures the SSL/TLS session cache type and size",
+    syntax = listOf("<b>ssl_session_cache</b> off | none | [builtin[:<i>size</i>]] [shared:<i>name</i>:<i>size</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "type",
@@ -229,6 +246,7 @@ val streamSslSessionCache = Directive(
 val streamSslSessionTicketKey = Directive(
     name = "ssl_session_ticket_key",
     description = "Sets the key for encrypting and decrypting TLS session tickets",
+    syntax = listOf("<b>ssl_session_ticket_key</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -251,6 +269,7 @@ val streamSslSessionTickets = ToggleDirective(
 val streamSslSessionTimeout = Directive(
     name = "ssl_session_timeout",
     description = "Sets the timeout for SSL/TLS session reuse",
+    syntax = listOf("<b>ssl_session_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -265,6 +284,7 @@ val streamSslSessionTimeout = Directive(
 val streamSslTrustedCertificate = Directive(
     name = "ssl_trusted_certificate",
     description = "Sets the path to the trusted CA certificate for SSL/TLS verification",
+    syntax = listOf("<b>ssl_trusted_certificate</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -279,6 +299,7 @@ val streamSslTrustedCertificate = Directive(
 val streamSslVerifyClient = Directive(
     name = "ssl_verify_client",
     description = "Configures client certificate verification",
+    syntax = listOf("<b>ssl_verify_client</b> on | off | optional | optional_no_ca;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mode",
@@ -293,6 +314,7 @@ val streamSslVerifyClient = Directive(
 val streamSslVerifyDepth = Directive(
     name = "ssl_verify_depth",
     description = "Sets the maximum depth of CA certificate chain verification",
+    syntax = listOf("<b>ssl_verify_depth</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "depth",
@@ -315,6 +337,7 @@ val streamSslCertificateCompression = ToggleDirective(
 val streamSslEchFile = Directive(
     name = "ssl_ech_file",
     description = "Specifies a file with encrypted ClientHello configuration for TLS 1.3 ECH",
+    syntax = listOf("<b>ssl_ech_file</b> <i>file</i>;"),
     context = listOf(stream, streamServer),
     module = ngx_stream_ssl_module
 )
@@ -322,6 +345,7 @@ val streamSslEchFile = Directive(
 val streamSslOcsp = Directive(
     name = "ssl_ocsp",
     description = "Enables OCSP validation of the client certificate chain",
+    syntax = listOf("<b>ssl_ocsp</b> on | off | leaf;"),
     parameters = listOf(
         DirectiveParameter(
             name = "parameter",
@@ -342,6 +366,7 @@ val streamSslOcsp = Directive(
 val streamSslOcspCache = Directive(
     name = "ssl_ocsp_cache",
     description = "Sets name and size of the cache that stores client certificates status for OCSP validation",
+    syntax = listOf("<b>ssl_ocsp_cache</b> off | [shared:<i>name</i>:<i>size</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -357,6 +382,7 @@ val streamSslOcspCache = Directive(
 val streamSslOcspResponder = Directive(
     name = "ssl_ocsp_responder",
     description = "Overrides the URL of the OCSP responder for validation of client certificates",
+    syntax = listOf("<b>ssl_ocsp_responder</b> <i>url</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "url",
@@ -388,6 +414,7 @@ val streamSslStapling = ToggleDirective(
 val streamSslStaplingFile = Directive(
     name = "ssl_stapling_file",
     description = "Sets the file for stapled OCSP response instead of querying the OCSP responder",
+    syntax = listOf("<b>ssl_stapling_file</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "file",
@@ -403,6 +430,7 @@ val streamSslStaplingFile = Directive(
 val streamSslStaplingResponder = Directive(
     name = "ssl_stapling_responder",
     description = "Overrides the URL of the OCSP responder for stapling",
+    syntax = listOf("<b>ssl_stapling_responder</b> <i>url</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "url",

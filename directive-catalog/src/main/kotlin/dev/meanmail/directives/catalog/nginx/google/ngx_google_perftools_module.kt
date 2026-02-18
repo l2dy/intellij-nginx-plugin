@@ -12,6 +12,7 @@ val ngx_google_perftools_module = NginxModule(
 val streamGooglePerftoolsProfiles = Directive(
     "google_perftools_profiles",
     description = "Configures Google Perftools profiling for Nginx stream module",
+    syntax = listOf("<b>google_perftools_profiles</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",

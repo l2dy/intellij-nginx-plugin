@@ -12,6 +12,10 @@ val ngx_stream_log_module = NginxModule(
 val streamAccessLog = Directive(
     "access_log",
     description = "Configures logging of client connections in the stream context, allowing detailed tracking of connection events",
+    syntax = listOf(
+        "<b>access_log</b> <i>path</i> <i>format</i> [buffer=<i>size</i>] [gzip[=<i>level</i>]] [flush=<i>time</i>] [if=<i>condition</i>];",
+        "<b>access_log</b> off;"
+    ),
     parameters = listOf(
         DirectiveParameter(
             "path",
@@ -50,6 +54,7 @@ val streamAccessLog = Directive(
 val streamLogFormat = Directive(
     "log_format",
     description = "Defines a custom log format for stream connections, allowing flexible and detailed logging of connection metadata",
+    syntax = listOf("<b>log_format</b> <i>name</i> [escape=default|json|none] <i>string</i> ...;"),
     parameters = listOf(
         DirectiveParameter(
             "name",
@@ -72,6 +77,10 @@ val streamLogFormat = Directive(
 val streamOpenLogFileCache = Directive(
     "open_log_file_cache",
     description = "Configures caching of log file descriptors to improve logging performance and reduce system overhead",
+    syntax = listOf(
+        "<b>open_log_file_cache</b> max=<i>N</i> [inactive=<i>time</i>] [min_uses=<i>N</i>] [valid=<i>time</i>];",
+        "<b>open_log_file_cache</b> off;"
+    ),
     parameters = listOf(
         DirectiveParameter(
             "max",

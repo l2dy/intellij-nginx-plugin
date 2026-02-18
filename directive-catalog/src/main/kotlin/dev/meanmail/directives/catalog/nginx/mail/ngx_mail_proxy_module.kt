@@ -12,6 +12,7 @@ val ngx_mail_proxy_module = NginxModule(
 val proxyBuffer = Directive(
     name = "proxy_buffer",
     description = "Sets the size of the buffer used for proxying. Default size is equal to one memory page (4K or 8K depending on platform)",
+    syntax = listOf("<b>proxy_buffer</b> <i>size</i>;"),
     module = ngx_mail_proxy_module,
     parameters = listOf(
         DirectiveParameter(
@@ -52,6 +53,7 @@ val proxySmtpAuth = ToggleDirective(
 val proxyTimeout = Directive(
     name = "proxy_timeout",
     description = "Sets the timeout between two successive read or write operations on client or proxied server connections. If no data is transmitted within this time, the connection is closed",
+    syntax = listOf("<b>proxy_timeout</b> <i>timeout</i>;"),
     module = ngx_mail_proxy_module,
     parameters = listOf(
         DirectiveParameter(

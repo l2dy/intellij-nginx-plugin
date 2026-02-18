@@ -20,6 +20,7 @@ val http2 = ToggleDirective(
 val http2BodyPrereadSize = Directive(
     name = "http2_body_preread_size",
     description = "Sets the buffer size for saving request body before processing",
+    syntax = listOf("<b>http2_body_preread_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -36,6 +37,7 @@ val http2BodyPrereadSize = Directive(
 val http2ChunkSize = Directive(
     name = "http2_chunk_size",
     description = "Sets the maximum size of response body chunks",
+    syntax = listOf("<b>http2_chunk_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -52,6 +54,7 @@ val http2ChunkSize = Directive(
 val http2IdleTimeout = Directive(
     name = "http2_idle_timeout",
     description = "Sets the timeout of inactivity before connection closure (obsolete since 1.19.7)",
+    syntax = listOf("<b>http2_idle_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -68,6 +71,7 @@ val http2IdleTimeout = Directive(
 val http2MaxConcurrentStreams = Directive(
     name = "http2_max_concurrent_streams",
     description = "Sets the maximum number of concurrent HTTP/2 streams in a connection",
+    syntax = listOf("<b>http2_max_concurrent_streams</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -84,6 +88,7 @@ val http2MaxConcurrentStreams = Directive(
 val http2MaxFieldSize = Directive(
     name = "http2_max_field_size",
     description = "Limits the maximum size of an HTTP/2 header field (obsolete since 1.19.7)",
+    syntax = listOf("<b>http2_max_field_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -100,6 +105,7 @@ val http2MaxFieldSize = Directive(
 val http2MaxHeaderSize = Directive(
     name = "http2_max_header_size",
     description = "Sets the maximum size of HTTP/2 headers",
+    syntax = listOf("<b>http2_max_header_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -116,6 +122,7 @@ val http2MaxHeaderSize = Directive(
 val http2MaxRequests = Directive(
     name = "http2_max_requests",
     description = "Sets the maximum number of requests that can be served over a single HTTP/2 connection",
+    syntax = listOf("<b>http2_max_requests</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -132,6 +139,7 @@ val http2MaxRequests = Directive(
 val http2Push = Directive(
     name = "http2_push",
     description = "Configures server push for HTTP/2 connections",
+    syntax = listOf("<b>http2_push</b> <i>uri</i> | off;"),
     parameters = listOf(
         DirectiveParameter(
             name = "resource",
@@ -155,6 +163,7 @@ val http2PushPreload = ToggleDirective(
 val http2RecvBufferSize = Directive(
     name = "http2_recv_buffer_size",
     description = "Sets the size of the receive buffer for HTTP/2 connections",
+    syntax = listOf("<b>http2_recv_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -171,6 +180,7 @@ val http2RecvBufferSize = Directive(
 val http2RecvTimeout = Directive(
     name = "http2_recv_timeout",
     description = "Sets the timeout for receiving data in HTTP/2 connections",
+    syntax = listOf("<b>http2_recv_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "time",
@@ -187,6 +197,7 @@ val http2RecvTimeout = Directive(
 val http2MaxConcurrentPushes = Directive(
     name = "http2_max_concurrent_pushes",
     description = "Limits the maximum number of concurrent push requests in a connection (obsolete since 1.25.1)",
+    syntax = listOf("<b>http2_max_concurrent_pushes</b> <i>number</i>;"),
     context = listOf(http, server),
     module = ngx_http_v2_module
 )

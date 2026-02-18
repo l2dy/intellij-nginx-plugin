@@ -30,6 +30,7 @@ val stubStatus = Directive(
         
         Note: Prior to 1.7.5, required an argument (e.g., "stub_status on")
     """.trimIndent(),
+    syntax = listOf("<b>stub_status</b>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "on",

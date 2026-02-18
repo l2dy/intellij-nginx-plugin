@@ -15,6 +15,7 @@ val ngx_http_limit_req_module = NginxModule(
 val limitReqZone = Directive(
     name = "limit_req_zone",
     description = "Defines a shared memory zone for tracking request rate limits",
+    syntax = listOf("<b>limit_req_zone</b> <i>key</i> zone=<i>name</i>:<i>size</i> rate=<i>rate</i> [sync];"),
     parameters = listOf(
         DirectiveParameter(
             name = "key",
@@ -42,6 +43,7 @@ val limitReqZone = Directive(
 val limitReq = Directive(
     name = "limit_req",
     description = "Sets the shared memory zone and maximum burst size of requests",
+    syntax = listOf("<b>limit_req</b> zone=<i>name</i> [burst=<i>number</i>] [nodelay | delay=<i>number</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "zone_name",
@@ -78,6 +80,7 @@ val limitReqDryRun = ToggleDirective(
 val limitReqLogLevel = Directive(
     name = "limit_req_log_level",
     description = "Sets the logging level for request rate limit events",
+    syntax = listOf("<b>limit_req_log_level</b> info | notice | warn | error;"),
     parameters = listOf(
         DirectiveParameter(
             name = "log_level",
@@ -95,6 +98,7 @@ val limitReqLogLevel = Directive(
 val limitReqStatus = Directive(
     name = "limit_req_status",
     description = "Defines the HTTP status code returned when request rate limit is exceeded",
+    syntax = listOf("<b>limit_req_status</b> <i>code</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "status_code",

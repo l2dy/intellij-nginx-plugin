@@ -13,6 +13,7 @@ val map = Directive(
     name = "map",
     description = "Creates a new variable whose value depends on values of one or more source variables. " +
             "Supports special mapping values like 'default' (catch-all rule) and '' (empty string mapping).",
+            syntax = listOf("<b>map</b> <i>string</i> <i>\$variable</i> { ... }"),
     parameters = listOf(
         DirectiveParameter(
             name = "source",
@@ -40,6 +41,7 @@ val map = Directive(
 val mapHashBucketSize = Directive(
     name = "map_hash_bucket_size",
     description = "Sets the bucket size for the map variables hash tables",
+    syntax = listOf("<b>map_hash_bucket_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -58,6 +60,7 @@ val mapHashBucketSize = Directive(
 val mapHashMaxSize = Directive(
     name = "map_hash_max_size",
     description = "Sets the maximum size of the map variables hash tables",
+    syntax = listOf("<b>map_hash_max_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",

@@ -12,6 +12,7 @@ val ngx_http_mp4_module = NginxModule(
 val mp4 = Directive(
     name = "mp4",
     description = "Turns on module processing in a surrounding location",
+    syntax = listOf("<b>mp4</b>;"),
 
     context = listOf(location),
     module = ngx_http_mp4_module
@@ -20,6 +21,7 @@ val mp4 = Directive(
 val mp4BufferSize = Directive(
     name = "mp4_buffer_size",
     description = "Sets the initial buffer size for processing MP4 files",
+    syntax = listOf("<b>mp4_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -36,6 +38,7 @@ val mp4BufferSize = Directive(
 val mp4MaxBufferSize = Directive(
     name = "mp4_max_buffer_size",
     description = "Sets the maximum buffer size for processing MP4 file metadata",
+    syntax = listOf("<b>mp4_max_buffer_size</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",

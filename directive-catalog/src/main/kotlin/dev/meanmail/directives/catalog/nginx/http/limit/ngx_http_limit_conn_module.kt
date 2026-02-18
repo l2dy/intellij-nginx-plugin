@@ -15,6 +15,7 @@ val ngx_http_limit_conn_module = NginxModule(
 val limitConnZone = Directive(
     name = "limit_conn_zone",
     description = "Defines a shared memory zone to store the state of connections",
+    syntax = listOf("<b>limit_conn_zone</b> <i>key</i> zone=<i>name</i>:<i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             "key",
@@ -36,6 +37,7 @@ val limitConnZone = Directive(
 val limitConn = Directive(
     name = "limit_conn",
     description = "Sets the maximum allowed number of connections for a given key value",
+    syntax = listOf("<b>limit_conn</b> <i>zone</i> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             "zone",
@@ -65,6 +67,7 @@ val limitConnDryRun = ToggleDirective(
 val limitConnLogLevel = Directive(
     name = "limit_conn_log_level",
     description = "Sets the logging level for connection limit events",
+    syntax = listOf("<b>limit_conn_log_level</b> info | notice | warn | error;"),
     parameters = listOf(
         DirectiveParameter(
             "log_level",
@@ -82,6 +85,7 @@ val limitConnLogLevel = Directive(
 val limitConnStatus = Directive(
     name = "limit_conn_status",
     description = "Sets the HTTP status code returned when the connection limit is exceeded",
+    syntax = listOf("<b>limit_conn_status</b> <i>code</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "code",
@@ -98,6 +102,7 @@ val limitConnStatus = Directive(
 val limitZone = Directive(
     name = "limit_zone",
     description = "Sets parameters for a shared memory zone (obsolete since 1.1.8, use limit_conn_zone instead)",
+    syntax = listOf("<b>limit_zone</b> <i>name</i> <i>\$variable</i> <i>size</i>;"),
     context = listOf(http),
     module = ngx_http_limit_conn_module
 )

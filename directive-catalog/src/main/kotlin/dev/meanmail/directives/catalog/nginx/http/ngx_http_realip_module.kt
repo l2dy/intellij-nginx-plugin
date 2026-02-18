@@ -12,6 +12,7 @@ val ngx_http_realip_module = NginxModule(
 val setRealIpFrom = Directive(
     name = "set_real_ip_from",
     description = "Defines a network or IP address from which the real client IP should be obtained",
+    syntax = listOf("<b>set_real_ip_from</b> <i>address</i> | <i>CIDR</i> | unix:;"),
     parameters = listOf(
         DirectiveParameter(
             name = "address",
@@ -26,6 +27,7 @@ val setRealIpFrom = Directive(
 val realIpHeader = Directive(
     name = "real_ip_header",
     description = "Specifies the header field used to obtain the real client IP address",
+    syntax = listOf("<b>real_ip_header</b> <i>field</i> | X-Real-IP | X-Forwarded-For | proxy_protocol;"),
     parameters = listOf(
         DirectiveParameter(
             name = "header",

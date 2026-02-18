@@ -12,6 +12,7 @@ val ngx_stream_limit_conn_module = NginxModule(
 val streamLimitConn = Directive(
     "limit_conn",
     description = "Limits the number of concurrent connections per defined key",
+    syntax = listOf("<b>limit_conn</b> <i>zone</i> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             "zone",
@@ -41,6 +42,7 @@ val streamLimitConnDryRun = ToggleDirective(
 val streamLimitConnLogLevel = Directive(
     "limit_conn_log_level",
     description = "Sets the logging level for connection limit events",
+    syntax = listOf("<b>limit_conn_log_level</b> info | notice | warn | error;"),
     parameters = listOf(
         DirectiveParameter(
             "log_level",
@@ -58,6 +60,7 @@ val streamLimitConnLogLevel = Directive(
 val streamLimitConnZone = Directive(
     "limit_conn_zone",
     description = "Defines a shared memory zone for connection limiting",
+    syntax = listOf("<b>limit_conn_zone</b> <i>key</i> zone=<i>name</i>:<i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             "key",

@@ -17,6 +17,7 @@ val ngx_core_module = NginxModule(
 val events = Directive(
     name = "events",
     description = "Configures event processing parameters",
+    syntax = listOf("<b>events</b> { ... }"),
     parameters = listOf(
         DirectiveParameter(
             name = "worker_connections",
@@ -41,6 +42,7 @@ val acceptMutex = ToggleDirective(
 val acceptMutexDelay = Directive(
     "accept_mutex_delay",
     description = "Defines the maximum time for waiting for a mutex",
+    syntax = listOf("<b>accept_mutex_delay</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "delay",
@@ -65,6 +67,7 @@ val daemon = ToggleDirective(
 val debugConnection = Directive(
     name = "debug_connection",
     description = "Enables debug logging for specific client addresses",
+    syntax = listOf("<b>debug_connection</b> <i>address</i> | <i>CIDR</i> | unix:;"),
     parameters = listOf(
         DirectiveParameter(
             valueType = ValueType.STRING,
@@ -79,6 +82,7 @@ val debugConnection = Directive(
 val debugPoints = Directive(
     "debug_points",
     description = "Determines the debug points for error tracking",
+    syntax = listOf("<b>debug_points</b> abort | stop;"),
     parameters = listOf(
         DirectiveParameter(
             name = "mode",
@@ -95,6 +99,7 @@ val debugPoints = Directive(
 val env = Directive(
     name = "env",
     description = "Sets or modifies environment variables",
+    syntax = listOf("<b>env</b> <i>variable</i>[=<i>value</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "variable",
@@ -110,6 +115,7 @@ val env = Directive(
 val errorLog = Directive(
     name = "error_log",
     description = "Configures error logging",
+    syntax = listOf("<b>error_log</b> <i>file</i> [<i>level</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "file",
@@ -131,6 +137,7 @@ val errorLog = Directive(
 val include = Directive(
     name = "include",
     description = "Includes additional configuration files",
+    syntax = listOf("<b>include</b> <i>file</i> | <i>mask</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "file",
@@ -146,6 +153,7 @@ val include = Directive(
 val loadModule = Directive(
     "load_module",
     description = "Loads a dynamic module",
+    syntax = listOf("<b>load_module</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -161,6 +169,7 @@ val loadModule = Directive(
 val lockFile = Directive(
     "lock_file",
     description = "Sets the path to the lock file",
+    syntax = listOf("<b>lock_file</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -201,6 +210,7 @@ val pcreJit = ToggleDirective(
 val pid = Directive(
     "pid",
     description = "Specifies the path to the PID file",
+    syntax = listOf("<b>pid</b> <i>file</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
@@ -217,6 +227,7 @@ val pid = Directive(
 val sslEngine = Directive(
     "ssl_engine",
     description = "Specifies SSL hardware device name",
+    syntax = listOf("<b>ssl_engine</b> <i>device</i>;"),
     parameters = listOf(
         DirectiveParameter(
             valueType = ValueType.STRING,
@@ -240,6 +251,7 @@ val sslObjectCacheInheritable = ToggleDirective(
 val threadPool = Directive(
     "thread_pool",
     description = "Configures thread pool parameters",
+    syntax = listOf("<b>thread_pool</b> <i>name</i> threads=<i>number</i> [max_queue=<i>number</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "name",
@@ -270,6 +282,7 @@ val threadPool = Directive(
 val timerResolution = Directive(
     "timer_resolution",
     description = "Configures timer resolution",
+    syntax = listOf("<b>timer_resolution</b> <i>interval</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "resolution",
@@ -286,6 +299,7 @@ val timerResolution = Directive(
 val use = Directive(
     name = "use",
     description = "Specifies the event processing method",
+    syntax = listOf("<b>use</b> <i>method</i>;"),
     parameters = listOf(
         DirectiveParameter(
             valueType = ValueType.STRING,
@@ -299,6 +313,7 @@ val use = Directive(
 val user = Directive(
     "user",
     description = "Defines user and group credentials for worker processes",
+    syntax = listOf("<b>user</b> <i>user</i> [<i>group</i>];"),
     parameters = listOf(
         DirectiveParameter(
             name = "username",
@@ -320,6 +335,7 @@ val user = Directive(
 val workerAioRequests = Directive(
     name = "worker_aio_requests",
     description = "Sets the maximum number of asynchronous I/O operations",
+    syntax = listOf("<b>worker_aio_requests</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             valueType = ValueType.NUMBER
@@ -332,6 +348,7 @@ val workerAioRequests = Directive(
 val workerConnections = Directive(
     name = "worker_connections",
     description = "Sets the maximum number of connections per worker process",
+    syntax = listOf("<b>worker_connections</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             valueType = ValueType.NUMBER
@@ -344,6 +361,10 @@ val workerConnections = Directive(
 val workerCPUAffinity = Directive(
     "worker_cpu_affinity",
     description = "Binds worker processes to specific CPUs",
+    syntax = listOf(
+        "<b>worker_cpu_affinity</b> <i>cpumask</i> ...;",
+        "<b>worker_cpu_affinity</b> auto [<i>cpumask</i>];"
+    ),
     parameters = listOf(
         DirectiveParameter(
             name = "mask",
@@ -360,6 +381,7 @@ val workerCPUAffinity = Directive(
 val workerPriority = Directive(
     "worker_priority",
     description = "Sets worker process priority",
+    syntax = listOf("<b>worker_priority</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "priority",
@@ -378,6 +400,7 @@ val workerPriority = Directive(
 val workerProcesses = Directive(
     "worker_processes",
     description = "Defines the number of worker processes",
+    syntax = listOf("<b>worker_processes</b> <i>number</i> | auto;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -395,6 +418,7 @@ val workerProcesses = Directive(
 val workerRlimitCore = Directive(
     name = "worker_rlimit_core",
     description = "Sets the maximum size of core files for worker processes",
+    syntax = listOf("<b>worker_rlimit_core</b> <i>size</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "size",
@@ -412,6 +436,7 @@ val workerRlimitCore = Directive(
 val workerRlimitNofile = Directive(
     "worker_rlimit_nofile",
     description = "Sets the maximum number of open files for worker processes",
+    syntax = listOf("<b>worker_rlimit_nofile</b> <i>number</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "number",
@@ -448,6 +473,7 @@ val workerRlimitSignPending = Directive(
 val workerShutdownTimeout = Directive(
     "worker_shutdown_timeout",
     description = "Sets the timeout for worker process shutdown",
+    syntax = listOf("<b>worker_shutdown_timeout</b> <i>time</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "timeout",
@@ -464,6 +490,7 @@ val workerShutdownTimeout = Directive(
 val workingDirectory = Directive(
     name = "working_directory",
     description = "Configures the working directory for worker processes",
+    syntax = listOf("<b>working_directory</b> <i>directory</i>;"),
     parameters = listOf(
         DirectiveParameter(
             name = "path",
