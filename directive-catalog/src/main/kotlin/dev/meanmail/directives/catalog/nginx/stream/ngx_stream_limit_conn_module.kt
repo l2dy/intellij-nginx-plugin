@@ -30,18 +30,10 @@ val streamLimitConn = Directive(
     module = ngx_stream_limit_conn_module
 )
 
-val streamLimitConnDryRun = Directive(
+val streamLimitConnDryRun = ToggleDirective(
     "limit_conn_dry_run",
-    description = "Enables the dry run mode for limit_conn module without actually limiting connections",
-    parameters = listOf(
-        DirectiveParameter(
-            "state",
-            "Enables or disables dry run mode",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+    "Enables the dry run mode for limit_conn module without actually limiting connections",
+    enabled = false,
     context = listOf(stream, streamServer),
     module = ngx_stream_limit_conn_module
 )

@@ -48,18 +48,10 @@ val imageFilterBuffer = Directive(
     module = ngx_http_image_filter_module
 )
 
-val imageFilterInterlace = Directive(
-    name = "image_filter_interlace",
-    description = "Enables or disables interlaced processing of images",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            description = "Enable or disable interlace/progressive image processing",
-            valueType = ValueType.BOOLEAN,
-            required = true,
-            defaultValue = "off"
-        )
-    ),
+val imageFilterInterlace = ToggleDirective(
+    "image_filter_interlace",
+    "Enables or disables interlaced processing of images",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_image_filter_module
 )

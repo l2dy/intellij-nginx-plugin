@@ -25,18 +25,10 @@ val mirror = Directive(
     module = ngx_http_mirror_module
 )
 
-val mirrorRequestBody = Directive(
-    name = "mirror_request_body",
-    description = "Controls whether the client request body is mirrored",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            description = "Enable or disable mirroring of client request body",
-            valueType = ValueType.BOOLEAN,
-            required = false,
-            defaultValue = "on"
-        )
-    ),
+val mirrorRequestBody = ToggleDirective(
+    "mirror_request_body",
+    "Controls whether the client request body is mirrored",
+    enabled = true,
     context = listOf(http, server, location),
     module = ngx_http_mirror_module
 )

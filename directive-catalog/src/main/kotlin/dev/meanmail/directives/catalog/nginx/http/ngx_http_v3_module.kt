@@ -9,16 +9,18 @@ val ngx_http_v3_module = NginxModule(
     description = "Provides support for HTTP/3 protocol over QUIC"
 )
 
-val http3 = Directive(
-    name = "http3",
-    description = "Enables HTTP/3 protocol negotiation",
+val http3 = ToggleDirective(
+    "http3",
+    "Enables HTTP/3 protocol negotiation",
+    enabled = true,
     context = listOf(http, server),
     module = ngx_http_v3_module
 )
 
-val http3Hq = Directive(
-    name = "http3_hq",
-    description = "Enables HTTP/0.9 protocol negotiation used in QUIC interoperability tests",
+val http3Hq = ToggleDirective(
+    "http3_hq",
+    "Enables HTTP/0.9 protocol negotiation used in QUIC interoperability tests",
+    enabled = false,
     context = listOf(http, server),
     module = ngx_http_v3_module
 )
@@ -44,16 +46,18 @@ val quicActiveConnectionIdLimit = Directive(
     module = ngx_http_v3_module
 )
 
-val quicBpf = Directive(
-    name = "quic_bpf",
-    description = "Enables routing of QUIC packets using eBPF (Linux 5.7+)",
+val quicBpf = ToggleDirective(
+    "quic_bpf",
+    "Enables routing of QUIC packets using eBPF (Linux 5.7+)",
+    enabled = false,
     context = listOf(main),
     module = ngx_http_v3_module
 )
 
-val quicGso = Directive(
-    name = "quic_gso",
-    description = "Enables sending in optimized batch mode using segmentation offloading",
+val quicGso = ToggleDirective(
+    "quic_gso",
+    "Enables sending in optimized batch mode using segmentation offloading",
+    enabled = false,
     context = listOf(http, server),
     module = ngx_http_v3_module
 )
@@ -65,9 +69,10 @@ val quicHostKey = Directive(
     module = ngx_http_v3_module
 )
 
-val quicRetry = Directive(
-    name = "quic_retry",
-    description = "Enables the QUIC Address Validation feature",
+val quicRetry = ToggleDirective(
+    "quic_retry",
+    "Enables the QUIC Address Validation feature",
+    enabled = false,
     context = listOf(http, server),
     module = ngx_http_v3_module
 )

@@ -169,19 +169,11 @@ val streamResolverTimeout = Directive(
     context = listOf(stream, streamServer)
 )
 
-val streamTcpNodelay = Directive(
-    name = "tcp_nodelay",
-    description = "Enables or disables the TCP_NODELAY socket option to reduce network latency",
+val streamTcpNodelay = ToggleDirective(
+    "tcp_nodelay",
+    "Enables or disables the TCP_NODELAY socket option to reduce network latency",
+    enabled = true,
     module = ngx_stream_core_module,
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "TCP_NODELAY state",
-            allowedValues = listOf("on", "off"),
-            required = false
-        )
-    ),
     context = listOf(stream, streamServer)
 )
 

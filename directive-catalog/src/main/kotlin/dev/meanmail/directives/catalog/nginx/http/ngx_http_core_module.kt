@@ -91,10 +91,18 @@ val absoluteRedirect = ToggleDirective(
     module = ngx_http_core_module
 )
 
-val aio = ToggleDirective(
+val aio = Directive(
     "aio",
-    "Enables or disables asynchronous file I/O",
-    enabled = false,
+    description = "Enables or disables asynchronous file I/O",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "mode",
+            description = "AIO mode: on, off, or threads with optional thread pool name",
+            valueType = ValueType.STRING,
+            required = true,
+            defaultValue = "off"
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_core_module
 )
@@ -970,18 +978,34 @@ val serverNamesHashMaxSize = Directive(
     module = ngx_http_core_module
 )
 
-val serverTokens = ToggleDirective(
+val serverTokens = Directive(
     "server_tokens",
-    "Enables or disables displaying NGINX version in error messages and server response headers",
-    enabled = true,
+    description = "Enables or disables displaying NGINX version in error messages and server response headers",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "value",
+            description = "Controls server tokens: on, off, build, or a custom string (commercial only)",
+            valueType = ValueType.STRING,
+            required = true,
+            defaultValue = "on"
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_core_module
 )
 
-val earlyHints = ToggleDirective(
+val earlyHints = Directive(
     "early_hints",
-    "Enables processing and forwarding of 103 Early Hints from upstream (proxy/gRPC)",
-    enabled = false,
+    description = "Enables processing and forwarding of 103 Early Hints from upstream (proxy/gRPC)",
+    parameters = listOf(
+        DirectiveParameter(
+            name = "string",
+            description = "Early hints header string to send",
+            valueType = ValueType.STRING,
+            required = true,
+            multiple = true
+        )
+    ),
     context = listOf(http, server, location),
     module = ngx_http_core_module
 )
@@ -1070,18 +1094,10 @@ val tryFiles = Directive(
     module = ngx_http_core_module
 )
 
-val tcpNodelay = Directive(
+val tcpNodelay = ToggleDirective(
     "tcp_nodelay",
     "Enables or disables the TCP_NODELAY option for keepalive connections",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "TCP_NODELAY state",
-            allowedValues = listOf("on", "off"),
-            required = false
-        )
-    ),
+    enabled = true,
     context = listOf(http, server, location),
     module = ngx_http_core_module
 )

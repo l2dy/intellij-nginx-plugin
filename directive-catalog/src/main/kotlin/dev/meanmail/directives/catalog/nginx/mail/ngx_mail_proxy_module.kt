@@ -33,19 +33,11 @@ val proxyPassErrorMessage = ToggleDirective(
     context = listOf(mail, mailServer)
 )
 
-val proxyProtocol = Directive(
-    name = "proxy_protocol",
-    description = "Enables the PROXY protocol for connections to a backend. Default is off",
+val proxyProtocol = ToggleDirective(
+    "proxy_protocol",
+    "Enables the PROXY protocol for connections to a backend",
     module = ngx_mail_proxy_module,
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Enables or disables PROXY protocol. Allows passing client connection details like source IP",
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+    enabled = false,
     context = listOf(mail, mailServer)
 )
 

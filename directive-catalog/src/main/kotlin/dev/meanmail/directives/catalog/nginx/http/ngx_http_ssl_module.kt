@@ -248,17 +248,10 @@ val sslPasswordFile = Directive(
     module = ngx_http_ssl_module
 )
 
-val sslPreferServerCiphers = Directive(
-    name = "ssl_prefer_server_ciphers",
-    description = "Determines whether server or client ciphers are preferred during SSL negotiation",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Server cipher preference state",
-            allowedValues = listOf("on", "off"),
-        )
-    ),
+val sslPreferServerCiphers = ToggleDirective(
+    "ssl_prefer_server_ciphers",
+    "Determines whether server or client ciphers are preferred during SSL negotiation",
+    enabled = false,
     context = listOf(http, server),
     module = ngx_http_ssl_module
 )
@@ -327,17 +320,10 @@ val sslSessionTicketKey = Directive(
     module = ngx_http_ssl_module
 )
 
-val sslSessionTickets = Directive(
-    name = "ssl_session_tickets",
-    description = "Enables or disables session tickets for SSL/TLS connections",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "TLS session tickets state",
-            allowedValues = listOf("on", "off"),
-        )
-    ),
+val sslSessionTickets = ToggleDirective(
+    "ssl_session_tickets",
+    "Enables or disables session tickets for SSL/TLS connections",
+    enabled = true,
     context = listOf(http, server),
     module = ngx_http_ssl_module
 )

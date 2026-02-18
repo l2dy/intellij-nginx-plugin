@@ -185,17 +185,10 @@ val streamSslPasswordFile = Directive(
     module = ngx_stream_ssl_module
 )
 
-val streamSslPreferServerCiphers = Directive(
-    name = "ssl_prefer_server_ciphers",
-    description = "Enables server cipher preference over client preference",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Server cipher preference state",
-            allowedValues = listOf("on", "off"),
-        )
-    ),
+val streamSslPreferServerCiphers = ToggleDirective(
+    "ssl_prefer_server_ciphers",
+    "Enables server cipher preference over client preference",
+    enabled = false,
     context = listOf(stream, streamServer),
     module = ngx_stream_ssl_module
 )
@@ -247,17 +240,10 @@ val streamSslSessionTicketKey = Directive(
     module = ngx_stream_ssl_module
 )
 
-val streamSslSessionTickets = Directive(
-    name = "ssl_session_tickets",
-    description = "Enables or disables TLS session tickets",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "TLS session tickets state",
-            allowedValues = listOf("on", "off"),
-        )
-    ),
+val streamSslSessionTickets = ToggleDirective(
+    "ssl_session_tickets",
+    "Enables or disables TLS session tickets",
+    enabled = true,
     context = listOf(stream, streamServer),
     module = ngx_stream_ssl_module
 )

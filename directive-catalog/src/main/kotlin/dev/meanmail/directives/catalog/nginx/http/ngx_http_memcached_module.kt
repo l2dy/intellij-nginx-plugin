@@ -180,18 +180,10 @@ val memcachedSendTimeout = Directive(
     module = ngx_http_memcached_module
 )
 
-val memcachedSocketKeepalive = Directive(
-    name = "memcached_socket_keepalive",
-    description = "Enables TCP keepalive for Memcached server connections",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            description = "Enable or disable TCP keepalive",
-            valueType = ValueType.BOOLEAN,
-            required = true,
-            defaultValue = "off"
-        )
-    ),
+val memcachedSocketKeepalive = ToggleDirective(
+    "memcached_socket_keepalive",
+    "Enables TCP keepalive for Memcached server connections",
+    enabled = false,
     context = listOf(http, server, location),
     module = ngx_http_memcached_module
 )

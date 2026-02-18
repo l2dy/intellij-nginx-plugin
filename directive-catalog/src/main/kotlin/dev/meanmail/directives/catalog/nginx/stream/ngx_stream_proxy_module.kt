@@ -80,18 +80,10 @@ val streamProxyDownloadRate = Directive(
     module = ngx_stream_proxy_module
 )
 
-val streamProxyHalfClose = Directive(
-    name = "proxy_half_close",
-    description = "Enables support for half-closed connections, allowing more flexible connection handling",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Enables or disables half-closed connection support. Allows one side to close connection while keeping the other side open",
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val streamProxyHalfClose = ToggleDirective(
+    "proxy_half_close",
+    "Enables support for half-closed connections, allowing more flexible connection handling",
+    enabled = false,
     context = listOf(stream, streamServer),
     module = ngx_stream_proxy_module
 )
@@ -169,18 +161,10 @@ val streamProxyPass = Directive(
     module = ngx_stream_proxy_module
 )
 
-val streamProxyProtocol = Directive(
-    name = "proxy_protocol",
-    description = "Enables PROXY protocol for passing client connection information between proxy and backend servers",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Enables or disables PROXY protocol. Allows passing client connection details like source IP",
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val streamProxyProtocol = ToggleDirective(
+    "proxy_protocol",
+    "Enables PROXY protocol for passing client connection information between proxy and backend servers",
+    enabled = false,
     context = listOf(stream, streamServer),
     module = ngx_stream_proxy_module
 )
@@ -219,34 +203,18 @@ val streamProxyResponses = Directive(
     module = ngx_stream_proxy_module
 )
 
-val streamProxySocketKeepalive = Directive(
-    name = "proxy_socket_keepalive",
-    description = "Configures TCP keepalive settings for connections to proxied servers",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Enables or disables TCP keepalive for proxy connections. Helps maintain long-lived connections",
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val streamProxySocketKeepalive = ToggleDirective(
+    "proxy_socket_keepalive",
+    "Configures TCP keepalive settings for connections to proxied servers",
+    enabled = false,
     context = listOf(stream, streamServer),
     module = ngx_stream_proxy_module
 )
 
-val streamProxySsl = Directive(
-    name = "proxy_ssl",
-    description = "Enables SSL/TLS encryption for connections to backend servers",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Enables SSL/TLS protocol for secure communication with proxied servers",
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val streamProxySsl = ToggleDirective(
+    "proxy_ssl",
+    "Enables SSL/TLS encryption for connections to backend servers",
+    enabled = false,
     context = listOf(stream, streamServer),
     module = ngx_stream_proxy_module
 )
@@ -329,18 +297,10 @@ val streamProxySslProtocols = Directive(
     module = ngx_stream_proxy_module
 )
 
-val streamProxySslServerName = Directive(
-    name = "proxy_ssl_server_name",
-    description = "Enables passing of the server name during SSL/TLS handshake",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Enables sending of the original server name during SSL/TLS connection",
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val streamProxySslServerName = ToggleDirective(
+    "proxy_ssl_server_name",
+    "Enables passing of the server name during SSL/TLS handshake",
+    enabled = false,
     context = listOf(stream, streamServer),
     module = ngx_stream_proxy_module
 )
@@ -360,18 +320,10 @@ val streamProxySslTrustedCertificate = Directive(
     module = ngx_stream_proxy_module
 )
 
-val streamProxySslVerify = Directive(
-    name = "proxy_ssl_verify",
-    description = "Enables verification of proxied server SSL certificates",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Enables or disables verification of the proxied server's SSL certificate",
-            required = false,
-            defaultValue = "off"
-        )
-    ),
+val streamProxySslVerify = ToggleDirective(
+    "proxy_ssl_verify",
+    "Enables verification of proxied server SSL certificates",
+    enabled = false,
     context = listOf(stream, streamServer),
     module = ngx_stream_proxy_module
 )
@@ -461,18 +413,10 @@ val streamProxySslName = Directive(
     module = ngx_stream_proxy_module
 )
 
-val streamProxySslSessionReuse = Directive(
-    name = "proxy_ssl_session_reuse",
-    description = "Enables or disables reuse of SSL sessions",
-    parameters = listOf(
-        DirectiveParameter(
-            name = "state",
-            valueType = ValueType.BOOLEAN,
-            description = "Enables or disables SSL session reuse to improve performance",
-            required = false,
-            defaultValue = "on"
-        )
-    ),
+val streamProxySslSessionReuse = ToggleDirective(
+    "proxy_ssl_session_reuse",
+    "Enables or disables reuse of SSL sessions",
+    enabled = true,
     context = listOf(stream, streamServer),
     module = ngx_stream_proxy_module
 )
