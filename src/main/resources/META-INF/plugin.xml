@@ -374,6 +374,8 @@ Your ratings and feedback are very important. The feature will appear the faster
         <backspaceHandlerDelegate
             implementation="dev.meanmail.typing.NginxBraceBackspaceHandler"/>
         <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
+        <langCodeStyleSettingsProvider
+            implementation="dev.meanmail.codeInsight.formatter.NginxLanguageCodeStyleSettingsProvider"/>
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij.lang">
@@ -396,6 +398,8 @@ Your ratings and feedback are very important. The feature will appear the faster
                 implementationClass="dev.meanmail.codeInsight.documentation.NginxDocumentationProvider"/>
         <smartEnterProcessor language="Nginx Configuration"
                              implementationClass="dev.meanmail.typing.assist.NginxSmartEnterProcessor"/>
+        <formatter language="Nginx Configuration"
+                   implementationClass="dev.meanmail.codeInsight.NginxFormattingModelBuilder"/>
 
     </extensions>
 
