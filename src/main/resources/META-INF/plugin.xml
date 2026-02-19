@@ -394,6 +394,8 @@ Your ratings and feedback are very important. The feature will appear the faster
         <documentationProvider
                 language="Nginx Configuration"
                 implementationClass="dev.meanmail.codeInsight.documentation.NginxDocumentationProvider"/>
+        <smartEnterProcessor language="Nginx Configuration"
+                             implementationClass="dev.meanmail.typing.assist.NginxSmartEnterProcessor"/>
 
     </extensions>
 
