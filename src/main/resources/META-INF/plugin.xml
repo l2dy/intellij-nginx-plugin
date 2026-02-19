@@ -354,6 +354,8 @@ Your ratings and feedback are very important. The feature will appear the faster
         <enterHandlerDelegate
             implementation="dev.meanmail.typing.NginxEnterInLineCommentHandler"
             id="NginxEnterInLineComments"/>
+        <enterBetweenBracesDelegate language="Nginx Configuration"
+            implementationClass="com.intellij.codeInsight.editorActions.enter.EnterBetweenBracesAndBracketsDelegate"/>
         <localInspection
                 language="Nginx Configuration"
                 implementationClass="dev.meanmail.codeInsight.inspections.NginxDirectiveInspection"

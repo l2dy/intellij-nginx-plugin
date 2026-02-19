@@ -45,4 +45,47 @@ class NginxEnterHandlerTest : BasePlatformTestCase() {
             """.trimIndent()
         )
     }
+
+    fun testEnterBetweenBraces() {
+        myFixture.configureByText(
+            "nginx.conf",
+            "server {<caret>}"
+        )
+        myFixture.type('\n')
+        myFixture.checkResult(
+            "server {\n    <caret>\n}"
+        )
+    }
+
+    fun testEnterBetweenBracesLocation() {
+        myFixture.configureByText(
+            "nginx.conf",
+            "location / {<caret>}"
+        )
+        myFixture.type('\n')
+        myFixture.checkResult(
+            "location / {\n    <caret>\n}"
+        )
+    }
+
+    fun testEnterBetweenBracesNested() {
+        myFixture.configureByText(
+            "nginx.conf",
+            """
+            http {
+                server {<caret>}
+            }
+            """.trimIndent()
+        )
+        myFixture.type('\n')
+        myFixture.checkResult(
+            """
+            http {
+                server {
+                    <caret>
+                }
+            }
+            """.trimIndent()
+        )
+    }
 }
