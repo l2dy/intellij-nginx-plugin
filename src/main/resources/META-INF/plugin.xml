@@ -368,12 +368,18 @@ Your ratings and feedback are very important. The feature will appear the faster
                 level="ERROR"
                 shortName="NginxGeoInspection"/>
         <multiHostInjector implementation="dev.meanmail.lang.injection.NginxLuaInjector"/>
+        <backspaceHandlerDelegate
+            implementation="dev.meanmail.typing.NginxBraceBackspaceHandler"/>
         <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij.lang">
         <parserDefinition language="Nginx Configuration"
                           implementationClass="dev.meanmail.NginxParserDefinition"/>
+        <braceMatcher language="Nginx Configuration"
+                      implementationClass="dev.meanmail.typing.NginxBraceMatcher"/>
+        <quoteHandler language="Nginx Configuration"
+                      implementationClass="dev.meanmail.typing.NginxQuoteHandler"/>
         <syntaxHighlighterFactory language="Nginx Configuration"
                                   implementationClass="dev.meanmail.NginxSyntaxHighlighterFactory"/>
         <psiStructureViewFactory language="Nginx Configuration"
