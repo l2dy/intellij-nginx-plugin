@@ -351,6 +351,9 @@ Your ratings and feedback are very important. The feature will appear the faster
                   extensions="conf;nginx"/>
         <completion.contributor language="Nginx Configuration"
                                 implementationClass="dev.meanmail.codeInsight.completion.NginxCompletionContributor"/>
+        <enterHandlerDelegate
+            implementation="dev.meanmail.typing.NginxEnterInLineCommentHandler"
+            id="NginxEnterInLineComments"/>
         <localInspection
                 language="Nginx Configuration"
                 implementationClass="dev.meanmail.codeInsight.inspections.NginxDirectiveInspection"
