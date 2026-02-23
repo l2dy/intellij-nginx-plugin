@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_geoip_module = NginxModule(
     "ngx_http_geoip_module",
-    description = "Provides geolocation functionality using MaxMind GeoIP databases for IP-based information retrieval"
+    description = "Provides geolocation functionality using MaxMind GeoIP databases for IP-based information retrieval",
+    url = "https://nginx.org/en/docs/http/ngx_http_geoip_module.html"
 )
 
 val geoipCountry = Directive(

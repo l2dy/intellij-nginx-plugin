@@ -182,6 +182,26 @@ class NginxDocumentationProviderTest : BasePlatformTestCase() {
         assertNull("Expected no documentation on semicolon", doc)
     }
 
+    // ---- getUrlFor tests ----
+
+    fun testGetUrlForReturnsOfficialDocUrl() {
+        myFixture.configureByText("nginx.conf", """
+            server {
+                location / {
+                    proxy_pass<caret> http://backend;
+                }
+            }
+        """.trimIndent())
+        val originalElement = myFixture.file.findElementAt(myFixture.caretOffset)!!
+        @Suppress("DEPRECATION")
+        val targetElement = DocumentationManager.getInstance(project)
+            .findTargetElement(myFixture.editor, myFixture.file, originalElement)!!
+        val urls = provider.getUrlFor(targetElement, originalElement)
+        assertNotNull(urls)
+        assertEquals(1, urls!!.size)
+        assertEquals("https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass", urls[0])
+    }
+
     // ---- getQuickNavigateInfo tests ----
 
     fun testQuickNavForListenDirective() {

@@ -9,6 +9,7 @@ import dev.meanmail.directives.catalog.nginx.http.upstream.upstream
 val lua_nginx_module = NginxModule(
     name = "lua_nginx_module",
     description = "Lua module for Nginx",
+    url = "https://github.com/openresty/lua-nginx-module/blob/master/README.markdown"
 )
 
 val accessByLua = Directive(

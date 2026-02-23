@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_access_module = NginxModule(
     name = "ngx_http_access_module",
-    description = "Permits or denies access based on IP addresses or networks"
+    description = "Permits or denies access based on IP addresses or networks",
+    url = "https://nginx.org/en/docs/http/ngx_http_access_module.html"
 )
 
 val allow = Directive(

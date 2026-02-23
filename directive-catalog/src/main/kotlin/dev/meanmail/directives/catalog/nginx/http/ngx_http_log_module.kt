@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_log_module = NginxModule(
     name = "ngx_http_log_module",
-    description = "Writes request logs in the specified format"
+    description = "Writes request logs in the specified format",
+    url = "https://nginx.org/en/docs/http/ngx_http_log_module.html"
 )
 
 val accessLog = Directive(

@@ -227,7 +227,8 @@ class ToggleDirective(
 
 open class NginxModule(
     val name: String,
-    val description: String
+    val description: String,
+    val url: String? = null
 ) {
     val directives = mutableSetOf<Directive>()
 }

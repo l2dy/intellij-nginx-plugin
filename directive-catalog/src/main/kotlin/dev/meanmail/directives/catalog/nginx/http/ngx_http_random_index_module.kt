@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_random_index_module = NginxModule(
     "ngx_http_random_index_module",
-    description = "Processes requests ending with '/' and picks a random file in a directory to serve as an index file"
+    description = "Processes requests ending with '/' and picks a random file in a directory to serve as an index file",
+    url = "https://nginx.org/en/docs/http/ngx_http_random_index_module.html"
 )
 
 val randomIndex = ToggleDirective(

@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_slice_module = NginxModule(
     name = "ngx_http_slice_module",
-    description = "Module for splitting responses into slices for more effective caching of big responses"
+    description = "Module for splitting responses into slices for more effective caching of big responses",
+    url = "https://nginx.org/en/docs/http/ngx_http_slice_module.html"
 )
 
 val slice = Directive(

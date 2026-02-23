@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_browser_module = NginxModule(
     "ngx_http_browser_module",
-    description = "Enables browser detection and classification in Nginx"
+    description = "Enables browser detection and classification in Nginx",
+    url = "https://nginx.org/en/docs/http/ngx_http_browser_module.html"
 )
 
 val ancientBrowser = Directive(

@@ -23,7 +23,8 @@ val ngx_http_upstream_module = NginxModule(
         - Keepalive connections
         - Dynamic reconfiguration (commercial subscription)
         - DNS resolution and service discovery
-    """.trimIndent()
+    """.trimIndent(),
+    url = "https://nginx.org/en/docs/http/ngx_http_upstream_module.html"
 )
 
 val upstream = Directive(

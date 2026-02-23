@@ -9,7 +9,8 @@ import dev.meanmail.directives.catalog.nginx.http.server
 
 val ngx_http_limit_req_module = NginxModule(
     "ngx_http_limit_req_module",
-    description = "Limits the request processing rate per a defined key, using the 'leaky bucket' method"
+    description = "Limits the request processing rate per a defined key, using the 'leaky bucket' method",
+    url = "https://nginx.org/en/docs/http/ngx_http_limit_req_module.html"
 )
 
 val limitReqZone = Directive(

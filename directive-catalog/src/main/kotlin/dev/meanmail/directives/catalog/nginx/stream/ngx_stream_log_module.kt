@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_stream_log_module = NginxModule(
     name = "ngx_stream_log_module",
-    description = "Provides logging functionality for TCP/UDP stream connections, enabling detailed logging of client connection events"
+    description = "Provides logging functionality for TCP/UDP stream connections, enabling detailed logging of client connection events",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_log_module.html"
 )
 
 val streamAccessLog = Directive(

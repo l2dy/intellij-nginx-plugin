@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_charset_module = NginxModule(
     "ngx_http_charset_module",
-    description = "Enables character set conversion for responses"
+    description = "Enables character set conversion for responses",
+    url = "https://nginx.org/en/docs/http/ngx_http_charset_module.html"
 )
 
 val charset = Directive(

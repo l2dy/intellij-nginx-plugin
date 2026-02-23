@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_mail_smtp_module = NginxModule(
     name = "ngx_mail_smtp_module",
-    description = "Module for configuring SMTP protocol support in NGINX mail proxy"
+    description = "Module for configuring SMTP protocol support in NGINX mail proxy",
+    url = "https://nginx.org/en/docs/mail/ngx_mail_smtp_module.html"
 )
 
 val smtpAuth = Directive(

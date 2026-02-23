@@ -10,7 +10,8 @@ import dev.meanmail.directives.catalog.nginx.http.server
 
 val ngx_http_auth_basic_module = NginxModule(
     "ngx_http_auth_basic_module",
-    description = "HTTP basic authentication module"
+    description = "HTTP basic authentication module",
+    url = "https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html"
 )
 
 val authBasic = Directive(

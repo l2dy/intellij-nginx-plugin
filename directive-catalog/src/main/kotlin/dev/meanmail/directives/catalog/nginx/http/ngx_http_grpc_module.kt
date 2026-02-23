@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_grpc_module = NginxModule(
     "ngx_http_grpc_module",
-    description = "Provides support for proxying gRPC requests to gRPC servers"
+    description = "Provides support for proxying gRPC requests to gRPC servers",
+    url = "https://nginx.org/en/docs/http/ngx_http_grpc_module.html"
 )
 
 val grpcBindOff = Directive(

@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_stream_limit_conn_module = NginxModule(
     "ngx_stream_limit_conn_module",
-    description = "Limits the number of concurrent connections per defined key in stream context"
+    description = "Limits the number of concurrent connections per defined key in stream context",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html"
 )
 
 val streamLimitConn = Directive(

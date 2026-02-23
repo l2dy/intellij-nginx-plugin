@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_ssi_module = NginxModule(
     "ngx_http_ssi_module",
-    description = "Processes Server Side Includes (SSI) commands in responses. Supports incomplete list of SSI commands."
+    description = "Processes Server Side Includes (SSI) commands in responses. Supports incomplete list of SSI commands.",
+    url = "https://nginx.org/en/docs/http/ngx_http_ssi_module.html"
 )
 
 val ssi = ToggleDirective(

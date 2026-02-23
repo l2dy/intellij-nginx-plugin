@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_mail_ssl_module = NginxModule(
     name = "ngx_mail_ssl_module",
-    description = "The SSL module for NGINX server configuration"
+    description = "The SSL module for NGINX server configuration",
+    url = "https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html"
 )
 
 val mailSsl = ToggleDirective(

@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_v3_module = NginxModule(
     "ngx_http_v3_module",
-    description = "Provides support for HTTP/3 protocol over QUIC"
+    description = "Provides support for HTTP/3 protocol over QUIC",
+    url = "https://nginx.org/en/docs/http/ngx_http_v3_module.html"
 )
 
 val http3 = ToggleDirective(

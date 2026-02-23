@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_xslt_module = NginxModule(
     "ngx_http_xslt_module",
-    description = "A filter that transforms XML responses using one or more XSLT stylesheets. Requires libxml2 and libxslt libraries. Not built by default, must be enabled with --with-http_xslt_module configuration parameter."
+    description = "A filter that transforms XML responses using one or more XSLT stylesheets. Requires libxml2 and libxslt libraries. Not built by default, must be enabled with --with-http_xslt_module configuration parameter.",
+    url = "https://nginx.org/en/docs/http/ngx_http_xslt_module.html"
 )
 
 val xmlEntities = Directive(

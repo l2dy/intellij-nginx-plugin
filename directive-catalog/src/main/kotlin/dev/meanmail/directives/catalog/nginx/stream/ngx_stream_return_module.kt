@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_stream_return_module = NginxModule(
     name = "ngx_stream_return_module",
-    description = "A module to return the specified value in response to a stream request"
+    description = "A module to return the specified value in response to a stream request",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_return_module.html"
 )
 
 val streamReturn = Directive(

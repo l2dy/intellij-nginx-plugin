@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_uwsgi_module = NginxModule(
     "ngx_http_uwsgi_module",
-    description = "Provides support for proxying requests to uWSGI servers"
+    description = "Provides support for proxying requests to uWSGI servers",
+    url = "https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html"
 )
 
 val uwsgiBind = Directive(

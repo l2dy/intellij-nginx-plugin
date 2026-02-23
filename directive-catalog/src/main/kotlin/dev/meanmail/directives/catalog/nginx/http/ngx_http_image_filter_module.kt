@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_image_filter_module = NginxModule(
     name = "ngx_http_image_filter_module",
-    description = "Transforms images in JPEG, GIF, PNG, and WebP formats"
+    description = "Transforms images in JPEG, GIF, PNG, and WebP formats",
+    url = "https://nginx.org/en/docs/http/ngx_http_image_filter_module.html"
 )
 
 val imageFilter = Directive(

@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_mail_pop3_module = NginxModule(
     "ngx_mail_pop3_module",
-    description = "Module for handling POP3 protocol in NGINX mail proxy"
+    description = "Module for handling POP3 protocol in NGINX mail proxy",
+    url = "https://nginx.org/en/docs/mail/ngx_mail_pop3_module.html"
 )
 
 val pop3Auth = Directive(

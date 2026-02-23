@@ -10,7 +10,8 @@ val ngx_http_userid_module = NginxModule(
         The Userid module sets cookies suitable for client identification.
         Received and set cookies can be logged using embedded variables \$\uid_got and \$\uid_set.
         Compatible with mod_uid module for Apache.
-    """.trimIndent()
+    """.trimIndent(),
+    url = "https://nginx.org/en/docs/http/ngx_http_userid_module.html"
 )
 
 val userid = Directive(

@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_index_module = NginxModule(
     name = "ngx_http_index_module",
-    description = "Processes requests ending with slash and defines index files"
+    description = "Processes requests ending with slash and defines index files",
+    url = "https://nginx.org/en/docs/http/ngx_http_index_module.html"
 )
 
 val index = Directive(

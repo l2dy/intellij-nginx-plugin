@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_flv_module = NginxModule(
     "ngx_http_flv_module",
-    description = "Enables pseudo-streaming support for Flash Video (FLV) files"
+    description = "Enables pseudo-streaming support for Flash Video (FLV) files",
+    url = "https://nginx.org/en/docs/http/ngx_http_flv_module.html"
 )
 
 val flv = Directive(

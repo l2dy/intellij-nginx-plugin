@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_ssl_module = NginxModule(
     name = "ngx_http_ssl_module",
-    description = "Provides support for HTTPS protocol. Requires OpenSSL library. Not built by default, must be enabled with --with-http_ssl_module configuration parameter"
+    description = "Provides support for HTTPS protocol. Requires OpenSSL library. Not built by default, must be enabled with --with-http_ssl_module configuration parameter",
+    url = "https://nginx.org/en/docs/http/ngx_http_ssl_module.html"
 )
 
 val ssl = ToggleDirective(

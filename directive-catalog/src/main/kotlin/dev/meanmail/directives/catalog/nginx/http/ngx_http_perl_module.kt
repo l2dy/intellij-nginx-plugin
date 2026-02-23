@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_perl_module = NginxModule(
     name = "ngx_http_perl_module",
-    description = "Implements location and variable handlers in Perl and allows Perl calls in SSI"
+    description = "Implements location and variable handlers in Perl and allows Perl calls in SSI",
+    url = "https://nginx.org/en/docs/http/ngx_http_perl_module.html"
 )
 
 val perl = Directive(

@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_stream_proxy_module = NginxModule(
     name = "ngx_stream_proxy_module",
-    description = "Advanced module for proxying TCP/UDP connections with comprehensive configuration and load balancing capabilities"
+    description = "Advanced module for proxying TCP/UDP connections with comprehensive configuration and load balancing capabilities",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html"
 )
 
 val streamProxyBind = Directive(

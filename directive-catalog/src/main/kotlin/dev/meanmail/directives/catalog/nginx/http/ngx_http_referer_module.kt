@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_referer_module = NginxModule(
     name = "ngx_http_referer_module",
-    description = "Controls and validates HTTP referer headers to prevent unauthorized access"
+    description = "Controls and validates HTTP referer headers to prevent unauthorized access",
+    url = "https://nginx.org/en/docs/http/ngx_http_referer_module.html"
 )
 
 val refererHashBucketSize = Directive(

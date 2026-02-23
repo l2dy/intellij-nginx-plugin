@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_mp4_module = NginxModule(
     name = "ngx_http_mp4_module",
-    description = "Provides pseudo-streaming server-side support for MP4 files (.mp4, .m4v, .m4a)"
+    description = "Provides pseudo-streaming server-side support for MP4 files (.mp4, .m4v, .m4a)",
+    url = "https://nginx.org/en/docs/http/ngx_http_mp4_module.html"
 )
 
 val mp4 = Directive(

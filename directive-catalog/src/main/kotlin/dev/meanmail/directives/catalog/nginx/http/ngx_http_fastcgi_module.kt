@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_fastcgi_module = NginxModule(
     "ngx_http_fastcgi_module",
-    description = "The FastCGI module for NGINX"
+    description = "The FastCGI module for NGINX",
+    url = "https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html"
 )
 
 val fastcgiBind = Directive(

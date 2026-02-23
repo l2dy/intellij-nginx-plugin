@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_acme_module = NginxModule(
     "ngx_http_acme_module",
-    description = "Provides automatic SSL/TLS certificate management via the ACME protocol"
+    description = "Provides automatic SSL/TLS certificate management via the ACME protocol",
+    url = "https://nginx.org/en/docs/http/ngx_http_acme_module.html"
 )
 
 val acmeIssuer = Directive(

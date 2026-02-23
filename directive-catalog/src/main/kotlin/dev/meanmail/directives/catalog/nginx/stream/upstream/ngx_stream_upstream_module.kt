@@ -7,7 +7,8 @@ import dev.meanmail.directives.catalog.nginx.stream.stream
 
 val ngx_stream_upstream_module = NginxModule(
     name = "ngx_stream_upstream_module",
-    description = "Comprehensive stream module for advanced load balancing, server health checks, and dynamic upstream configuration in TCP/UDP proxying"
+    description = "Comprehensive stream module for advanced load balancing, server health checks, and dynamic upstream configuration in TCP/UDP proxying",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html"
 )
 
 val streamUpstream = Directive(

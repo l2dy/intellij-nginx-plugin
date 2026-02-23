@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_geo_module = NginxModule(
     "ngx_http_geo_module",
-    description = "Provides a way to create variables based on client IP addresses"
+    description = "Provides a way to create variables based on client IP addresses",
+    url = "https://nginx.org/en/docs/http/ngx_http_geo_module.html"
 )
 
 val geo = Directive(

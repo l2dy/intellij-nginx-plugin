@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_stream_realip_module = NginxModule(
     name = "ngx_stream_realip_module",
-    description = "Stream module for determining the real client IP address when using proxies or load balancers"
+    description = "Stream module for determining the real client IP address when using proxies or load balancers",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_realip_module.html"
 )
 
 val streamSetRealIpFrom = Directive(

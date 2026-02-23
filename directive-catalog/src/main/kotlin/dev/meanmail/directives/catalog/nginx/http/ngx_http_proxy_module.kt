@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_proxy_module = NginxModule(
     name = "ngx_http_proxy_module",
-    description = "Allows proxying requests to another server and configuring the connection"
+    description = "Allows proxying requests to another server and configuring the connection",
+    url = "https://nginx.org/en/docs/http/ngx_http_proxy_module.html"
 )
 
 val proxyBind = Directive(
