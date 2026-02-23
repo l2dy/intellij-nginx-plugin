@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_gunzip_module = NginxModule(
     "ngx_http_gunzip_module",
-    description = "Provides support for decompressing gzipped responses for clients that do not support gzip encoding"
+    description = "Provides support for decompressing gzipped responses for clients that do not support gzip encoding",
+    url = "https://nginx.org/en/docs/http/ngx_http_gunzip_module.html"
 )
 
 val gunzip = ToggleDirective(

@@ -11,6 +11,12 @@ import dev.meanmail.psi.DirectiveStmt
 
 class NginxDocumentationProvider : AbstractDocumentationProvider() {
 
+    override fun getUrlFor(element: PsiElement?, originalElement: PsiElement?): List<String>? {
+        val directive = resolveDirective(element, originalElement) ?: return null
+        val moduleUrl = directive.module.url ?: return null
+        return listOf("$moduleUrl#${directive.name}")
+    }
+
     override fun getQuickNavigateInfo(element: PsiElement?, originalElement: PsiElement?): String? {
         val directive = resolveDirective(element, originalElement) ?: return null
 

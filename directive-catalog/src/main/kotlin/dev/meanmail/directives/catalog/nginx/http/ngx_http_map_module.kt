@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_map_module = NginxModule(
     "ngx_http_map_module",
-    description = "Creates variables whose values depend on values of other variables"
+    description = "Creates variables whose values depend on values of other variables",
+    url = "https://nginx.org/en/docs/http/ngx_http_map_module.html"
 )
 
 val map = Directive(

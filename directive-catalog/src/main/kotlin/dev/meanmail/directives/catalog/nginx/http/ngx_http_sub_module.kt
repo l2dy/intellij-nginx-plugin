@@ -15,7 +15,8 @@ val ngx_http_sub_module = NginxModule(
         - Multiple sub_filter directives on the same level (since 1.9.4)
         
         Note: Not built by default, requires --with-http_sub_module
-    """.trimIndent()
+    """.trimIndent(),
+    url = "https://nginx.org/en/docs/http/ngx_http_sub_module.html"
 )
 
 val subFilter = Directive(

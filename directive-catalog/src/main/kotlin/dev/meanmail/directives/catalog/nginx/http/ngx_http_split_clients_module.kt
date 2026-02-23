@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_split_clients_module = NginxModule(
     name = "ngx_http_split_clients_module",
-    description = "Module for creating variables suitable for A/B testing using client hash distribution"
+    description = "Module for creating variables suitable for A/B testing using client hash distribution",
+    url = "https://nginx.org/en/docs/http/ngx_http_split_clients_module.html"
 )
 
 val splitClients = Directive(

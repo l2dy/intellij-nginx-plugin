@@ -9,7 +9,8 @@ import dev.meanmail.directives.catalog.nginx.http.server
 
 val ngx_http_auth_request_module = NginxModule(
     "ngx_http_auth_request_module",
-    description = "Enables external authorization request for client access"
+    description = "Enables external authorization request for client access",
+    url = "https://nginx.org/en/docs/http/ngx_http_auth_request_module.html"
 )
 
 val authRequest = Directive(

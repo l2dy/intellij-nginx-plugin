@@ -8,7 +8,8 @@ import dev.meanmail.directives.catalog.nginx.stream.streamServer
 
 val ngx_stream_ssl_preread_module = NginxModule(
     name = "ngx_stream_ssl_preread_module",
-    description = "Stream SSL preread module for extracting information from SSL/TLS handshake without terminating the connection"
+    description = "Stream SSL preread module for extracting information from SSL/TLS handshake without terminating the connection",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_ssl_preread_module.html"
 )
 
 val streamSslPreread = ToggleDirective(

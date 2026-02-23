@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_js_module = NginxModule(
     "ngx_http_js_module",
-    description = "Provides JavaScript integration for dynamic request processing and configuration"
+    description = "Provides JavaScript integration for dynamic request processing and configuration",
+    url = "https://nginx.org/en/docs/http/ngx_http_js_module.html"
 )
 
 val jsImport = Directive(

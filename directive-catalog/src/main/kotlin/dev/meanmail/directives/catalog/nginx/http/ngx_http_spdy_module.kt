@@ -7,7 +7,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_spdy_module = NginxModule(
     name = "ngx_http_spdy_module",
-    description = "DEPRECATED: SPDY module superseded by HTTP/2 module (ngx_http_v2_module)"
+    description = "DEPRECATED: SPDY module superseded by HTTP/2 module (ngx_http_v2_module)",
+    url = "https://nginx.org/en/docs/http/ngx_http_spdy_module.html"
 )
 
 val spdyChunkSize = Directive(

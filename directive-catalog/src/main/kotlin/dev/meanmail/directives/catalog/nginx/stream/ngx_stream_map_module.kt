@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_stream_map_module = NginxModule(
     name = "ngx_stream_map_module",
-    description = "Provides dynamic variable mapping functionality in stream context, enabling flexible transformation of variable values"
+    description = "Provides dynamic variable mapping functionality in stream context, enabling flexible transformation of variable values",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_map_module.html"
 )
 
 val streamMap = Directive(

@@ -14,7 +14,8 @@ val ngx_http_scgi_module = NginxModule(
         - Supports response buffering and caching
         - Provides connection management and failover
         - Allows customizing request parameters and headers
-    """.trimIndent()
+    """.trimIndent(),
+    url = "https://nginx.org/en/docs/http/ngx_http_scgi_module.html"
 )
 
 val scgiBind = Directive(

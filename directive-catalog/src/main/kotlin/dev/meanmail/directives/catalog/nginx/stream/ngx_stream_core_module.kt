@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_stream_core_module = NginxModule(
     name = "ngx_stream_core_module",
-    description = "Provides core functionality for handling stream connections"
+    description = "Provides core functionality for handling stream connections",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_core_module.html"
 )
 
 val stream = Directive(

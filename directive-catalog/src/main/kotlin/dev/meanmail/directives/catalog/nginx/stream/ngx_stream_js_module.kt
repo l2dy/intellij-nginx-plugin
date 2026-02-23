@@ -7,7 +7,8 @@ import dev.meanmail.directives.catalog.main
 
 val ngx_stream_js_module = NginxModule(
     name = "ngx_stream_js_module",
-    description = "Advanced stream module for integrating JavaScript functionality, enabling dynamic scripting for access control, filtering, variable manipulation, and custom stream processing"
+    description = "Advanced stream module for integrating JavaScript functionality, enabling dynamic scripting for access control, filtering, variable manipulation, and custom stream processing",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_js_module.html"
 )
 
 val streamJsAccess = Directive(

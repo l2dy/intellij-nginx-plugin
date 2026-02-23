@@ -15,7 +15,8 @@ val ngx_http_stub_status_module = NginxModule(
         - Not built by default, requires --with-http_stub_status_module
         
         Note: Module must be explicitly enabled during NGINX compilation
-    """.trimIndent()
+    """.trimIndent(),
+    url = "https://nginx.org/en/docs/http/ngx_http_stub_status_module.html"
 )
 
 val stubStatus = Directive(

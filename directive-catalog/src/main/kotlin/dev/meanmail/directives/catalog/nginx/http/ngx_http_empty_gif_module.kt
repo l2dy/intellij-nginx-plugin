@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_empty_gif_module = NginxModule(
     "ngx_http_empty_gif_module",
-    description = "Provides a location that always returns a 1x1 transparent GIF image"
+    description = "Provides a location that always returns a 1x1 transparent GIF image",
+    url = "https://nginx.org/en/docs/http/ngx_http_empty_gif_module.html"
 )
 
 val emptyGif = Directive(

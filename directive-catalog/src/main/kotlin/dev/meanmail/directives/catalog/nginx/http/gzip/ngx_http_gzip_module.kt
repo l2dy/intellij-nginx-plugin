@@ -9,7 +9,8 @@ import dev.meanmail.directives.catalog.nginx.http.server
 
 val ngx_http_gzip_module = NginxModule(
     "ngx_http_gzip_module",
-    description = "Provides support for compressing HTTP responses using gzip to reduce transfer size"
+    description = "Provides support for compressing HTTP responses using gzip to reduce transfer size",
+    url = "https://nginx.org/en/docs/http/ngx_http_gzip_module.html"
 )
 
 val gzip = ToggleDirective(

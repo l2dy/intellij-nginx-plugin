@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_core_module = NginxModule(
     "ngx_http_core_module",
-    description = "The core HTTP module"
+    description = "The core HTTP module",
+    url = "https://nginx.org/en/docs/http/ngx_http_core_module.html"
 )
 
 val http = Directive(

@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_dav_module = NginxModule(
     "ngx_http_dav_module",
-    description = "The Nginx HTTP DAV module"
+    description = "The Nginx HTTP DAV module",
+    url = "https://nginx.org/en/docs/http/ngx_http_dav_module.html"
 )
 
 val createFullPutPath = ToggleDirective(

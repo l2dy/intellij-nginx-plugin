@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_rewrite_module = NginxModule(
     name = "ngx_http_rewrite_module",
-    description = "Provides URI transformation, conditional configuration selection, and request processing control using PCRE regular expressions"
+    description = "Provides URI transformation, conditional configuration selection, and request processing control using PCRE regular expressions",
+    url = "https://nginx.org/en/docs/http/ngx_http_rewrite_module.html"
 )
 
 val locationIf = Directive(

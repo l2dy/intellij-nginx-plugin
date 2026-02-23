@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_realip_module = NginxModule(
     "ngx_http_realip_module",
-    description = "Provides a way to obtain the client's IP address from a proxy or a load balancer"
+    description = "Provides a way to obtain the client's IP address from a proxy or a load balancer",
+    url = "https://nginx.org/en/docs/http/ngx_http_realip_module.html"
 )
 
 val setRealIpFrom = Directive(

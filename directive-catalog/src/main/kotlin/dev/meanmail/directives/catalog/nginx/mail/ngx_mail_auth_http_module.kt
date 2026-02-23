@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_mail_auth_http_module = NginxModule(
     "ngx_mail_auth_http_module",
-    description = "HTTP authentication module for mail servers"
+    description = "HTTP authentication module for mail servers",
+    url = "https://nginx.org/en/docs/mail/ngx_mail_auth_http_module.html"
 )
 
 val mailAuthHttp = Directive(

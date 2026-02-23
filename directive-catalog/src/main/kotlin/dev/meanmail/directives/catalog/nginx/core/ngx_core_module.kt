@@ -11,7 +11,8 @@ import dev.meanmail.directives.catalog.nginx.stream.stream
 
 val ngx_core_module = NginxModule(
     "ngx_core_module",
-    description = "Core module for Nginx"
+    description = "Core module for Nginx",
+    url = "https://nginx.org/en/docs/ngx_core_module.html"
 )
 
 val events = Directive(

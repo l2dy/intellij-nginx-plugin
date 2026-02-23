@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_autoindex_module = NginxModule(
     name = "ngx_http_autoindex_module",
-    description = "Enables or disables directory listing"
+    description = "Enables or disables directory listing",
+    url = "https://nginx.org/en/docs/http/ngx_http_autoindex_module.html"
 )
 
 val autoindex = ToggleDirective(

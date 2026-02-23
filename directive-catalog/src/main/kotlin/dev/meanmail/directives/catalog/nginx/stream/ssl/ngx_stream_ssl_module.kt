@@ -8,7 +8,8 @@ import dev.meanmail.directives.catalog.nginx.stream.streamServer
 
 val ngx_stream_ssl_module = NginxModule(
     name = "ngx_stream_ssl_module",
-    description = "Comprehensive stream module for secure TCP/UDP connections, providing advanced SSL/TLS configuration, client authentication, and session management features"
+    description = "Comprehensive stream module for secure TCP/UDP connections, providing advanced SSL/TLS configuration, client authentication, and session management features",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html"
 )
 
 val streamSslAlpn = Directive(

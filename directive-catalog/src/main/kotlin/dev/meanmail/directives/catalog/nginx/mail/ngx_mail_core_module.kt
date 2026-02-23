@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_mail_core_module = NginxModule(
     "ngx_mail_core_module",
-    description = "Core module for NGINX mail server configuration"
+    description = "Core module for NGINX mail server configuration",
+    url = "https://nginx.org/en/docs/mail/ngx_mail_core_module.html"
 )
 
 

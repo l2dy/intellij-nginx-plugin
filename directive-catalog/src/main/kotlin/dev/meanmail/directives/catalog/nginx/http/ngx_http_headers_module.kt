@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_headers_module = NginxModule(
     name = "ngx_http_headers_module",
-    description = "HTTP headers module for adding custom headers and controlling response caching"
+    description = "HTTP headers module for adding custom headers and controlling response caching",
+    url = "https://nginx.org/en/docs/http/ngx_http_headers_module.html"
 )
 
 val addHeader = Directive(

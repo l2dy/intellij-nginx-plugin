@@ -9,7 +9,8 @@ import dev.meanmail.directives.catalog.nginx.http.server
 
 val ngx_otel_module = NginxModule(
     name = "ngx_otel_module",
-    description = "OpenTelemetry module for distributed tracing and context propagation"
+    description = "OpenTelemetry module for distributed tracing and context propagation",
+    url = "https://nginx.org/en/docs/ngx_otel_module.html"
 )
 
 val otelExporter = Directive(

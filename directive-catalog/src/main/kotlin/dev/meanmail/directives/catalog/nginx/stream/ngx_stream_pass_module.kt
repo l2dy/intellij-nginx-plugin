@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_stream_pass_module = NginxModule(
     name = "ngx_stream_pass_module",
-    description = "Provides routing and proxying functionality for TCP/UDP stream connections to backend servers"
+    description = "Provides routing and proxying functionality for TCP/UDP stream connections to backend servers",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_pass_module.html"
 )
 
 val streamPass = Directive(

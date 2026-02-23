@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_secure_link_module = NginxModule(
     name = "ngx_http_secure_link_module",
-    description = "Module for checking authenticity of requested links and protecting resources from unauthorized access"
+    description = "Module for checking authenticity of requested links and protecting resources from unauthorized access",
+    url = "https://nginx.org/en/docs/http/ngx_http_secure_link_module.html"
 )
 
 val secureLink = Directive(

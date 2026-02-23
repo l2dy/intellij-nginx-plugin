@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_addition_module = NginxModule(
     "ngx_http_addition_module",
-    description = "Provides content addition capabilities for HTTP responses"
+    description = "Provides content addition capabilities for HTTP responses",
+    url = "https://nginx.org/en/docs/http/ngx_http_addition_module.html"
 )
 
 val addAfterBody = Directive(

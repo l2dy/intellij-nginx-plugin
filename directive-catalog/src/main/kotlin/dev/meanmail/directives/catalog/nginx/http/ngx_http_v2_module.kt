@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_v2_module = NginxModule(
     "ngx_http_v2_module",
-    description = "Provides support for HTTP/2 protocol"
+    description = "Provides support for HTTP/2 protocol",
+    url = "https://nginx.org/en/docs/http/ngx_http_v2_module.html"
 )
 
 val http2 = ToggleDirective(

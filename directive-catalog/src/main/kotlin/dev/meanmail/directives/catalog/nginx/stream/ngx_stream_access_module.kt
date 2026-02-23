@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_stream_access_module = NginxModule(
     name = "ngx_stream_access_module",
-    description = "Comprehensive stream module for fine-grained access control based on client IP addresses, networks, and UNIX-domain sockets"
+    description = "Comprehensive stream module for fine-grained access control based on client IP addresses, networks, and UNIX-domain sockets",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_access_module.html"
 )
 
 val streamAllow = Directive(

@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_stream_geoip_module = NginxModule(
     name = "ngx_stream_geoip_module",
-    description = "The GeoIP module for NGINX"
+    description = "The GeoIP module for NGINX",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_geoip_module.html"
 )
 
 val streamGeoipCountry = Directive(

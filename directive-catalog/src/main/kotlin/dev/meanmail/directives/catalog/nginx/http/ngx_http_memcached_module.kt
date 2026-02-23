@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_memcached_module = NginxModule(
     name = "ngx_http_memcached_module",
-    description = "Obtains responses from a Memcached server using the \$memcached_key variable"
+    description = "Obtains responses from a Memcached server using the \$memcached_key variable",
+    url = "https://nginx.org/en/docs/http/ngx_http_memcached_module.html"
 )
 
 val memcachedBind = Directive(

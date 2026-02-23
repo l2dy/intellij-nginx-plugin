@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_mail_realip_module = NginxModule(
     "ngx_mail_realip_module",
-    description = "Module for changing client address and port sent in the PROXY protocol header"
+    description = "Module for changing client address and port sent in the PROXY protocol header",
+    url = "https://nginx.org/en/docs/mail/ngx_mail_realip_module.html"
 )
 
 val mailSetRealIpFrom = Directive(

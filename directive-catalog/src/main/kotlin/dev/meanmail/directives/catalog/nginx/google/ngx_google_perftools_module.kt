@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_google_perftools_module = NginxModule(
     name = "ngx_google_perftools_module",
-    description = "Enables Google Perftools profiling for Nginx stream module"
+    description = "Enables Google Perftools profiling for Nginx stream module",
+    url = "https://nginx.org/en/docs/ngx_google_perftools_module.html"
 )
 
 val streamGooglePerftoolsProfiles = Directive(

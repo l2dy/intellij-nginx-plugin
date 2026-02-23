@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_http_mirror_module = NginxModule(
     name = "ngx_http_mirror_module",
-    description = "Implements mirroring of an original request by creating background mirror subrequests"
+    description = "Implements mirroring of an original request by creating background mirror subrequests",
+    url = "https://nginx.org/en/docs/http/ngx_http_mirror_module.html"
 )
 
 val mirror = Directive(

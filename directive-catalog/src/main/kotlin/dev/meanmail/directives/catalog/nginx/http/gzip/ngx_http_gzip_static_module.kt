@@ -9,7 +9,8 @@ import dev.meanmail.directives.catalog.nginx.http.server
 
 val ngx_http_gzip_static_module = NginxModule(
     "ngx_http_gzip_static_module",
-    description = "Module for serving pre-compressed files with .gz extension"
+    description = "Module for serving pre-compressed files with .gz extension",
+    url = "https://nginx.org/en/docs/http/ngx_http_gzip_static_module.html"
 )
 
 val gzipStatic = Directive(

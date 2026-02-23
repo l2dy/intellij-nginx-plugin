@@ -8,6 +8,7 @@ import dev.meanmail.directives.catalog.*
 val ngx_stream_geo_module = NginxModule(
     name = "ngx_stream_geo_module",
     description = "Advanced stream module for creating dynamic geolocation variables based on client IP addresses, supporting complex routing and content delivery strategies",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_geo_module.html"
 )
 
 val streamGeo = Directive(

@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_mail_imap_module = NginxModule(
     "ngx_mail_imap_module",
-    description = "Module for handling IMAP protocol in NGINX mail proxy"
+    description = "Module for handling IMAP protocol in NGINX mail proxy",
+    url = "https://nginx.org/en/docs/mail/ngx_mail_imap_module.html"
 )
 
 val imapAuth = Directive(

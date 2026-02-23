@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_stream_split_clients_module = NginxModule(
     name = "ngx_stream_split_clients_module",
-    description = "Stream module for distributing client connections across multiple backend servers using percentage-based or weighted algorithms"
+    description = "Stream module for distributing client connections across multiple backend servers using percentage-based or weighted algorithms",
+    url = "https://nginx.org/en/docs/stream/ngx_stream_split_clients_module.html"
 )
 
 val streamSplitClients = Directive(

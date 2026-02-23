@@ -9,7 +9,8 @@ import dev.meanmail.directives.catalog.nginx.http.server
 
 val ngx_http_limit_conn_module = NginxModule(
     "ngx_http_limit_conn_module",
-    description = "Limits the number of connections per defined key, such as connections from a single IP address"
+    description = "Limits the number of connections per defined key, such as connections from a single IP address",
+    url = "https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html"
 )
 
 val limitConnZone = Directive(

@@ -6,7 +6,8 @@ import dev.meanmail.directives.catalog.*
 
 val ngx_mail_proxy_module = NginxModule(
     name = "ngx_mail_proxy_module",
-    description = "Module for proxying mail protocols in NGINX mail server"
+    description = "Module for proxying mail protocols in NGINX mail server",
+    url = "https://nginx.org/en/docs/mail/ngx_mail_proxy_module.html"
 )
 
 val proxyBuffer = Directive(
