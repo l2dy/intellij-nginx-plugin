@@ -340,6 +340,7 @@ Your ratings and feedback are very important. The feature will appear the faster
 ]]></change-notes>
 
     <depends>com.intellij.modules.lang</depends>
+    <depends optional="true" config-file="lua-support.xml">com.cppcxy.Intellij-EmmyLua</depends>
 
 
     <extensions defaultExtensionNs="com.intellij">
