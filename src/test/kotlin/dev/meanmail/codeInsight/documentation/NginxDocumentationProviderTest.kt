@@ -236,4 +236,79 @@ class NginxDocumentationProviderTest : BasePlatformTestCase() {
         assertContains(info, "Enables or disables the TCP_NODELAY option")
     }
 
+    // ---- Variable documentation tests ----
+
+    fun testGenerateDocForVariable() {
+        val doc = configureAndGetDoc(
+            """
+            server {
+                return 200 ${'$'}arg<caret>s;
+            }
+            """.trimIndent()
+        )
+
+        assertContains(doc, DocumentationMarkup.DEFINITION_START + "\$args")
+        assertNotContains(doc, "\$args*")
+        assertContains(doc, "ngx_http_core_module")
+        assertContains(doc, "arguments in the request line")
+    }
+
+    fun testGenerateDocForParameterizedVariable() {
+        val doc = configureAndGetDoc(
+            """
+            server {
+                return 200 ${'$'}arg_foo<caret>;
+            }
+            """.trimIndent()
+        )
+
+        assertContains(doc, DocumentationMarkup.DEFINITION_START + "\$arg_foo*")
+        assertContains(doc, "ngx_http_core_module")
+        assertContains(doc, "argument 'foo' in the request line")
+    }
+
+    fun testQuickNavForVariable() {
+        val info = configureAndGetQuickNav(
+            """
+            server {
+                return 200 ${'$'}remote_addr<caret>;
+            }
+            """.trimIndent()
+        )
+
+        assertTrue("Expected quick nav to start with '<b>\$remote_addr</b>', got: $info",
+            info.startsWith("<b>\$remote_addr</b>"))
+        assertContains(info, "ngx_http_core_module")
+        assertContains(info, "client address")
+    }
+
+    fun testGenerateDocForVariableInConcatenation() {
+        val doc = configureAndGetDoc(
+            """
+            server {
+                return 301 https://${'$'}hos<caret>t;
+            }
+            """.trimIndent()
+        )
+
+        assertContains(doc, DocumentationMarkup.DEFINITION_START + "\$host")
+        assertContains(doc, "ngx_http_core_module")
+    }
+
+    fun testGetUrlForVariable() {
+        myFixture.configureByText("nginx.conf", """
+            server {
+                return 200 ${'$'}remote_addr<caret>;
+            }
+        """.trimIndent())
+        val originalElement = myFixture.file.findElementAt(myFixture.caretOffset)!!
+        @Suppress("DEPRECATION")
+        val targetElement = DocumentationManager.getInstance(project)
+            .findTargetElement(myFixture.editor, myFixture.file, originalElement)!!
+        val urls = provider.getUrlFor(targetElement, originalElement)
+        assertNotNull(urls)
+        assertEquals(1, urls!!.size)
+        assertEquals("https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_addr", urls[0])
+    }
+
 }
