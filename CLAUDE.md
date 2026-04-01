@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 IntelliJ Platform plugin providing nginx configuration file support (syntax highlighting, completion, inspections, documentation, structure view, folding, and Lua language injection for OpenResty).
 
-Plugin ID: `dev.meanmail.plugin.nginx-intellij-plugin`
+Plugin ID: `io.github.l2dy.ide.ic.nginx`
 
 ## Build Commands
 

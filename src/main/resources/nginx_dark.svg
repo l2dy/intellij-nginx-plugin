@@ -1,0 +1,7 @@
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <!-- File shape with folded corner -->
+    <path d="M3 1h7l4 4v10H3z" fill="#3C3F41" stroke="#5E6366" stroke-width="0.8"/>
+    <path d="M10 1v4h4" fill="#4E5254" stroke="#5E6366" stroke-width="0.8" stroke-linejoin="round"/>
+    <!-- N mark -->
+    <path d="M5.5 12.5V7.5l5 5V7.5" fill="none" stroke="#2DB86A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
