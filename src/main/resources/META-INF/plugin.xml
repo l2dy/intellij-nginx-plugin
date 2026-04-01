@@ -17,6 +17,9 @@
     <depends>com.intellij.modules.lang</depends>
     <depends optional="true" config-file="lua-support.xml">com.cppcxy.Intellij-EmmyLua</depends>
 
+    <incompatible-with>dev.meanmail.plugin.nginx-intellij-plugin</incompatible-with>
+    <incompatible-with>dev.meanmail.plugin.nginx-intellij-plugin-pro</incompatible-with>
+
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType implementationClass="dev.meanmail.NginxFileType"
