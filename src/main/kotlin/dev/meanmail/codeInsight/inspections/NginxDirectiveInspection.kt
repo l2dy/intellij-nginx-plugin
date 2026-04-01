@@ -1,10 +1,6 @@
 package dev.meanmail.codeInsight.inspections
 
-import com.intellij.codeInsight.intention.preview.IntentionPreviewUtils
 import com.intellij.codeInspection.*
-import com.intellij.ide.BrowserUtil
-import com.intellij.openapi.application.ApplicationManager
-import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.util.PsiTreeUtil
@@ -37,7 +33,7 @@ class NginxDirectiveInspection : LocalInspectionTool() {
                     manager.createProblemDescriptor(
                         nameElement,
                         "Unknown directive",
-                        UnknownDirectiveQuickFix(),
+                        true,
                         ProblemHighlightType.ERROR,
                         isOnTheFly
                     )
@@ -137,23 +133,4 @@ class NginxDirectiveInspection : LocalInspectionTool() {
         }.joinToString(", ")
     }
 
-    /**
-     * Quick Fix that suggests installing the Pro version for unknown directives
-     */
-    private class UnknownDirectiveQuickFix : LocalQuickFix {
-        override fun getName(): String = "Check if this directive is available in Pro version"
-
-        override fun getFamilyName(): String = "NGINX Pro Features"
-
-        override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
-            // Avoid side effects during intention preview (runs on a copy). See IDEA SideEffectGuard.
-            if (IntentionPreviewUtils.isPreviewElement(descriptor.psiElement)) {
-                return
-            }
-
-            ApplicationManager.getApplication().invokeLater {
-                BrowserUtil.browse("https://plugins.jetbrains.com/plugin/18280-nginx-configuration-pro")
-            }
-        }
-    }
 }
