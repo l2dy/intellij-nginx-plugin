@@ -1,17 +1,14 @@
-# Nginx intellij plugin
+# Nginx IntelliJ Plugin
 
-[![JetBrains IntelliJ Plugins](https://img.shields.io/jetbrains/plugin/r/stars/15461?label=JetBrans%20Marketplace)](https://plugins.jetbrains.com/plugin/15461)
-[![JetBrains IntelliJ plugins](https://img.shields.io/jetbrains/plugin/d/15461)](https://plugins.jetbrains.com/plugin/15461)
-[![Twitter Follow](https://img.shields.io/twitter/follow/meanmaildev?style=plastic)](https://twitter.com/meanmaildev)
-
-https://plugins.jetbrains.com/plugin/15461
-
-https://meanmail.dev
-
-Your ratings and feedback are very important. The feature will appear the faster the more people request it.
+Open source fork of [meanmail-dev/nginx-intellij-plugin](https://github.com/meanmail-dev/nginx-intellij-plugin), providing Nginx configuration file support for JetBrains IDEs.
 
 ## Features
 
-* Highlighting for nginx configuration files in IDE
-* Comment with Line Comment action
+* Syntax highlighting
+* Directive auto-completion
+* File navigation (include directives)
 * Structure view
+* Quick documentation
+* Code formatting
+* Inspections
+* Lua block support (OpenResty, requires a Lua language plugin)
