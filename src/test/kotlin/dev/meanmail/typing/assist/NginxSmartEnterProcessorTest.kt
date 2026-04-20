@@ -69,4 +69,11 @@ class NginxSmartEnterProcessorTest : BasePlatformTestCase() {
             "listen 80;\n<caret>"
         )
     }
+
+    fun testAddSemicolonWithFollowingStatement() {
+        doTest(
+            "server {\n    listen 80<caret>\n\n    server_name localhost;\n}",
+            "server {\n    listen 80;\n    <caret>\n\n    server_name localhost;\n}"
+        )
+    }
 }

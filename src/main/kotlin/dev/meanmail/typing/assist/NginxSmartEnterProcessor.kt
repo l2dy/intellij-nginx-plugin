@@ -1,11 +1,13 @@
 package dev.meanmail.typing.assist
 
 import com.intellij.application.options.CodeStyle
+import com.intellij.lang.ASTNode
 import com.intellij.lang.SmartEnterProcessorWithFixers
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
+import com.intellij.psi.TokenType
 import com.intellij.psi.util.PsiTreeUtil
 import dev.meanmail.directives.catalog.findDirectives
 import dev.meanmail.psi.DirectiveStmt
@@ -97,21 +99,48 @@ class NginxSmartEnterProcessor : SmartEnterProcessorWithFixers() {
     private class SemicolonFixer : Fixer<NginxSmartEnterProcessor>() {
         override fun apply(editor: Editor, processor: NginxSmartEnterProcessor, element: PsiElement) {
             val directive = element as? DirectiveStmt ?: return
+            val caretOffset = editor.caretModel.offset
+            val doc = editor.document
+            val lineEndOffset = doc.getLineEndOffset(doc.getLineNumber(caretOffset))
 
             val regularDirective = directive.regularDirectiveStmt
             if (regularDirective != null) {
                 if (regularDirective.blockStmt != null) return
-                if (regularDirective.node.findChildByType(Types.SEMICOLON) != null) return
-                editor.document.insertString(regularDirective.textRange.endOffset, ";")
+                val semicolonNode = regularDirective.node.findChildByType(Types.SEMICOLON)
+                if (semicolonNode != null && semicolonNode.startOffset <= lineEndOffset) return
+                val insertOffset = lastContentOffsetBefore(regularDirective.node, lineEndOffset)
+                    .takeIf { it > 0 } ?: lineEndOffset
+                editor.document.insertString(insertOffset, ";")
                 return
             }
 
             val varStmt = directive.varStmt
             if (varStmt != null) {
-                if (varStmt.node.findChildByType(Types.SEMICOLON) != null) return
-                editor.document.insertString(varStmt.textRange.endOffset, ";")
+                val semicolonNode = varStmt.node.findChildByType(Types.SEMICOLON)
+                if (semicolonNode != null && semicolonNode.startOffset <= lineEndOffset) return
+                val insertOffset = lastContentOffsetBefore(varStmt.node, lineEndOffset)
+                    .takeIf { it > 0 } ?: lineEndOffset
+                editor.document.insertString(insertOffset, ";")
                 return
             }
+        }
+
+        private fun lastContentOffsetBefore(node: ASTNode, offset: Int): Int {
+            if (node.firstChildNode == null) {
+                return if (node.elementType != TokenType.WHITE_SPACE && node.startOffset < offset) {
+                    node.startOffset + node.textLength
+                } else -1
+            }
+            var best = -1
+            var child = node.firstChildNode
+            while (child != null && child.startOffset < offset) {
+                if (child.elementType != TokenType.WHITE_SPACE) {
+                    val end = lastContentOffsetBefore(child, offset)
+                    if (end > best) best = end
+                }
+                child = child.treeNext
+            }
+            return best
         }
     }
 
