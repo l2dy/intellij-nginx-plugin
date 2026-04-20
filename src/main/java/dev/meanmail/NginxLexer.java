@@ -809,6 +809,21 @@ public class NginxLexer implements FlexLexer {
       yypush(YYINITIAL);
   }
 
+  // Reset all custom lexer state. JFlex-generated reset() only resets zzLexicalState;
+  // our stack and flag fields are instance state and persist across start() calls on a
+  // reused FlexAdapter instance, corrupting state-stack tracking on the next lex.
+  // Called from NginxLexerAdapter.start() before FlexLexer.reset().
+  public final void clearLexerState() {
+      stack.clear();
+      ifParenDepth = 0;
+      ifCloseParenInString = false;
+      ifQuotedTokenBuffer.setLength(0);
+      ifAfterRegexOp = false;
+      joinPending = false;
+      prevConcatEligible = false;
+      inLocationPath = false;
+  }
+
 
   /**
    * Creates a new scanner
