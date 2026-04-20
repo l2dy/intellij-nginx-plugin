@@ -6,11 +6,23 @@
     <vendor url="https://github.com/l2dy/intellij-nginx-plugin">l2dy</vendor>
     <description><![CDATA[<h4>IDE Plugin for Nginx Configuration Files</h4>
 <p>Open source fork of nginx-intellij-plugin, providing support for editing Nginx configuration files.</p>
+<h4>Features</h4>
+<ul>
+    <li>Syntax highlighting</li>
+    <li>Directive auto-completion</li>
+    <li>Lua syntax highlighting (via any Lua plugin)</li>
+    <li>(Un-)comment lines</li>
+    <li>Quick documentation for directives and variables</li>
+    <li>Auto-insert pair braces, parenthesis and quotes</li>
+    <li>Complete current statement (Smart Enter) to add trailing semicolons or braces</li>
+    <li>Conservative formatter and auto-indentation</li>
+</ul>
 ]]></description>
     <change-notes><![CDATA[
-<b>2026.1.11</b>
+<b>2026.1.12</b>
 <ul>
-    <li>Forked from <a href="https://github.com/meanmail-dev/nginx-intellij-plugin">meanmail-dev/nginx-intellij-plugin</a> v2026.1.11 (MIT licensed)</li>
+    <li>Fix multiple right braces added by auto-complete on Enter.</li>
+    <li>Fix Smart Enter not adding semicolons in the middle of a block.</li>
 </ul>
 ]]></change-notes>
 
